@@ -31,11 +31,6 @@ const links = [
     url: "https://github.com/matsu641",
     description: "コードとコントリビューションを見る",
   },
-  {
-    name: "Phone",
-    url: "tel:+14374404247",
-    description: "+1 437-440-4247",
-  },
 ];
 
 export default function Contact() {
@@ -49,12 +44,8 @@ export default function Contact() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <motion.h2 variants={item} className="text-4xl md:text-5xl font-bold mb-6">
-            お問い合わせ
+            Contact
           </motion.h2>
-          
-          <motion.p variants={item} className="text-xl text-muted mb-12 max-w-2xl">
-            新しい機会や面白いプロジェクトに興味があります。お気軽にご連絡ください。
-          </motion.p>
 
           <motion.div variants={item} className="space-y-4">
             {links.map((link) => (
@@ -89,8 +80,8 @@ export default function Contact() {
         viewport={{ once: true }}
         className="mt-24 pt-8 border-t border-foreground/10 text-center"
       >
-        <p className="text-sm text-muted">
-          Next.js、TypeScript、Tailwind CSSで構築
+        <p className="text-sm text-muted font-medium mb-2">
+          © 2025 松戸美純 (Misumi Matsudo)
         </p>
         <p className="text-sm text-muted mt-2">
           Location: Toronto, ON, Canada

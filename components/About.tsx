@@ -180,9 +180,12 @@ export default function About() {
                   href="/certificates/gci-certificate.pdf" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-accent hover:underline text-sm mt-4 flex items-center gap-1"
+                  className="inline-flex items-center gap-2 text-accent hover:underline text-sm mt-4"
                 >
-                  <span>📄</span> 修了証を見る
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  修了証を見る
                 </a>
               </div>
 
@@ -203,63 +206,16 @@ export default function About() {
                   href="/certificates/dl-foundations-certificate.pdf" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-accent hover:underline text-sm mt-4 flex items-center gap-1"
+                  className="inline-flex items-center gap-2 text-accent hover:underline text-sm mt-4"
                 >
-                  <span>📄</span> 修了証を見る
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  修了証を見る
                 </a>
               </div>
             </div>
           </motion.div>
-
-          {/* How I Work Section */}
-          <motion.h2 variants={item} className="text-4xl md:text-5xl font-bold mb-12">
-            How I Work
-          </motion.h2>
-
-          <div className="space-y-12">
-            {/* Philosophy */}
-            <motion.div variants={item}>
-              <h3 className="text-xl font-semibold mb-3 text-accent">Philosophy</h3>
-              <p className="text-lg text-muted leading-relaxed">
-                I believe great engineering isn't about using the latest tech—it's about 
-                choosing the right tool for the problem. I prioritize maintainability, 
-                performance, and user experience over complexity.
-              </p>
-            </motion.div>
-
-            {/* Approach */}
-            <motion.div variants={item}>
-              <h3 className="text-xl font-semibold mb-3 text-accent">Approach</h3>
-              <ul className="space-y-3 text-lg text-muted">
-                <li className="flex gap-3">
-                  <span className="text-foreground font-mono text-sm mt-1">→</span>
-                  <span>Start with the user problem, then choose the tech stack</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-foreground font-mono text-sm mt-1">→</span>
-                  <span>Design APIs and data flow before writing components</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-foreground font-mono text-sm mt-1">→</span>
-                  <span>Write code that's easy to delete and iterate on</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-foreground font-mono text-sm mt-1">→</span>
-                  <span>Measure impact with real metrics, not assumptions</span>
-                </li>
-              </ul>
-            </motion.div>
-
-            {/* Focus Areas */}
-            <motion.div variants={item}>
-              <h3 className="text-xl font-semibold mb-3 text-accent">Current Focus</h3>
-              <p className="text-lg text-muted leading-relaxed">
-                Building high-performance web applications with React/Next.js, exploring 
-                AI integration patterns, and improving my understanding of distributed 
-                systems architecture.
-              </p>
-            </motion.div>
-          </div>
         </motion.div>
       </div>
     </section>

@@ -33,7 +33,7 @@ const projects: Project[] = [
   {
     title: "若手社員離職リスク予測モデル",
     problem: "入社5年以内の若手社員の離職率が高く、人事施策の効果的な介入タイミングの特定が困難。過去の社員データから離職リスクを事前に予測する仕組みが必要とされていた。",
-    role: "機械学習エンジニア（個人プロジェクト）。データ前処理、特徴量設計、モデル構築から評価・最適化まで一貫して担当。GCI 2025 Summer（松尾研究室）の最終課題として実施。",
+    role: "GCI 2025 Summer（松尾研究室）の最終課題として実施。データ前処理、特徴量設計、モデル構築から評価・最適化まで一貫して担当。",
     techStack: [
       { name: "LightGBM", reason: "表形式データに対する高精度と学習速度、特徴量重要度の解釈性" },
       { name: "Python + scikit-learn", reason: "データ前処理とモデル評価の標準ライブラリ" },
@@ -48,7 +48,7 @@ const projects: Project[] = [
   {
     title: "胸部X線画像の疾患分類（マルチモーダルモデル）",
     problem: "医療画像診断において、画像データのみでは少数クラス（特定疾患）の検出精度が低く、誤診リスクがあった。患者の年齢・性別などのメタデータを活用した精度向上が課題。",
-    role: "機械学習エンジニア（個人開発・大学プロジェクト）。データセット構築、CNN実装、マルチモーダルモデル設計、クラス不均衡対策まで担当。",
+    role: "個人開発プロジェクト。データセット構築、CNN実装、マルチモーダルモデル設計、クラス不均衡対策まで担当。",
     techStack: [
       { name: "PyTorch + ResNet", reason: "画像分類タスクで実績のあるアーキテクチャ、転移学習が可能" },
       { name: "マルチモーダル統合", reason: "画像特徴量と患者メタデータを結合し少数クラスの検出性能向上" },
@@ -189,7 +189,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-accent hover:underline"
               >
-                <span>📊</span> プロジェクトスライドを見る
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                プロジェクトスライドを見る
               </a>
             </div>
           )}
@@ -220,7 +223,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 md:py-32 px-6 md:px-8">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">プロジェクト</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4">Projects</h2>
         <p className="text-xl text-muted mb-16 max-w-2xl">
           技術的な意思決定とインパクトを示すプロジェクト
         </p>
