@@ -159,6 +159,58 @@ export default function About() {
             </div>
           </motion.div>
 
+          {/* Certifications & Courses */}
+          <motion.div variants={item} className="mb-16">
+            <h3 className="text-2xl font-bold mb-6">修了コース・研修</h3>
+            <div className="space-y-6">
+              {/* GCI Program */}
+              <div className="border-l-2 border-accent pl-6">
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 className="text-xl font-semibold">Global Consumer Intelligence Program</h4>
+                    <p className="text-accent font-medium">松尾研究室（東京大学）</p>
+                  </div>
+                  <span className="text-sm text-muted whitespace-nowrap ml-4">修了：2025年8月</span>
+                </div>
+                <p className="text-muted mt-3">
+                  データ駆動型アプローチを用いてグローバルな消費者行動を分析する手法を学習。
+                  AIテクニックと市場・ビジネスの視点を組み合わせ、ケーススタディやプロジェクトを通じて実践的なスキルを習得。
+                </p>
+                <a 
+                  href="/certificates/gci-certificate.pdf" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-accent hover:underline text-sm mt-4 flex items-center gap-1"
+                >
+                  <span>📄</span> 修了証を見る
+                </a>
+              </div>
+
+              {/* Deep Learning Foundations */}
+              <div className="border-l-2 border-accent pl-6">
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 className="text-xl font-semibold">Deep Learning Foundations Course</h4>
+                    <p className="text-accent font-medium">松尾研究室（東京大学）</p>
+                  </div>
+                  <span className="text-sm text-muted whitespace-nowrap ml-4">修了：2025年7月</span>
+                </div>
+                <p className="text-muted mt-3">
+                  ニューラルネットワーク、最適化、表現学習など、深層学習の理論的基礎を学習。
+                  ハンズオン課題を通じてコアとなるモデルの実装を経験。
+                </p>
+                <a 
+                  href="/certificates/dl-foundations-certificate.pdf" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-accent hover:underline text-sm mt-4 flex items-center gap-1"
+                >
+                  <span>📄</span> 修了証を見る
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
           {/* How I Work Section */}
           <motion.h2 variants={item} className="text-4xl md:text-5xl font-bold mb-12">
             How I Work

@@ -24,47 +24,55 @@ type Project = {
   tradeoffs: string;
   result: string;
   tags: string[];
+  videoUrl?: string; // デモビデオのパス（オプション）
+  slidesUrl?: string; // プロジェクトスライドのパス（オプション）
+  githubUrl?: string; // GitHubリポジトリのURL（オプション）
 };
 
 const projects: Project[] = [
   {
-    title: "Real-time Collaboration Platform",
-    problem: "Team needed to collaborate on documents with 50+ concurrent users, existing solutions had 2-3s latency causing conflicts.",
-    role: "Lead frontend engineer. Designed state synchronization architecture, implemented optimistic UI updates, mentored 2 junior developers.",
+    title: "若手社員離職リスク予測モデル",
+    problem: "入社5年以内の若手社員の離職率が高く、人事施策の効果的な介入タイミングの特定が困難。過去の社員データから離職リスクを事前に予測する仕組みが必要とされていた。",
+    role: "機械学習エンジニア（個人プロジェクト）。データ前処理、特徴量設計、モデル構築から評価・最適化まで一貫して担当。GCI 2025 Summer（松尾研究室）の最終課題として実施。",
     techStack: [
-      { name: "Next.js + TypeScript", reason: "Type safety critical for complex state management" },
-      { name: "WebSocket + Redis", reason: "Sub-100ms latency requirement ruled out HTTP polling" },
-      { name: "Zustand", reason: "Lighter than Redux, easier to reason about for realtime updates" },
+      { name: "LightGBM", reason: "表形式データに対する高精度と学習速度、特徴量重要度の解釈性" },
+      { name: "Python + scikit-learn", reason: "データ前処理とモデル評価の標準ライブラリ" },
+      { name: "Precision-Recall Curve", reason: "クラス不均衡下でRecallを重視した閾値最適化が必要" },
     ],
-    tradeoffs: "Chose eventual consistency over strong consistency—acceptable for documents, saved 40% infra cost. No offline mode in v1 to ship faster.",
-    result: "Latency reduced to <200ms (90th percentile). User engagement +35%. 0 data loss incidents in 6 months.",
-    tags: ["React", "TypeScript", "WebSocket", "Redis"],
+    tradeoffs: "ディープラーニングではなくLightGBMを選択。解釈性と学習速度を優先し、少量データでも安定した性能を実現。Recall重視の閾値設定により一部の誤検知は許容。",
+    result: "クラス不均衡を考慮したRecall重視の閾値最適化により、離職リスクの高い社員を効果的に検出。企業の人事施策への活用提案を含むレポートを作成。",
+    tags: ["Machine Learning", "LightGBM", "Python", "Feature Engineering"],
+    slidesUrl: "/certificates/gci-final-project-slides.pdf",
+    githubUrl: "https://github.com/matsu641/GCI_final_project",
   },
   {
-    title: "E-commerce Performance Optimization",
-    problem: "Mobile conversion rate 40% below desktop. LCP was 8.2s, users abandoned before product images loaded.",
-    role: "Solo performance engineer. Conducted profiling, implemented lazy loading strategy, negotiated with backend team for API changes.",
+    title: "胸部X線画像の疾患分類（マルチモーダルモデル）",
+    problem: "医療画像診断において、画像データのみでは少数クラス（特定疾患）の検出精度が低く、誤診リスクがあった。患者の年齢・性別などのメタデータを活用した精度向上が課題。",
+    role: "機械学習エンジニア（個人開発・大学プロジェクト）。データセット構築、CNN実装、マルチモーダルモデル設計、クラス不均衡対策まで担当。",
     techStack: [
-      { name: "Next.js Image", reason: "Automatic WebP/AVIF, lazy loading, responsive sizes" },
-      { name: "Dynamic Imports", reason: "Reduced initial JS bundle from 340KB to 120KB" },
-      { name: "Edge Functions", reason: "Regional caching for product data improved TTFB" },
+      { name: "PyTorch + ResNet", reason: "画像分類タスクで実績のあるアーキテクチャ、転移学習が可能" },
+      { name: "マルチモーダル統合", reason: "画像特徴量と患者メタデータを結合し少数クラスの検出性能向上" },
+      { name: "クラス重み付け", reason: "極端なクラス不均衡（4クラス）に対応するための損失関数調整" },
     ],
-    tradeoffs: "Removed some animation libraries (30KB saved). Delayed non-critical analytics loading. Simplified hero section design.",
-    result: "LCP: 8.2s → 2.1s. Mobile conversion +18%. Lighthouse score 45 → 92. Featured in company engineering blog.",
-    tags: ["Performance", "Next.js", "Web Vitals"],
+    tradeoffs: "複雑なアンサンブルではなく単一のマルチモーダルモデルを選択。推論速度と実装のシンプルさを優先。少数クラスのRecallを重視し、一部クラスのPrecisionはトレードオフ。",
+    result: "画像のみのベースラインと比較して、患者メタデータを統合したマルチモーダルモデルで少数クラス（Effusion, Cardiomegaly）の検出性能が向上。クラス不均衡下での評価手法を習得。",
+    tags: ["Deep Learning", "PyTorch", "CNN", "Medical AI", "Multimodal"],
+    githubUrl: "https://github.com/matsu641/GCI_final_project",
   },
   {
-    title: "Design System & Component Library",
-    problem: "5 teams building similar components inconsistently. Design-dev handoff taking 2-3 weeks per feature.",
-    role: "Technical lead. Defined component API patterns, set up automated visual regression testing, created migration guides.",
+    title: "Rush Hour（駐車場パズルゲーム）",
+    problem: "トロント大学のECE243（Computer Organization）の課題として、組み込みシステムと低レベルハードウェア制御の実践的な学習が必要だった。VGA描画とPS/2デバイス入力処理をC言語で実装し、動作するゲームを作成することが求められた。",
+    role: "ソロ開発者。VGA出力によるグラフィック描画、PS/2キーボード割り込み処理、ゲームロジック、衝突判定、タイマー機能まで全て実装。CPUlator上でDE1-SoCボードをシミュレート。",
     techStack: [
-      { name: "React + TypeScript", reason: "Strict types prevent API misuse across teams" },
-      { name: "Tailwind CSS", reason: "Design tokens as utility classes, easy theming" },
-      { name: "Storybook", reason: "Living documentation, visual testing, design QA" },
+      { name: "C言語", reason: "組み込みシステム開発に適した低レベル言語、ハードウェア直接制御が可能" },
+      { name: "VGA + Double Buffering", reason: "スムーズな2D描画とちらつき防止のため二重バッファリングを採用" },
+      { name: "PS/2割り込み処理", reason: "リアルタイムなキーボード入力に対応するためIRQ line 22から割り込み処理" },
     ],
-    tradeoffs: "Focused on 20 core components first instead of 60+. Delayed advanced animation features. Used CSS instead of CSS-in-JS for simpler mental model.",
-    result: "Design-dev cycle: 2-3 weeks → 3-4 days. 4/5 teams adopted within 2 months. Reduced bug reports by 60% (fewer one-off implementations).",
-    tags: ["Design System", "React", "TypeScript", "Storybook"],
+    tradeoffs: "複雑なアニメーションやマウス入力は後回しにし、基本的なゲームロジックと描画に注力。シンプルな矩形描画で車を表現し、パフォーマンスと実装速度を優先。",
+    result: "CPUlator上で完全動作するパズルゲームを実装。VGA描画、キーボード入力、衝突判定、HEXディスプレイタイマー、ビープ音機能を実現。課題として提出し、組み込みシステムの基礎を習得。",
+    tags: ["C", "Embedded Systems", "VGA", "Computer Organization", "RISC-V"],
+    videoUrl: "/demos/rush-hour-demo.mp4",
+    githubUrl: "https://github.com/matsu641/RushHour",
   },
 ];
 
@@ -78,7 +86,22 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     >
       {/* Title and Tags */}
       <div className="mb-6">
-        <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
+        <div className="flex items-center gap-3 mb-3">
+          <h3 className="text-2xl font-bold">{project.title}</h3>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:opacity-80 transition-opacity"
+              aria-label="GitHub Repository"
+            >
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+              </svg>
+            </a>
+          )}
+        </div>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span
@@ -94,7 +117,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {/* Problem */}
       <div className="mb-6">
         <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
-          Problem
+          課題
         </h4>
         <p className="text-muted leading-relaxed">{project.problem}</p>
       </div>
@@ -102,7 +125,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {/* Role */}
       <div className="mb-6">
         <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
-          My Role
+          担当役割
         </h4>
         <p className="text-muted leading-relaxed">{project.role}</p>
       </div>
@@ -113,7 +136,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         className="text-accent hover:underline mb-4 text-sm font-medium"
         aria-expanded={isExpanded}
       >
-        {isExpanded ? "Show Less" : "Show Technical Details →"}
+        {isExpanded ? "閉じる" : "技術詳細を見る →"}
       </button>
 
       {isExpanded && (
@@ -126,7 +149,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {/* Tech Stack */}
           <div>
             <h4 className="text-sm font-mono text-accent mb-3 uppercase tracking-wider">
-              Tech Stack & Decisions
+              技術スタックと意思決定
             </h4>
             <ul className="space-y-3">
               {project.techStack.map((tech) => (
@@ -141,7 +164,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {/* Trade-offs */}
           <div>
             <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
-              Trade-offs
+              トレードオフ
             </h4>
             <p className="text-muted leading-relaxed">{project.tradeoffs}</p>
           </div>
@@ -149,10 +172,44 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {/* Result */}
           <div>
             <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
-              Result & Impact
+              結果とインパクト
             </h4>
             <p className="text-muted leading-relaxed">{project.result}</p>
           </div>
+
+          {/* Project Slides */}
+          {project.slidesUrl && (
+            <div>
+              <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
+                プロジェクト資料
+              </h4>
+              <a 
+                href={project.slidesUrl} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-accent hover:underline"
+              >
+                <span>📊</span> プロジェクトスライドを見る
+              </a>
+            </div>
+          )}
+
+          {/* Demo Video */}
+          {project.videoUrl && (
+            <div>
+              <h4 className="text-sm font-mono text-accent mb-3 uppercase tracking-wider">
+                デモンストレーション
+              </h4>
+              <video 
+                controls 
+                className="w-full rounded-lg border border-foreground/10"
+                preload="metadata"
+              >
+                <source src={project.videoUrl} type="video/mp4" />
+                お使いのブラウザは動画タグをサポートしていません。
+              </video>
+            </div>
+          )}
         </motion.div>
       )}
     </motion.article>
@@ -163,9 +220,9 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 md:py-32 px-6 md:px-8">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">Selected Work</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4">プロジェクト</h2>
         <p className="text-xl text-muted mb-16 max-w-2xl">
-          Projects that demonstrate technical decision-making and impact.
+          技術的な意思決定とインパクトを示すプロジェクト
         </p>
 
         <motion.div
