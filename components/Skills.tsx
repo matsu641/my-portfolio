@@ -21,19 +21,19 @@ type Skill = {
 };
 
 const mainSkills: Skill[] = [
-  { name: "TypeScript", context: "Primary language for type-safe applications" },
-  { name: "React / Next.js", context: "Production-level SPAs and SSR/SSG apps" },
-  { name: "Node.js", context: "API development and tooling" },
-  { name: "Tailwind CSS", context: "Rapid, consistent UI development" },
-  { name: "SQL / PostgreSQL", context: "Data modeling and query optimization" },
+  { name: "TypeScript", context: "主要言語としてタイプセーフなアプリケーション開発" },
+  { name: "React / Next.js", context: "本番環境レベルのSPAとSSR/SSGアプリケーション" },
+  { name: "Python", context: "データ処理、自動化、FastAPI開発" },
+  { name: "C / C++", context: "システムプログラミングと組込み開発" },
+  { name: "Tailwind CSS", context: "迅速で一貫性のあるUI開発" },
+  { name: "FastAPI", context: "高性能なREST API開発" },
 ];
 
 const familiarSkills: Skill[] = [
-  { name: "React Three Fiber", context: "3D visualization and interactive graphics" },
-  { name: "GSAP", context: "Complex scroll animations and micro-interactions" },
-  { name: "Docker", context: "Local development and deployment consistency" },
-  { name: "GraphQL", context: "Type-safe API layer for complex data requirements" },
-  { name: "Python", context: "Data processing and automation scripts" },
+  { name: "Docker", context: "ローカル開発とデプロイメントの一貫性" },
+  { name: "Firebase", context: "認証、データベース、ホスティング" },
+  { name: "PyTorch / NumPy / Pandas", context: "機械学習とデータ分析" },
+  { name: "Git / GitHub", context: "バージョン管理とコラボレーション" },
 ];
 
 function SkillCard({ skill, index }: { skill: Skill; index: number }) {
@@ -52,16 +52,16 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4">スキル</h2>
         <p className="text-xl text-muted mb-16 max-w-2xl">
-          Not just what I know, but how and when I use it.
+          知識だけでなく、どのように、いつ使用するかを重視しています
         </p>
 
         <div className="space-y-12">
           {/* Main Skills */}
           <div>
             <h3 className="text-sm font-mono text-accent mb-6 uppercase tracking-wider">
-              Production Ready
+              本番環境対応可能
             </h3>
             <motion.div
               variants={container}
@@ -79,7 +79,7 @@ export default function Skills() {
           {/* Familiar Skills */}
           <div>
             <h3 className="text-sm font-mono text-accent mb-6 uppercase tracking-wider">
-              Experienced With
+              経験あり
             </h3>
             <motion.div
               variants={container}

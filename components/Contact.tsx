@@ -17,19 +17,24 @@ const item = {
 
 const links = [
   {
-    name: "GitHub",
-    url: "https://github.com/matsu641",
-    description: "View my code and contributions",
+    name: "Email",
+    url: "mailto:misumi.matsudo@mail.utoronto.ca",
+    description: "misumi.matsudo@mail.utoronto.ca",
   },
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/misumi-matsudo-22b97a333/",
-    description: "Professional background",
+    description: "プロフェッショナルな経歴を見る",
   },
   {
-    name: "Email",
-    url: "mailto:misumimatsudo@gmail.com",
-    description: "misumimatsudo@gmail.com",
+    name: "GitHub",
+    url: "https://github.com/matsu641",
+    description: "コードとコントリビューションを見る",
+  },
+  {
+    name: "Phone",
+    url: "tel:+14374404247",
+    description: "+1 437-440-4247",
   },
 ];
 
@@ -44,12 +49,11 @@ export default function Contact() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <motion.h2 variants={item} className="text-4xl md:text-5xl font-bold mb-6">
-            Let's Talk
+            お問い合わせ
           </motion.h2>
           
           <motion.p variants={item} className="text-xl text-muted mb-12 max-w-2xl">
-            I'm open to new opportunities and interesting projects.
-            Feel free to reach out.
+            新しい機会や面白いプロジェクトに興味があります。お気軽にご連絡ください。
           </motion.p>
 
           <motion.div variants={item} className="space-y-4">
@@ -57,8 +61,8 @@ export default function Contact() {
               <a
                 key={link.name}
                 href={link.url}
-                target={link.name !== "Email" ? "_blank" : undefined}
-                rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
+                target={link.name !== "Email" && link.name !== "Phone" ? "_blank" : undefined}
+                rel={link.name !== "Email" && link.name !== "Phone" ? "noopener noreferrer" : undefined}
                 className="block p-6 border border-foreground/10 rounded-lg hover:border-accent/30 transition-colors group"
               >
                 <div className="flex items-center justify-between">
@@ -86,7 +90,10 @@ export default function Contact() {
         className="mt-24 pt-8 border-t border-foreground/10 text-center"
       >
         <p className="text-sm text-muted">
-          Built with Next.js, TypeScript, and Tailwind CSS
+          Next.js、TypeScript、Tailwind CSSで構築
+        </p>
+        <p className="text-sm text-muted mt-2">
+          Location: Toronto, ON, Canada
         </p>
       </motion.footer>
     </section>
