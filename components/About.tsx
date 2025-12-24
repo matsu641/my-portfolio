@@ -32,20 +32,11 @@ export default function About() {
             <h2 className="text-4xl md:text-5xl font-bold mb-8">About Me</h2>
             <div className="space-y-6">
               <p className="text-lg text-muted leading-relaxed">
-                トロント大学でコンピューターエンジニアリングを専攻している学部生です。
-                TypeScript、React/Next.js、Python、FastAPIを使用したフルスタック開発に
-                情熱を注いでいます。
+                トロント大学でコンピュータ工学を専攻し、AIを副専攻しています。5年制プログラムで、現在は学部3年生です。
               </p>
               <p className="text-lg text-muted leading-relaxed">
-                現在、製造業向けSaaSプラットフォームの開発に携わり、Feature Leadとして
-                要件定義からタスク分解、進行管理まで担当しています。また、フリーランスとして
-                医療機関のウェブサイト開発を手がけ、SEO最適化により3ヶ月で2,856インプレッション、
-                343クリック（CTR 12%）を達成しました。
-              </p>
-              <p className="text-lg text-muted leading-relaxed">
-                技術選定においては、最新トレンドに飛びつくのではなく、プロジェクトの要件や
-                長期的な保守性を重視した判断を心がけています。コードの品質とユーザー体験の
-                両立を常に意識し、ビジネス目標達成に貢献するソリューションを構築します。
+                1・2年次には、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などの経験を積みました。
+                現在は、制御工学、半導体デバイス、深層学習など、大学でより専門的な分野を中心に学びながら、サークルやスタートアップ企業でフルスタックWeb開発をしています。
               </p>
             </div>
           </motion.div>
