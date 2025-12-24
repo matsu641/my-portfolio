@@ -18,6 +18,8 @@ const item = {
 
 type Project = {
   title: string;
+  period: string;
+  overview: string;
   problem: string;
   role: string;
   techStack: { name: string; reason: string }[];
@@ -27,13 +29,32 @@ type Project = {
   videoUrl?: string; // デモビデオのパス（オプション）
   slidesUrl?: string; // プロジェクトスライドのパス（オプション）
   githubUrl?: string; // GitHubリポジトリのURL（オプション）
+  leaderboardImageUrl?: string; // リーダーボード画像のパス（オプション）
 };
 
 const projects: Project[] = [
   {
+    title: "胸部X線画像の疾患分類（マルチモーダルモデル）",
+    period: "2025/10 - 2025/12",
+    overview: "個人プロジェクト。PyTorch + ResNetを用いた胸部X線画像の4クラス疾患分類。画像特徴量と患者メタデータを統合したマルチモーダルモデルで少数クラスの検出性能を改善。",
+    problem: "医療画像診断において、画像データのみでは少数クラス（特定疾患）の検出精度が低く、誤診リスクがあった。患者の年齢・性別などのメタデータを活用した精度向上が課題。",
+    role: "データセット構築、CNN実装、マルチモーダルモデル設計、クラス不均衡対策まで担当。",
+    techStack: [
+      { name: "PyTorch + ResNet", reason: "画像分類タスクで実績のあるアーキテクチャ、転移学習が可能" },
+      { name: "マルチモーダル統合", reason: "画像特徴量と患者メタデータを結合し少数クラスの検出性能向上" },
+      { name: "クラス重み付け", reason: "極端なクラス不均衡（4クラス）に対応するための損失関数調整" },
+    ],
+    tradeoffs: "複雑なアンサンブルではなく単一のマルチモーダルモデルを選択。推論速度と実装のシンプルさを優先。少数クラスのRecallを重視し、一部クラスのPrecisionはトレードオフ。",
+    result: "画像のみのベースラインと比較して、患者メタデータを統合したマルチモーダルモデルで少数クラス（Effusion, Cardiomegaly）の検出性能が向上。クラス不均衡下での評価手法を習得。",
+    tags: ["Deep Learning", "PyTorch", "CNN", "Medical AI", "Multimodal"],
+    githubUrl: "https://github.com/matsu641/Multimodal-Chest-X-ray-Classification-with-CNN",
+  },
+  {
     title: "若手社員離職リスク予測モデル",
+    period: "2025/05 - 2025/08",
+    overview: "松尾研究室GCI 2025 Summerの最終課題。クラス不均衡な社員データからLightGBMを用いて離職リスクを予測し、人事施策への活用を提案。",
     problem: "入社5年以内の若手社員の離職率が高く、人事施策の効果的な介入タイミングの特定が困難。過去の社員データから離職リスクを事前に予測する仕組みが必要とされていた。",
-    role: "GCI 2025 Summer（松尾研究室）の最終課題として実施。データ前処理、特徴量設計、モデル構築から評価・最適化まで一貫して担当。",
+    role: "データ前処理、特徴量設計、モデル構築から評価・最適化。",
     techStack: [
       { name: "LightGBM", reason: "表形式データに対する高精度と学習速度、特徴量重要度の解釈性" },
       { name: "Python + scikit-learn", reason: "データ前処理とモデル評価の標準ライブラリ" },
@@ -46,22 +67,29 @@ const projects: Project[] = [
     githubUrl: "https://github.com/matsu641/GCI_final_project",
   },
   {
-    title: "胸部X線画像の疾患分類（マルチモーダルモデル）",
-    problem: "医療画像診断において、画像データのみでは少数クラス（特定疾患）の検出精度が低く、誤診リスクがあった。患者の年齢・性別などのメタデータを活用した精度向上が課題。",
-    role: "データセット構築、CNN実装、マルチモーダルモデル設計、クラス不均衡対策まで担当。",
+    title: "Interactive Map & Navigation System（GISアプリケーション）",
+    period: "2025/01 - 2025/04",
+    overview: "ECE297（Design and Communication）の3人グループのプロジェクト課題。OpenStreetMapを活用し、様々なアルゴリズムを用い経路探索を最適化・多機能UIを実装したGISアプリケーションを構築し、学年末に制作物のプレゼン発表を行った。",
+    problem: "大規模都市データを扱う実用的なGISアプリケーション構築において、単なる地図表示だけでなく、高速な経路探索・UI/UX・パフォーマンス最適化を統合したシステムが求められた。特に、都市間の地図切替（Toronto ↔ Tokyo）を制限時間内に完了し、複雑な制約条件下での最適経路探索が課題だった。",
+    role: "ズーム機能、経路検索機能、UI改善を一人で担当。経路探索アルゴリズム設計（Dijkstra / A*）とTraveling Courier Problemの最適化実装はチーム全員で協力して開発。",
     techStack: [
-      { name: "PyTorch + ResNet", reason: "画像分類タスクで実績のあるアーキテクチャ、転移学習が可能" },
-      { name: "マルチモーダル統合", reason: "画像特徴量と患者メタデータを結合し少数クラスの検出性能向上" },
-      { name: "クラス重み付け", reason: "極端なクラス不均衡（4クラス）に対応するための損失関数調整" },
+      { name: "C++ + STL", reason: "大規模グラフ処理の高速化、メモリ効率の良いデータ構造" },
+      { name: "A* + Dijkstra", reason: "ヒューリスティック設計により最短経路探索を高速化" },
+      { name: "Greedy + 2-opt", reason: "Traveling Courier Problemの初期解生成と局所探索による最適化" },
+      { name: "OpenStreetMap (OSM) データ", reason: "実世界の道路ネットワークと多言語表記に対応" },
     ],
-    tradeoffs: "複雑なアンサンブルではなく単一のマルチモーダルモデルを選択。推論速度と実装のシンプルさを優先。少数クラスのRecallを重視し、一部クラスのPrecisionはトレードオフ。",
-    result: "画像のみのベースラインと比較して、患者メタデータを統合したマルチモーダルモデルで少数クラス（Effusion, Cardiomegaly）の検出性能が向上。クラス不均衡下での評価手法を習得。",
-    tags: ["Deep Learning", "PyTorch", "CNN", "Medical AI", "Multimodal"],
-    githubUrl: "https://github.com/matsu641/GCI_final_project",
+    tradeoffs: "完全な最適解ではなくGreedy + 局所探索を採用。計算時間と解の品質のバランスを重視し、TAベンチマークで実用的な性能を実現。UI側では情報過多を避けるためシンプルなものを採用し、ユーザビリティを優先。",
+    result: "全チームで競い合うリーダーボードで上位14位を獲得。200以上のチームの中で高い精度と速度を実現し、Traveling Courier Problemの最適化で優れた性能を示した。Pickup → Delivery制約を満たす合法経路探索を実装し、地図切替のパフォーマンス要件をクリア。チーム開発を通じてアルゴリズムとUIが密接に関連することを実感し、計算量とUXのトレードオフを考慮した設計経験を獲得。",
+    tags: ["C++", "Algorithms", "A*", "GIS", "UI/UX", "Linux"],
+    videoUrl: "/demos/map_application.mp4",
+    slidesUrl: "/images/ECE297_Presentation.pdf",
+    leaderboardImageUrl: "/images/ECE297_leaderboard.png",
   },
   {
     title: "Rush Hour（駐車場パズルゲーム）",
-    problem: "トロント大学のECE243（Computer Organization）の課題として、組み込みシステムと低レベルハードウェア制御の実践的な学習が必要だった。VGA描画とPS/2デバイス入力処理をC言語で実装し、動作するゲームを作成することが求められた。",
+    period: "2025/03 - 2025/04",
+    overview: "ECE243（Computer Organization）の個人プロジェクト課題。C言語でVGA描画・PS/2割り込み処理・ゲームロジックを実装し、CPUlator上で動作する組み込みパズルゲームを開発。",
+    problem: "組み込みシステムと低レベルハードウェア制御の実践的な学習が必要だった。VGA描画とPS/2デバイス入力処理をC言語で実装し、動作するゲームを作成することが求められた。",
     role: "VGA出力によるグラフィック描画、PS/2キーボード割り込み処理、ゲームロジック、衝突判定、タイマー機能まで全て実装。CPUlator上でDE1-SoCボードをシミュレート。",
     techStack: [
       { name: "C言語", reason: "組み込みシステム開発に適した低レベル言語、ハードウェア直接制御が可能" },
@@ -82,12 +110,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.article
       variants={item}
-      className="border border-foreground/10 rounded-xl p-8 hover:border-accent/30 transition-colors"
+      className="bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 border-2 border-zinc-700/50 rounded-xl p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
     >
       {/* Title and Tags */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-3">
-          <h3 className="text-2xl font-bold">{project.title}</h3>
+          <h3 className="text-2xl font-bold text-white">{project.title}</h3>
           {project.githubUrl && (
             <a
               href={project.githubUrl}
@@ -106,7 +134,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs font-mono px-3 py-1 bg-accent/10 text-accent rounded-full"
+              className="text-xs font-mono px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-full hover:bg-blue-500/30 transition-colors"
             >
               {tag}
             </span>
@@ -114,26 +142,42 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
       </div>
 
+      {/* Period */}
+      <div className="mb-6">
+        <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
+          期間
+        </h4>
+        <p className="text-gray-300 leading-relaxed">{project.period}</p>
+      </div>
+
+      {/* Overview */}
+      <div className="mb-6">
+        <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
+          概要
+        </h4>
+        <p className="text-gray-300 leading-relaxed">{project.overview}</p>
+      </div>
+
       {/* Problem */}
       <div className="mb-6">
-        <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
+        <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
           課題
         </h4>
-        <p className="text-muted leading-relaxed">{project.problem}</p>
+        <p className="text-gray-300 leading-relaxed">{project.problem}</p>
       </div>
 
       {/* Role */}
       <div className="mb-6">
-        <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
+        <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
           担当役割
         </h4>
-        <p className="text-muted leading-relaxed">{project.role}</p>
+        <p className="text-gray-300 leading-relaxed">{project.role}</p>
       </div>
 
       {/* Expandable Section */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="text-accent hover:underline mb-4 text-sm font-medium"
+        className="text-blue-400 hover:text-blue-300 hover:underline mb-4 text-sm font-semibold transition-colors"
         aria-expanded={isExpanded}
       >
         {isExpanded ? "閉じる" : "技術詳細を見る →"}
@@ -144,17 +188,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="space-y-6 pt-4 border-t border-foreground/10"
+          className="space-y-6 pt-4 border-t border-zinc-700/50"
         >
           {/* Tech Stack */}
           <div>
-            <h4 className="text-sm font-mono text-accent mb-3 uppercase tracking-wider">
-              技術スタックと意思決定
+            <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
+              用いた技術
             </h4>
             <ul className="space-y-3">
               {project.techStack.map((tech) => (
-                <li key={tech.name} className="text-muted">
-                  <span className="font-semibold text-foreground">{tech.name}:</span>{" "}
+                <li key={tech.name} className="text-gray-300">
+                  <span className="font-semibold text-white">{tech.name}:</span>{" "}
                   {tech.reason}
                 </li>
               ))}
@@ -163,31 +207,45 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
           {/* Trade-offs */}
           <div>
-            <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
+            <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
               トレードオフ
             </h4>
-            <p className="text-muted leading-relaxed">{project.tradeoffs}</p>
+            <p className="text-gray-300 leading-relaxed">{project.tradeoffs}</p>
           </div>
 
           {/* Result */}
           <div>
-            <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
+            <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
               結果とインパクト
             </h4>
-            <p className="text-muted leading-relaxed">{project.result}</p>
+            <p className="text-gray-300 leading-relaxed">{project.result}</p>
           </div>
+
+          {/* Leaderboard Image */}
+          {project.leaderboardImageUrl && (
+            <div>
+              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
+                リーダーボード
+              </h4>
+              <img 
+                src={project.leaderboardImageUrl} 
+                alt="Leaderboard Results"
+                className="w-full rounded-lg border border-zinc-700/50"
+              />
+            </div>
+          )}
 
           {/* Project Slides */}
           {project.slidesUrl && (
             <div>
-              <h4 className="text-sm font-mono text-accent mb-2 uppercase tracking-wider">
+              <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
                 プロジェクト資料
               </h4>
               <a 
                 href={project.slidesUrl} 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-accent hover:underline"
+                className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 hover:underline transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -200,12 +258,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {/* Demo Video */}
           {project.videoUrl && (
             <div>
-              <h4 className="text-sm font-mono text-accent mb-3 uppercase tracking-wider">
+              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
                 デモンストレーション
               </h4>
               <video 
                 controls 
-                className="w-full rounded-lg border border-foreground/10"
+                className="w-full rounded-lg border border-zinc-700/50"
                 preload="metadata"
               >
                 <source src={project.videoUrl} type="video/mp4" />
