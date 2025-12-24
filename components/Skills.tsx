@@ -18,7 +18,7 @@ const item = {
 type Skill = {
   name: string;
   level: number; // 1-5
-  category: "frontend" | "backend" | "devops";
+  category: "frontend" | "backend" | "devops" | "ai";
 };
 
 const skills: Skill[] = [
@@ -42,12 +42,19 @@ const skills: Skill[] = [
   { name: "Git / GitHub", level: 4, category: "devops" },
   { name: "Docker", level: 3, category: "devops" },
   { name: "Firebase", level: 3, category: "devops" },
+  
+  // AI/ML
+  { name: "PyTorch", level: 3, category: "ai" },
+  { name: "NumPy", level: 3, category: "ai" },
+  { name: "Pandas", level: 3, category: "ai" },
+  { name: "TensorFlow", level: 1, category: "ai" },
 ];
 
 const categoryConfig = {
   frontend: { label: "Front-end", color: "from-pink-500 to-rose-500" },
   backend: { label: "Back-end", color: "from-green-500 to-emerald-500" },
   devops: { label: "DevOps", color: "from-orange-500 to-yellow-500" },
+  ai: { label: "AI / ML", color: "from-blue-500 to-cyan-500" },
 };
 
 function SkillCard({ skill }: { skill: Skill }) {
