@@ -32,11 +32,11 @@ export default function About() {
             <h2 className="text-4xl md:text-5xl font-bold mb-8">About Me</h2>
             <div className="space-y-6">
               <p className="text-lg text-muted leading-relaxed">
-                トロント大学でコンピュータ工学を専攻し、AIを副専攻しています。5年制プログラムで、現在は学部3年生です。
+                トロント大学でコンピュータ工学を専攻し、AIを副専攻しています。一年のCo-op (インターンシップ)を含む、5年制プログラムで、2028年に卒業予定です。
               </p>
               <p className="text-lg text-muted leading-relaxed">
                 1・2年次には、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などの経験を積みました。
-                現在は、制御工学、半導体デバイス、深層学習など、大学でより専門的な分野を中心に学びながら、サークルやスタートアップ企業でフルスタックWeb開発をしています。
+                現在は学部3年生で、制御工学、半導体デバイス、深層学習など、大学でより専門的な分野を中心に学びながら、サークルやスタートアップ企業でフルスタックWeb開発をしています。
               </p>
             </div>
           </motion.div>
@@ -50,7 +50,7 @@ export default function About() {
                   <h4 className="text-xl font-semibold">トロント大学</h4>
                   <span className="text-sm text-muted">2023年8月 - 2028年5月（予定）</span>
                 </div>
-                <p className="text-muted">コンピューターエンジニアリング学部（Bachelor of Applied Science）</p>
+                <p className="text-muted">Bachelor of Applied Science in Computer Engineering & Artificial Intelligence Minor</p>
               </div>
             </div>
           </motion.div>
@@ -161,7 +161,7 @@ export default function About() {
 
           {/* Certifications & Courses */}
           <motion.div variants={item} className="mb-16">
-            <h3 className="text-2xl font-bold mb-6">修了コース・研修</h3>
+            <h3 className="text-2xl font-bold mb-6">修了コース</h3>
             <div className="space-y-6">
               {/* GCI Program */}
               <div className="border-l-2 border-accent pl-6">

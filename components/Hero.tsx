@@ -291,6 +291,18 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
+          {/* 名前 */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mb-6"
+          >
+            <p className="text-lg md:text-xl text-muted font-medium">
+              松戸美純 / Misumi Matsudo
+            </p>
+          </motion.div>
+
           {/* タイトル */}
           <h1 
             ref={titleRef}
