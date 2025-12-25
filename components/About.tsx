@@ -89,7 +89,7 @@ export default function About() {
               <div className="border-l-2 border-accent pl-6">
                 <div className="flex justify-between items-start mb-2">
                   <div>
-                    <h4 className="text-xl font-semibold">フリーランスウェブ開発者</h4>
+                    <h4 className="text-xl font-semibold">フリーランスウェブ開発</h4>
                     <p className="text-accent font-medium">くわばら整形外科クリニック</p>
                   </div>
                   <span className="text-sm text-muted whitespace-nowrap ml-4">2024年5月 - 7月</span>
@@ -135,7 +135,7 @@ export default function About() {
                     <h4 className="text-xl font-semibold">Web Executive Member</h4>
                     <p className="text-accent font-medium">University of Toronto Japan Network (UTJN)</p>
                   </div>
-                  <span className="text-sm text-muted whitespace-nowrap ml-4">2023年9月 - 現在</span>
+                  <span className="text-sm text-muted whitespace-nowrap ml-4">2025年8月 - 現在</span>
                 </div>
                 <ul className="space-y-2 text-muted mt-3">
                   <li className="flex gap-2">
@@ -153,6 +153,30 @@ export default function About() {
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
                     <span>他部門と連携して新機能リクエストの実装やメンテナンス、バグ修正タスクに対応</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="border-l-2 border-accent pl-6">
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 className="text-xl font-semibold">Torontonians Executive Member</h4>
+                    <p className="text-accent font-medium">University of Toronto Japan Network (UTJN)</p>
+                  </div>
+                  <span className="text-sm text-muted whitespace-nowrap ml-4">2023年9月 - 2025年8月</span>
+                </div>
+                <ul className="space-y-2 text-muted mt-3">
+                  <li className="flex gap-2">
+                    <span className="text-accent mt-1">•</span>
+                    <span>トロント大学に興味のある人に向けてブログ記事を執筆し、大学生活や学業に関する情報を発信</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-accent mt-1">•</span>
+                    <span>インスタグラム動画投稿の企画と制作を補助し、SNSを通じた情報発信を強化</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-accent mt-1">•</span>
+                    <span>新入生向けにオリエンテーションやネットワーキングイベントを企画・運営し、コミュニティ形成に貢献</span>
                   </li>
                 </ul>
               </div>
