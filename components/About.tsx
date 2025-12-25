@@ -119,14 +119,19 @@ export default function About() {
                     <span>ローンチ後3ヶ月以内に2,856インプレッション、343クリック（CTR 12%）を達成し、若年層患者の増加に貢献</span>
                   </li>
                 </ul>
-                <a 
-                  href="https://kuwabara-ortho.jp" 
-                  target="_blank" 
+                <motion.a
+                  href="https://kuwabara-ortho.jp"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-3 text-accent hover:underline text-sm"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all"
                 >
-                  ウェブサイトを見る →
-                </a>
+                  ウェブサイトを見る
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </motion.a>
               </div>
             </div>
           </motion.div>
@@ -161,6 +166,19 @@ export default function About() {
                     <span>他部門と連携して新機能リクエストの実装やメンテナンス、バグ修正タスクに対応</span>
                   </li>
                 </ul>
+                <motion.a
+                  href="https://uoftjn.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all"
+                >
+                  ウェブサイトを見る
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </motion.a>
               </div>
 
               <div className="border-l-2 border-accent pl-6">
@@ -206,17 +224,19 @@ export default function About() {
                   データ駆動型アプローチを用いてグローバルな消費者行動を分析する手法を学習。
                   AIテクニックと市場・ビジネスの視点を組み合わせ、ケーススタディやプロジェクトを通じて実践的なスキルを習得。
                 </p>
-                <a 
-                  href="/certificates/gci-certificate.pdf" 
+                <motion.a
+                  href="/certificates/gci-certificate.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-accent hover:underline text-sm mt-4"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  修了証を見る
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  修了証を見る
-                </a>
+                </motion.a>
               </div>
 
               {/* Deep Learning Foundations */}
@@ -232,17 +252,19 @@ export default function About() {
                   ニューラルネットワーク、最適化、表現学習など、深層学習の理論的基礎を学習。
                   ハンズオン課題を通じてコアとなるモデルの実装を経験。
                 </p>
-                <a 
-                  href="/certificates/dl-foundations-certificate.pdf" 
+                <motion.a
+                  href="/certificates/dl-foundations-certificate.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-accent hover:underline text-sm mt-4"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  修了証を見る
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  修了証を見る
-                </a>
+                </motion.a>
               </div>
             </div>
           </motion.div>
