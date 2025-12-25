@@ -31,10 +31,10 @@ export default function About() {
           <motion.div variants={item} className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-8">About Me</h2>
             <div className="space-y-6">
-              <p className="text-lg text-muted leading-relaxed">
+              <p className="text-lg text-zinc-100 leading-relaxed">
                 トロント大学でコンピュータ工学を専攻し、AIを副専攻しています。一年のCo-op (インターンシップ)を含む、5年制プログラムで、2028年に卒業予定です。
               </p>
-              <p className="text-lg text-muted leading-relaxed">
+              <p className="text-lg text-zinc-100 leading-relaxed">
                 1・2年次には、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などの経験を積みました。
                 現在は学部3年生で、制御工学、半導体デバイス、深層学習など、大学でより専門的な分野を中心に学びながら、サークルやスタートアップ企業でフルスタックWeb開発をしています。
               </p>
@@ -47,10 +47,13 @@ export default function About() {
             <div className="space-y-4">
               <div className="border-l-2 border-accent pl-6">
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-xl font-semibold">トロント大学</h4>
-                  <span className="text-sm text-muted">2023年8月 - 2028年5月（予定）</span>
+                  <h4 className="text-xl font-semibold">University of Toronto / トロント大学</h4>
+                  <span className="text-sm text-zinc-300">2023年8月 - 2028年5月（予定）</span>
                 </div>
-                <p className="text-muted">Bachelor of Applied Science in Computer Engineering & Artificial Intelligence Minor</p>
+                <div className="text-zinc-100 space-y-1">
+                  <p>専攻：Bachelor of Applied Science in Computer Engineering / コンピュータ工学</p>
+                  <p>副専攻：Artificial Intelligence / 人工知能</p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -66,10 +69,10 @@ export default function About() {
                     <h4 className="text-xl font-semibold">ソフトウェアエンジニアインターン（Feature Lead）</h4>
                     <p className="text-accent font-medium">STAR UP, Inc.</p>
                   </div>
-                  <span className="text-sm text-muted whitespace-nowrap ml-4">2025年5月 - 現在</span>
+                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">2025年5月 - 現在</span>
                 </div>
-                <p className="text-sm text-muted mb-3">京都、日本（ハイブリッド）</p>
-                <ul className="space-y-2 text-muted">
+                <p className="text-sm text-zinc-300 mb-3">京都、日本（ハイブリッド）</p>
+                <ul className="space-y-2 text-zinc-100">
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
                     <span>TypeScript、React/Next.js、FastAPIを使用した製造業向けSaaSプラットフォームの開発に貢献</span>
@@ -92,10 +95,10 @@ export default function About() {
                     <h4 className="text-xl font-semibold">フリーランスウェブ開発</h4>
                     <p className="text-accent font-medium">くわばら整形外科クリニック</p>
                   </div>
-                  <span className="text-sm text-muted whitespace-nowrap ml-4">2024年5月 - 7月</span>
+                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">2024年5月 - 7月</span>
                 </div>
-                <p className="text-sm text-muted mb-3">リモート</p>
-                <ul className="space-y-2 text-muted">
+                <p className="text-sm text-zinc-300 mb-3">リモート</p>
+                <ul className="space-y-2 text-zinc-100">
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
                     <span>HTML、CSS、JavaScriptを使用して、完全レスポンシブなクリニックウェブサイトをゼロから設計・開発</span>
@@ -135,9 +138,9 @@ export default function About() {
                     <h4 className="text-xl font-semibold">Web Executive Member</h4>
                     <p className="text-accent font-medium">University of Toronto Japan Network (UTJN)</p>
                   </div>
-                  <span className="text-sm text-muted whitespace-nowrap ml-4">2025年8月 - 現在</span>
+                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">2025年8月 - 現在</span>
                 </div>
-                <ul className="space-y-2 text-muted mt-3">
+                <ul className="space-y-2 text-zinc-100 mt-3">
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
                     <span>TypeScriptとPythonを使用した組織公式ウェブサイトの技術運用とフルスタック開発を担当</span>
@@ -163,9 +166,9 @@ export default function About() {
                     <h4 className="text-xl font-semibold">Torontonians Executive Member</h4>
                     <p className="text-accent font-medium">University of Toronto Japan Network (UTJN)</p>
                   </div>
-                  <span className="text-sm text-muted whitespace-nowrap ml-4">2023年9月 - 2025年8月</span>
+                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">2023年9月 - 2025年8月</span>
                 </div>
-                <ul className="space-y-2 text-muted mt-3">
+                <ul className="space-y-2 text-zinc-100 mt-3">
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
                     <span>トロント大学に興味のある人に向けてブログ記事を執筆し、大学生活や学業に関する情報を発信</span>
@@ -194,9 +197,9 @@ export default function About() {
                     <h4 className="text-xl font-semibold">Global Consumer Intelligence Program</h4>
                     <p className="text-accent font-medium">松尾研究室（東京大学）</p>
                   </div>
-                  <span className="text-sm text-muted whitespace-nowrap ml-4">修了：2025年8月</span>
+                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">修了：2025年8月</span>
                 </div>
-                <p className="text-muted mt-3">
+                <p className="text-zinc-100 mt-3">
                   データ駆動型アプローチを用いてグローバルな消費者行動を分析する手法を学習。
                   AIテクニックと市場・ビジネスの視点を組み合わせ、ケーススタディやプロジェクトを通じて実践的なスキルを習得。
                 </p>
@@ -220,9 +223,9 @@ export default function About() {
                     <h4 className="text-xl font-semibold">Deep Learning Foundations Course</h4>
                     <p className="text-accent font-medium">松尾研究室（東京大学）</p>
                   </div>
-                  <span className="text-sm text-muted whitespace-nowrap ml-4">修了：2025年7月</span>
+                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">修了：2025年7月</span>
                 </div>
-                <p className="text-muted mt-3">
+                <p className="text-zinc-100 mt-3">
                   ニューラルネットワーク、最適化、表現学習など、深層学習の理論的基礎を学習。
                   ハンズオン課題を通じてコアとなるモデルの実装を経験。
                 </p>
