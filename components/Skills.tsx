@@ -28,18 +28,18 @@ const skills: Skill[] = [
   { name: "TypeScript", level: 5, category: "frontend" },
   { name: "React / Next.js", level: 4, category: "frontend" },
   { name: "Tailwind CSS", level: 5, category: "frontend" },
-  { name: "Vue.js", level: 2, category: "frontend" },
+  // { name: "Vue.js", level: 2, category: "frontend" },
   
   // Backend
   { name: "Python", level: 4, category: "backend" },
   { name: "FastAPI", level: 3, category: "backend" },
   { name: "C / C++", level: 5, category: "backend" },
-  { name: "MySQL", level: 1, category: "backend" },
-  { name: "PostgreSQL", level: 2, category: "backend" },
+  // { name: "MySQL", level: 1, category: "backend" },
+  // { name: "PostgreSQL", level: 2, category: "backend" },
   
   // DevOps
   { name: "Linux", level: 3, category: "devops" },
-  { name: "Git / GitHub", level: 4, category: "devops" },
+  { name: "Git / GitHub", level: 5, category: "devops" },
   { name: "Docker", level: 3, category: "devops" },
   { name: "Firebase", level: 3, category: "devops" },
   
@@ -53,8 +53,8 @@ const skills: Skill[] = [
 const categoryConfig = {
   frontend: { label: "Front-end", color: "from-pink-500 to-rose-500" },
   backend: { label: "Back-end", color: "from-green-500 to-emerald-500" },
-  devops: { label: "DevOps", color: "from-orange-500 to-yellow-500" },
   ai: { label: "AI / ML", color: "from-blue-500 to-cyan-500" },
+  devops: { label: "Other", color: "from-orange-500 to-yellow-500" },
 };
 
 function SkillCard({ skill }: { skill: Skill }) {
