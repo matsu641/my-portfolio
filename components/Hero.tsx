@@ -292,6 +292,16 @@ export default function Hero() {
           transition={{ duration: 1 }}
         >
 
+          {/* 名前 */}
+          <motion.p
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-lg md:text-xl text-muted mb-4 tracking-wide"
+          >
+            Hi, I'm <span className="text-foreground font-large">Misumi Matsudo</span>
+          </motion.p>
+
           {/* タイトル */}
           <h1 
             ref={titleRef}
@@ -299,7 +309,7 @@ export default function Hero() {
           >
             <span className="block">I design systems,</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-              not just screens.
+              not just interfaces.
             </span>
           </h1>
           
@@ -310,7 +320,6 @@ export default function Hero() {
             className="text-xl md:text-2xl text-muted max-w-2xl mb-8"
           >
             Software engineer focused on architecture, performance, and user experience.
-            I make technical decisions that scale.
           </motion.p>
 
           {/* メインボタン */}
