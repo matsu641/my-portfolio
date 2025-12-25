@@ -32,10 +32,10 @@ export default function About() {
             <h2 className="text-4xl md:text-5xl font-bold mb-8">About Me</h2>
             <div className="space-y-6">
               <p className="text-lg text-zinc-100 leading-relaxed">
-                トロント大学でコンピュータ工学を専攻し、AIを副専攻しています。一年のCo-op (インターンシップ)を含む、5年制プログラムで、2028年に卒業予定です。
+                2004年生まれ。日本で生まれ育ち、高校からアメリカに留学しました。
               </p>
               <p className="text-lg text-zinc-100 leading-relaxed">
-                1・2年次には、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などの経験を積みました。
+                大学では、1・2年次には、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などの経験を積みました。
                 現在は学部3年生で、制御工学、半導体デバイス、深層学習など、大学でより専門的な分野を中心に学びながら、サークルやスタートアップ企業でフルスタックWeb開発をしています。
               </p>
             </div>
@@ -147,11 +147,11 @@ export default function About() {
                   </li>
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
-                    <span>フロントエンドUIコンポーネント、バックエンドAPIロジック、データベース統合を含む機能開発に貢献</span>
+                    <span>フロントエンドとバックエンドを含む機能開発やバグ修正に貢献</span>
                   </li>
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
-                    <span>チームメンバーと協力して、機能とUI/UXの両面で問題を特定し改善提案を実施</span>
+                    <span>メンバーと定期的なミーティングを行い、機能とUI/UXの両面で問題を特定し改善提案を実施</span>
                   </li>
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
@@ -179,7 +179,7 @@ export default function About() {
                   </li>
                   <li className="flex gap-2">
                     <span className="text-accent mt-1">•</span>
-                    <span>新入生向けにオリエンテーションやネットワーキングイベントを企画・運営し、コミュニティ形成に貢献</span>
+                    <span>新入生向けにイベントを企画し、コミュニティ形成に貢献</span>
                   </li>
                 </ul>
               </div>
