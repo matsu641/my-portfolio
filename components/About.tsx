@@ -30,15 +30,18 @@ export default function About() {
           {/* About Me Section */}
           <motion.div variants={item} className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-8">About Me</h2>
-            <div className="space-y-6">
-              <p className="text-lg text-zinc-100 leading-relaxed">
-                2004年生まれ。日本で生まれ育ち、高校からアメリカに留学しました。
-              </p>
-              <p className="text-lg text-zinc-100 leading-relaxed">
-                大学では、1・2年次には、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などの経験を積みました。
-                現在は学部3年生で、制御工学、半導体デバイス、深層学習など、大学でより専門的な分野を中心に学びながら、サークルやスタートアップ企業でフルスタックWeb開発をしています。
-              </p>
-            </div>
+              <div className="space-y-6">
+                <p className="text-lg text-zinc-100 leading-relaxed">
+                  日本で生まれ育ち、高校時代にアメリカへ留学。現在はカナダのトロント大学でComputer Engineeringを専攻する学部3年生です。
+                </p>
+                <p className="text-lg text-zinc-100 leading-relaxed">
+                  大学では1・2年次に、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などを経験しました。
+                  現在は、制御工学・半導体デバイス・深層学習といった専門分野を中心に学びながら、サークル活動やスタートアップ企業でフルスタックWeb開発にも取り組んでいます。
+                </p>
+                <p className="text-lg text-zinc-100 leading-relaxed">
+                  将来的には、AIやソフトウェアやハードウェアの技術的制約を理解した上で、課題設定から実装・評価までを一貫してリードできるエンジニアを目指しています。
+                </p>
+              </div>
           </motion.div>
 
           {/* Education */}
