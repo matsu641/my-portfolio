@@ -278,7 +278,7 @@ export default function Hero() {
 
       {/* グラデーション背景 */}
       <div 
-        className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 transition-all duration-300"
+        className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 transition-all duration-300"
         style={{
           transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px)`,
         }}
