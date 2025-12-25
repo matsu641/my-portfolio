@@ -32,7 +32,7 @@ export default function About() {
             <h2 className="text-4xl md:text-5xl font-bold mb-8">About Me</h2>
               <div className="space-y-6">
                 <p className="text-lg text-zinc-100 leading-relaxed">
-                  日本で生まれ育ち、高校時代にアメリカへ留学。現在はカナダのトロント大学でComputer Engineeringを専攻する学部3年生です。
+                  日本で生まれ育ち、高校時代はアメリカへ留学しました。現在はカナダのトロント大学でComputer Engineeringを専攻する学部3年生です。
                 </p>
                 <p className="text-lg text-zinc-100 leading-relaxed">
                   大学では1・2年次に、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などを経験しました。
