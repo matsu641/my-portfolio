@@ -6,6 +6,7 @@ import { OrbitControls, Sphere, MeshDistortMaterial, Float } from "@react-three/
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { gsap } from "gsap";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // 3D幾何学オブジェクト群
 function GeometricShapes() {
@@ -243,6 +244,7 @@ function Scene3D() {
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { t } = useLanguage();
 
   useEffect(() => {
     // GSAPでテキストアニメーション
@@ -292,14 +294,14 @@ export default function Hero() {
           transition={{ duration: 1 }}
         >
 
-          {/* 名前 */}
+          {/* 挨拶と名前 */}
           <motion.p
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-lg md:text-xl text-muted mb-4 tracking-wide"
           >
-            Hi, I'm <span className="text-foreground font-large">Misumi Matsudo</span>
+            {t('hero.greeting')}<span className="text-foreground font-large">{t('hero.name')}</span>
           </motion.p>
 
           {/* タイトル */}
@@ -307,9 +309,9 @@ export default function Hero() {
             ref={titleRef}
             className="text-5xl md:text-7xl font-bold tracking-tight mb-6"
           >
-            <span className="block">I design systems,</span>
+            <span className="block">{t('hero.title')}</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-              not just interfaces.
+              {t('hero.subtitle')}
             </span>
           </h1>
           
@@ -319,7 +321,7 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 0.6 }}
             className="text-xl md:text-2xl text-muted max-w-2xl mb-8"
           >
-            Software engineer focused on architecture, performance, and user experience.
+            {t('hero.description')}
           </motion.p>
 
           {/* メインボタン */}
@@ -330,36 +332,12 @@ export default function Hero() {
             className="flex flex-wrap gap-4 mb-8"
           >
             <motion.a
-              href="#about"
+              href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-shadow"
             >
-              About Me
-            </motion.a>
-            <motion.a
-              href="#skills"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 border border-foreground/20 rounded-lg font-medium hover:border-foreground/40 hover:bg-foreground/5 transition-all backdrop-blur-sm"
-            >
-              Skills
-            </motion.a>
-            <motion.a
-              href="#projects"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 border border-foreground/20 rounded-lg font-medium hover:border-foreground/40 hover:bg-foreground/5 transition-all backdrop-blur-sm"
-            >
-              Projects
-            </motion.a>
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 border border-foreground/20 rounded-lg font-medium hover:border-foreground/40 hover:bg-foreground/5 transition-all backdrop-blur-sm"
-            >
-              Contact
+              {t('hero.cta')}
             </motion.a>
           </motion.div>
         </motion.div>

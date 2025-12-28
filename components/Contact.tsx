@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const container = {
   hidden: { opacity: 0 },
@@ -18,7 +19,7 @@ const item = {
 const links = [
   {
     name: "Email",
-    url: "mailto:misumi.matsudo@mail.utoronto.ca",
+    url: "mailto:misumimatsudo@gmail.com",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -46,6 +47,8 @@ const links = [
 ];
 
 export default function Contact() {
+  const { t } = useLanguage();
+  
   return (
     <section id="contact" className="py-24 md:py-32 px-6 md:px-8">
       <div className="max-w-4xl mx-auto">
@@ -56,7 +59,7 @@ export default function Contact() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <motion.h2 variants={item} className="text-4xl md:text-5xl font-bold mb-6">
-            Contact
+            {t('contact.title')}
           </motion.h2>
 
           <motion.div variants={item} className="space-y-4">
@@ -74,7 +77,7 @@ export default function Contact() {
                       {link.icon}
                     </div>
                     <h3 className="text-xl font-semibold mb-1 group-hover:text-accent transition-colors">
-                      {link.name}
+                      {t(`contact.${link.name.toLowerCase()}`)}
                     </h3>
                   </div>
                   <span className="text-2xl group-hover:translate-x-1 transition-transform">
@@ -95,10 +98,10 @@ export default function Contact() {
         className="mt-24 pt-8 border-t border-foreground/10 text-center"
       >
         <p className="text-sm text-muted font-medium mb-2">
-          © 2025 松戸美純 (Misumi Matsudo)
+          {t('contact.footer')}
         </p>
         <p className="text-sm text-muted mt-2">
-          Location: Toronto, ON, Canada
+          {t('contact.footerNote')}
         </p>
       </motion.footer>
     </section>

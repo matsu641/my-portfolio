@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const container = {
   hidden: { opacity: 0 },
@@ -51,10 +52,10 @@ const skills: Skill[] = [
 ];
 
 const categoryConfig = {
-  frontend: { label: "Front-end", color: "from-pink-500 to-rose-500" },
-  backend: { label: "Back-end", color: "from-green-500 to-emerald-500" },
-  ai: { label: "AI / ML", color: "from-blue-500 to-cyan-500" },
-  devops: { label: "Other", color: "from-orange-500 to-yellow-500" },
+  frontend: { color: "from-pink-500 to-rose-500" },
+  backend: { color: "from-green-500 to-emerald-500" },
+  ai: { color: "from-blue-500 to-cyan-500" },
+  devops: { color: "from-orange-500 to-yellow-500" },
 };
 
 function SkillCard({ skill }: { skill: Skill }) {
@@ -84,10 +85,12 @@ function SkillCard({ skill }: { skill: Skill }) {
 }
 
 export default function Skills() {
+  const { t } = useLanguage();
+  
   return (
     <section id="skills" className="py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">Skill</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('skills.title')}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {(Object.keys(categoryConfig) as Array<keyof typeof categoryConfig>).map((category) => {
@@ -98,7 +101,7 @@ export default function Skills() {
               <div key={category}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className={`w-4 h-4 rounded-full bg-gradient-to-br ${config.color}`} />
-                  <h3 className="text-xl font-semibold">{config.label}</h3>
+                  <h3 className="text-xl font-semibold">{t(`skills.categories.${category}`)}</h3>
                 </div>
                 
                 <motion.div
