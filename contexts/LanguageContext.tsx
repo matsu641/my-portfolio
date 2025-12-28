@@ -45,12 +45,12 @@ export function useLanguage() {
 const translations = {
   ja: {
     hero: {
-      greeting: "こんにちは、",
-      name: "松戸美純です",
-      title: "ソフトウェアエンジニア",
-      subtitle: "AI × Full-Stack Web Development",
-      description: "トロント大学でComputer Engineeringを専攻する学部3年生。AIとフルスタックWeb開発を軸に、技術的な課題解決に取り組んでいます。",
-      cta: "プロジェクトを見る"
+      greeting: "はじめまして、",
+      name: "松戸美純です！",
+      title: "I design systems,",
+      subtitle: "not just interfaces.",
+      description: "Software engineer focused on architecture, performance, and user experience.",
+      cta: "View Projects"
     },
     about: {
       title: "About Me",
@@ -268,9 +268,9 @@ const translations = {
     hero: {
       greeting: "Hi, I'm ",
       name: "Misumi Matsudo",
-      title: "Software Engineer",
-      subtitle: "AI × Full-Stack Web Development",
-      description: "Third-year Computer Engineering student at the University of Toronto. Focusing on AI and full-stack web development to solve technical challenges.",
+      title: "I design systems,",
+      subtitle: "not just interfaces.",
+      description: "Software engineer focused on architecture, performance, and user experience.",
       cta: "View Projects"
     },
     about: {
