@@ -324,20 +324,44 @@ export default function Hero() {
             {t('hero.description')}
           </motion.p>
 
-          {/* メインボタン */}
+          {/* ナビゲーションボタン */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="flex flex-wrap gap-4 mb-8"
+            className="flex flex-wrap gap-4"
           >
+            <motion.a
+              href="#about"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all"
+            >
+              About Me
+            </motion.a>
+            <motion.a
+              href="#skills"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-zinc-800/80 border-2 border-zinc-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-blue-400 transition-all"
+            >
+              Skills
+            </motion.a>
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-shadow"
+              className="px-8 py-3 bg-zinc-800/80 border-2 border-zinc-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-blue-400 transition-all"
             >
-              {t('hero.cta')}
+              Projects
+            </motion.a>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-zinc-800/80 border-2 border-zinc-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-blue-400 transition-all"
+            >
+              Contact
             </motion.a>
           </motion.div>
         </motion.div>
