@@ -72,7 +72,7 @@ export default function About() {
                   </div>
                   <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.starup.period')}</span>
                 </div>
-                <p className="text-sm text-zinc-300 mb-3">{t('about.experience.starup.location')}</p>
+                <p className="text-zinc-300 mb-3">{t('about.experience.starup.location')}</p>
                 <ul className="space-y-2 text-zinc-100">
                   {t('about.experience.starup.tasks').map((task: string, index: number) => (
                     <li key={index} className="flex gap-2">
@@ -92,7 +92,7 @@ export default function About() {
                   </div>
                   <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.freelance.period')}</span>
                 </div>
-                <p className="text-sm text-zinc-300 mb-3">{t('about.experience.freelance.location')}</p>
+                <p className="text-zinc-300 mb-3">{t('about.experience.freelance.location')}</p>
                 <ul className="space-y-2 text-zinc-100">
                   {t('about.experience.freelance.tasks').map((task: string, index: number) => (
                     <li key={index} className="flex gap-2">
@@ -187,7 +187,7 @@ export default function About() {
                     <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{cert.date}</span>
                   </div>
                   {cert.description && (
-                    <p className="text-zinc-100 mt-3 text-sm">{cert.description}</p>
+                    <p className="text-zinc-100 mt-3">{cert.description}</p>
                   )}
                   <motion.a
                     href={cert.link}
