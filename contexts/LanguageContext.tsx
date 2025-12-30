@@ -171,7 +171,7 @@ const translations = {
             "画像のみのベースラインと比較して、Effusion・CardiomegalyのRecallおよびMacro F1が大幅に向上",
             "極端なクラス不均衡（No Finding 多数）下での少数疾患クラス検出性能を改善",
           ],
-          mainTech: ["PyTorch", "ResNet-50", "Multimodal Learning", "Focal Loss"],
+          tags: ["PyTorch", "ResNet-50", "Multimodal Learning", "Focal Loss"],
           background: "個人プロジェクト。胸部X線データは『No Finding』が大多数を占め、画像のみのCNNでは少数疾患クラスのRecallが著しく低下する課題があった。医療文脈ではAccuracyが高くても疾患の見逃しが起こり得るため、画像特徴量と患者メタデータを統合したマルチモーダルモデルで少数クラス検出性能の改善を目指した。",
           challenges: "胸部X線データの約93%が『No Finding』に偏った極端なクラス不均衡が存在し、画像のみのCNNでは少数疾患クラス（Effusion、Cardiomegaly、Pneumonia）のRecallが0となる課題があった。医療AIにおいてAccuracyが高くても疾患の見逃しは許容できないため、少数クラスの検出性能を改善する必要があった。",
           solutions: [
@@ -194,7 +194,7 @@ const translations = {
             "クラス不均衡を考慮したRecall重視の閾値最適化により、離職リスクの高い社員を効果的に検出",
             "企業の人事施策への活用提案を含むレポートを作成",
           ],
-          mainTech: ["LightGBM", "Python", "scikit-learn", "Feature Engineering"],
+          tags: ["LightGBM", "Python", "scikit-learn", "Feature Engineering"],
           background: "松尾研究室GCI 2025 Summerの最終課題（個人プロジェクト）。入社5年以内の若手社員の離職率が高く、人事施策の効果的な介入タイミングの特定が困難という課題があった。過去の社員データから離職リスクを事前に予測する仕組みが必要とされていた。",
           challenges: "離職者と非離職者のクラス不均衡により、単純な精度指標では少数クラス（離職者）を適切に検出できない課題があった。人事施策への活用を考慮すると、モデルの予測根拠を説明できる解釈性が必須であり、ブラックボックスなモデルは採用できなかった。",
           solutions: [
@@ -238,7 +238,7 @@ const translations = {
             "CPUlator上で完全動作するパズルゲームを実装",
             "VGA描画、キーボード入力、衝突判定、タイマー、ビープ音機能を実現",
           ],
-          mainTech: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems"],
+          tags: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems","RISC-V"],
           background: "ECE243（Computer Organization）の個人プロジェクト課題。組み込みシステムと低レベルハードウェア制御の実践的な学習が必要だった。VGA描画とPS/2デバイス入力処理をC言語で実装し、動作するゲームを作成することが求められた。",
           challenges: "限られた組み込みシステムリソース下で、スムーズな2D描画とちらつき防止を実現する必要があった。PS/2キーボードからのリアルタイム入力を割り込み処理で適切にハンドリングし、ゲームの応答性を確保する必要があった。複雑な入力デバイス対応とパフォーマンスの両立が課題だった。",
           solutions: [
@@ -249,7 +249,6 @@ const translations = {
             "シンプルな矩形描画で車を表現し、パフォーマンスと実装速度を優先した設計を採用"
           ],
           learnings: "組み込みシステムの基礎を習得できた。特に、割り込み処理、メモリ管理、リアルタイム処理の実装は難易度は高かったが、より低レベルハードウェア制御について深い理解を得ることができた。また、限られたリソースの中で動作するシステムを設計する経験を通じて、効率的なプログラミングの重要性を学んだ。",
-          tags: ["C", "Embedded Systems", "VGA", "Computer Organization", "RISC-V"],
           videoUrl: "/demos/rush-hour-demo.mp4",
           githubUrl: "https://github.com/matsu641/RushHour"
         }
@@ -391,7 +390,7 @@ const translations = {
             "Significantly improved Recall for Effusion and Cardiomegaly, as well as Macro F1, compared to the image-only baseline",
             "Improved detection performance for minority disease classes under extreme class imbalance (majority No Finding)",
           ],
-          mainTech: ["PyTorch", "ResNet-50", "Multimodal Learning", "Focal Loss"],
+          tags: ["PyTorch", "ResNet-50", "Multimodal Learning", "Focal Loss"],
           background: "Personal project. Chest X-ray data is predominantly 'No Finding', causing image-only CNNs to suffer from significantly low Recall for minority disease classes. In medical contexts, high Accuracy alone can still lead to disease misses, so I aimed to improve minority class detection performance by integrating image features and patient metadata in a multimodal model.",
           challenges: "About 93% of chest X-ray data is biased towards 'No Finding', creating extreme class imbalance. Image-only CNNs resulted in zero Recall for minority disease classes (Effusion, Cardiomegaly, Pneumonia). In medical AI, missing diseases is unacceptable even with high Accuracy, so improving minority class detection was essential.",
           solutions: [
@@ -416,7 +415,7 @@ const translations = {
             "Effectively detected employees at high attrition risk through Recall-focused threshold optimization considering class imbalance",
             "Created a report including proposals for HR policy utilization",
           ],
-          mainTech: ["LightGBM", "Python", "scikit-learn", "Feature Engineering"],
+          tags: ["LightGBM", "Python", "scikit-learn", "Feature Engineering"],
           background: "Final assignment for Matsuo Lab GCI 2025 Summer (individual project). High attrition rates among employees within their first five years made it difficult to identify effective intervention timing for HR policies. A mechanism to predict attrition risk in advance from past employee data was needed.",
           challenges: "Class imbalance between resigned and non-resigned employees meant simple accuracy metrics could not properly detect the minority class (resigned employees). Considering HR policy utilization, model interpretability to explain prediction rationale was essential, and black-box models were not feasible.",
           solutions: [
@@ -460,7 +459,7 @@ const translations = {
             "Implemented a fully functional puzzle game on CPUlator",
             "Realized VGA rendering, keyboard input, collision detection, timer, and beep sound features",
           ],
-          mainTech: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems"],
+          tags: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems","RISC-V"],
           background: "Individual project assignment for ECE243 (Computer Organization). Practical learning of embedded systems and low-level hardware control was required. Tasked with implementing VGA rendering and PS/2 device input processing in C to create a working game.",
           challenges: "Under limited embedded system resources, it was necessary to achieve smooth 2D rendering and prevent flickering. PS/2 keyboard real-time input needed to be properly handled through interrupt processing to ensure game responsiveness. The challenge was to balance complex input device support with performance.",
           solutions: [
@@ -471,7 +470,6 @@ const translations = {
             "Adopted a design prioritizing performance and implementation speed by representing cars with simple rectangle rendering"
           ],
           learnings: "Mastered the fundamentals of embedded systems. In particular, implementing interrupt handling, memory management, and real-time processing was challenging but provided a deeper understanding of low-level hardware control. Through the experience of designing a system that operates within limited resources, I learned the importance of efficient programming.",
-          tags: ["C", "Embedded Systems", "VGA", "Computer Organization", "RISC-V"],
           videoUrl: "/demos/rush-hour-demo.mp4",
           githubUrl: "https://github.com/matsu641/RushHour"
         }
