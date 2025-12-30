@@ -20,35 +20,113 @@ type Skill = {
   name: string;
   level: number; // 1-5
   category: "frontend" | "backend" | "devops" | "ai";
+  usedIn?: string[]; // どこで使用したか
 };
 
 const skills: Skill[] = [
   // Frontend
-  { name: "HTML/CSS", level: 5, category: "frontend" },
-  { name: "JavaScript", level: 3, category: "frontend" },
-  { name: "TypeScript", level: 5, category: "frontend" },
-  { name: "React / Next.js", level: 5, category: "frontend" },
-  { name: "Tailwind CSS", level: 5, category: "frontend" },
-  // { name: "Vue.js", level: 2, category: "frontend" },
+  { 
+    name: "HTML/CSS", 
+    level: 5, 
+    category: "frontend", 
+    usedIn: ["Portfolio", "Freelance", "ボランティア"]
+  },
+  { 
+    name: "JavaScript", 
+    level: 3, 
+    category: "frontend", 
+    usedIn: ["Freelance"]
+  },
+  { 
+    name: "TypeScript", 
+    level: 5, 
+    category: "frontend", 
+    usedIn: ["Portfolio", "ボランティア", "インターン"]
+  },
+  { 
+    name: "React / Next.js", 
+    level: 5, 
+    category: "frontend", 
+    usedIn: ["Portfolio", "ボランティア", "インターン"]
+  },
+  { 
+    name: "Tailwind CSS", 
+    level: 5, 
+    category: "frontend", 
+    usedIn: ["Portfolio", "ボランティア", "インターン"]
+  },
   
   // Backend
-  { name: "Python", level: 3, category: "backend" },
-  { name: "FastAPI", level: 3, category: "backend" },
-  { name: "C / C++", level: 5, category: "backend" },
-  // { name: "MySQL", level: 1, category: "backend" },
-  // { name: "PostgreSQL", level: 2, category: "backend" },
+  { 
+    name: "Python", 
+    level: 3, 
+    category: "backend", 
+    usedIn: ["GCI講座", "DL基礎講座", "ボランティア", "インターン"]
+  },
+  { 
+    name: "FastAPI", 
+    level: 3, 
+    category: "backend", 
+    usedIn: ["ボランティア", "インターン"]
+  },
+  { 
+    name: "C / C++", 
+    level: 5, 
+    category: "backend", 
+    usedIn: ["Rush Hour", "GISアプリケーション"]
+  },
   
   // DevOps
-  { name: "Linux", level: 3, category: "devops" },
-  { name: "Git / GitHub", level: 5, category: "devops" },
-  { name: "Docker", level: 3, category: "devops" },
-  { name: "Firebase", level: 3, category: "devops" },
+  { 
+    name: "Linux", 
+    level: 3, 
+    category: "devops", 
+    usedIn: ["GISアプリケーション"]
+  },
+  { 
+    name: "Git / GitHub", 
+    level: 5, 
+    category: "devops", 
+    usedIn: ["All Projects"]
+  },
+  { 
+    name: "Docker", 
+    level: 3, 
+    category: "devops", 
+    usedIn: ["ボランティア", "インターン"]
+  },
+  { 
+    name: "Firebase", 
+    level: 3, 
+    category: "devops", 
+    usedIn: ["インターン"]
+  },
   
   // AI/ML
-  { name: "PyTorch", level: 3, category: "ai" },
-  { name: "NumPy", level: 4, category: "ai" },
-  { name: "Pandas", level: 4, category: "ai" },
-  { name: "TensorFlow", level: 1, category: "ai" },
+  { 
+    name: "PyTorch", 
+    level: 3, 
+    category: "ai", 
+    usedIn: ["GCI講座", "DL基礎講座", "画像分類プロジェクト"]
+  },
+  { 
+    name: "NumPy", 
+    level: 4, 
+    category: "ai", 
+    usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
+  },
+  { 
+    name: "Pandas", 
+    level: 4, 
+    category: "ai", 
+    usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
+  },
+  { 
+    name: "TensorFlow", 
+    level: 1, 
+    category: "ai", 
+    usedIn: ["DL基礎講座"]
+  },
 ];
 
 const categoryConfig = {
@@ -72,7 +150,7 @@ function SkillCard({ skill }: { skill: Skill }) {
       </div>
       
       {/* レベルバー */}
-      <div className="w-full h-2 bg-foreground/5 rounded-full overflow-hidden">
+      <div className="w-full h-2 bg-foreground/5 rounded-full overflow-hidden mb-3">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${(skill.level / 5) * 100}%` }}
@@ -80,6 +158,20 @@ function SkillCard({ skill }: { skill: Skill }) {
           className={`h-full bg-gradient-to-r ${config.color} rounded-full`}
         />
       </div>
+      
+      {/* 使用経験タグ */}
+      {skill.usedIn && skill.usedIn.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {skill.usedIn.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs font-medium px-2.5 py-1 rounded-md bg-blue-500/20 text-blue-200 border border-blue-400/40 hover:bg-blue-500/30 transition-colors"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -89,7 +181,7 @@ export default function Skills() {
   
   return (
     <section id="skills" className="py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('skills.title')}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
