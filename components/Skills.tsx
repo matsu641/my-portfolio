@@ -29,7 +29,7 @@ const skills: Skill[] = [
     name: "HTML", 
     level: 5, 
     category: "frontend", 
-    usedIn: ["Portfolio", "Freelance", "ボランティア"]
+    usedIn: ["Portfolio", "Freelance", "Volunteer"]
   },
   { 
     name: "JavaScript", 
@@ -41,19 +41,19 @@ const skills: Skill[] = [
     name: "TypeScript", 
     level: 5, 
     category: "frontend", 
-    usedIn: ["Portfolio", "ボランティア", "インターン"]
+    usedIn: ["Portfolio", "Volunteer", "Internship"]
   },
   { 
     name: "React / Next.js", 
     level: 5, 
     category: "frontend", 
-    usedIn: ["Portfolio", "ボランティア", "インターン"]
+    usedIn: ["Portfolio", "Volunteer", "Internship"]
   },
   { 
     name: "Tailwind CSS", 
     level: 5, 
     category: "frontend", 
-    usedIn: ["Portfolio", "ボランティア", "インターン"]
+    usedIn: ["Portfolio", "Volunteer", "Internship"]
   },
   
   // Backend
@@ -61,19 +61,19 @@ const skills: Skill[] = [
     name: "Python", 
     level: 3, 
     category: "backend", 
-    usedIn: ["GCI講座", "DL基礎講座", "ボランティア", "インターン"]
+    usedIn: ["GCI Course", "DL Basics Course", "Volunteer", "Internship"]
   },
   { 
     name: "FastAPI", 
     level: 3, 
     category: "backend", 
-    usedIn: ["ボランティア", "インターン"]
+    usedIn: ["Volunteer", "Internship"]
   },
   { 
     name: "C / C++", 
     level: 5, 
     category: "backend", 
-    usedIn: ["Rush Hour", "GISアプリケーション"]
+    usedIn: ["Rush Hour", "GIS Application"]
   },
   
   // DevOps
@@ -81,7 +81,7 @@ const skills: Skill[] = [
     name: "Linux", 
     level: 3, 
     category: "devops", 
-    usedIn: ["GISアプリケーション"]
+    usedIn: ["GIS Application"]
   },
   { 
     name: "Git / GitHub", 
@@ -93,13 +93,13 @@ const skills: Skill[] = [
     name: "Docker", 
     level: 3, 
     category: "devops", 
-    usedIn: ["ボランティア", "インターン"]
+    usedIn: ["Volunteer", "Internship"]
   },
   { 
     name: "Firebase", 
     level: 3, 
     category: "devops", 
-    usedIn: ["インターン"]
+    usedIn: ["Internship"]
   },
   
   // AI/ML
@@ -107,25 +107,25 @@ const skills: Skill[] = [
     name: "NumPy / Pandas", 
     level: 4, 
     category: "ai", 
-    usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
+    usedIn: ["GCI Course", "DL Basics Course", "Data Analysis", "Image Classification"]
   },
   { 
     name: "scikit-learn", 
     level: 4, 
     category: "ai", 
-    usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
+    usedIn: ["GCI Course", "DL Basics Course", "Data Analysis", "Image Classification"]
   },
     { 
     name: "PyTorch", 
     level: 3, 
     category: "ai", 
-    usedIn: ["GCI講座", "DL基礎講座", "画像分類プロジェクト"]
+    usedIn: ["GCI Course", "DL Basics Course", "Image Classification"]
   },
   { 
     name: "TensorFlow", 
     level: 1, 
     category: "ai", 
-    usedIn: ["DL基礎講座"]
+    usedIn: ["DL Basics Course"]
   },
 ];
 
