@@ -27,12 +27,12 @@ const skills: Skill[] = [
   { name: "HTML/CSS", level: 5, category: "frontend" },
   { name: "JavaScript", level: 3, category: "frontend" },
   { name: "TypeScript", level: 5, category: "frontend" },
-  { name: "React / Next.js", level: 4, category: "frontend" },
+  { name: "React / Next.js", level: 5, category: "frontend" },
   { name: "Tailwind CSS", level: 5, category: "frontend" },
   // { name: "Vue.js", level: 2, category: "frontend" },
   
   // Backend
-  { name: "Python", level: 4, category: "backend" },
+  { name: "Python", level: 3, category: "backend" },
   { name: "FastAPI", level: 3, category: "backend" },
   { name: "C / C++", level: 5, category: "backend" },
   // { name: "MySQL", level: 1, category: "backend" },
@@ -46,8 +46,8 @@ const skills: Skill[] = [
   
   // AI/ML
   { name: "PyTorch", level: 3, category: "ai" },
-  { name: "NumPy", level: 3, category: "ai" },
-  { name: "Pandas", level: 3, category: "ai" },
+  { name: "NumPy", level: 4, category: "ai" },
+  { name: "Pandas", level: 4, category: "ai" },
   { name: "TensorFlow", level: 1, category: "ai" },
 ];
 
