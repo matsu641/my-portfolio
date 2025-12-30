@@ -122,14 +122,14 @@ const translations = {
         title: "修了コース",
         items: [
           {
-            name: "Global Consumer Intelligence Program",
+            name: "グローバル消費インテリジェンス寄附講座 2025 Summer",
             issuer: "松尾研究室（東京大学）",
             date: "修了：2025年8月",
             description: "データ駆動型アプローチを用いてグローバル消費者行動を分析する手法を学習。AIテクニックと市場ビジネスの視点を組み合わせ、ケーススタディやプロジェクトを通じて実践的なスキルを習得。",
             link: "/certificates/gci-certificate.pdf"
           },
           {
-            name: "Deep Learning Foundations Course",
+            name: "Deep Learning 基礎講座 2025 Spring",
             issuer: "松尾研究室（東京大学）",
             date: "修了：2025年7月",
             description: "ニューラルネットワーク、畳み込み、及び深層学習など、深層学習の基礎的な概念を学習。ハンズオン演習を通じてプロダクトのモデルの実装を経験。",
@@ -343,14 +343,14 @@ const translations = {
         title: "Completed Courses",
         items: [
           {
-            name: "Global Consumer Intelligence Program",
+            name: "Global Consumer Intelligence Program 2025 Summer",
             issuer: "Matsuo Lab (The University of Tokyo)",
             date: "Completed: Aug 2025",
             description: "Learned methods to analyze global consumer behavior using data-driven approaches. Combined AI techniques with market business perspectives and acquired practical skills through case studies and projects.",
             link: "/certificates/gci-certificate.pdf"
           },
           {
-            name: "Deep Learning Foundations Course",
+            name: "Deep Learning Foundations Course 2025 Spring",
             issuer: "Matsuo Lab (The University of Tokyo)",
             date: "Completed: Jul 2025",
             description: "Learned fundamental concepts of deep learning including neural networks, convolution, and advanced deep learning. Gained experience implementing production-level models through hands-on exercises.",
