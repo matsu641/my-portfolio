@@ -26,7 +26,7 @@ type Skill = {
 const skills: Skill[] = [
   // Frontend
   { 
-    name: "HTML/CSS", 
+    name: "HTML", 
     level: 5, 
     category: "frontend", 
     usedIn: ["Portfolio", "Freelance", "ボランティア"]
@@ -104,19 +104,7 @@ const skills: Skill[] = [
   
   // AI/ML
   { 
-    name: "PyTorch", 
-    level: 3, 
-    category: "ai", 
-    usedIn: ["GCI講座", "DL基礎講座", "画像分類プロジェクト"]
-  },
-  { 
-    name: "NumPy", 
-    level: 4, 
-    category: "ai", 
-    usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
-  },
-  { 
-    name: "Pandas", 
+    name: "NumPy / Pandas", 
     level: 4, 
     category: "ai", 
     usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
@@ -126,6 +114,12 @@ const skills: Skill[] = [
     level: 4, 
     category: "ai", 
     usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
+  },
+    { 
+    name: "PyTorch", 
+    level: 3, 
+    category: "ai", 
+    usedIn: ["GCI講座", "DL基礎講座", "画像分類プロジェクト"]
   },
   { 
     name: "TensorFlow", 
