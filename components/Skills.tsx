@@ -122,6 +122,12 @@ const skills: Skill[] = [
     usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
   },
   { 
+    name: "scikit-learn", 
+    level: 3, 
+    category: "ai", 
+    usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
+  },
+  { 
     name: "TensorFlow", 
     level: 1, 
     category: "ai", 
