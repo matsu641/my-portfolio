@@ -123,7 +123,7 @@ const skills: Skill[] = [
   },
   { 
     name: "scikit-learn", 
-    level: 3, 
+    level: 4, 
     category: "ai", 
     usedIn: ["GCI講座", "DL基礎講座", "データ分析", "画像分類プロジェクト"]
   },
