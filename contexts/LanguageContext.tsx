@@ -156,12 +156,12 @@ const translations = {
       challenges: "課題",
       solutions: "解決アプローチ",
       learnings: "学びと結果",
-      viewDemo: "デモ動画を見る",
+      viewDemo: "デモ動画",
       Slides: "スライドを見る",
       slidesTitle: "スライド",
       viewSlides: "スライドを見る",
       viewGithub: "GitHubで見る",
-      viewLeaderboard: "リーダーボードを見る",
+      viewLeaderboard: "リーダーボード",
       items: [
         {
           title: "胸部X線画像の疾患分類（マルチモーダル深層学習）",
@@ -376,11 +376,11 @@ const translations = {
       challenges: "Challenges",
       solutions: "Solutions",
       learnings: "Learnings & Results",
-      viewDemo: "View Demo",
+      viewDemo: "Demo",
       slidesTitle: "Project Slides",
       viewSlides: "View Slides",
       viewGithub: "View GitHub",
-      viewLeaderboard: "View Leaderboard",
+      viewLeaderboard: "Leaderboard",
       items: [
         {
           title: "Chest X-ray Disease Classification (Multimodal Deep Learning)",
