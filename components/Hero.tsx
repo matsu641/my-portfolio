@@ -246,7 +246,8 @@ export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [displayedTitle, setDisplayedTitle] = useState("");
   const [displayedSubtitle, setDisplayedSubtitle] = useState("");
-  const [titleComplete, setTitleComplete] = useState(false);
+  const [isTypingTitle, setIsTypingTitle] = useState(true);
+  const [isTypingSubtitle, setIsTypingSubtitle] = useState(false);
   const { t } = useLanguage();
 
   // タイピングアニメーション
@@ -256,6 +257,12 @@ export default function Hero() {
     let titleIndex = 0;
     let subtitleIndex = 0;
 
+    // まずタイトルをリセット
+    setDisplayedTitle("");
+    setDisplayedSubtitle("");
+    setIsTypingTitle(true);
+    setIsTypingSubtitle(false);
+
     // タイトルのタイピング
     const titleInterval = setInterval(() => {
       if (titleIndex < titleText.length) {
@@ -263,31 +270,28 @@ export default function Hero() {
         titleIndex++;
       } else {
         clearInterval(titleInterval);
-        setTitleComplete(true);
+        setIsTypingTitle(false);
+        
+        // タイトル完了後、少し待ってからサブタイトル開始
+        setTimeout(() => {
+          setIsTypingSubtitle(true);
+          const subtitleInterval = setInterval(() => {
+            if (subtitleIndex < subtitleText.length) {
+              setDisplayedSubtitle(subtitleText.slice(0, subtitleIndex + 1));
+              subtitleIndex++;
+            } else {
+              clearInterval(subtitleInterval);
+              setIsTypingSubtitle(false);
+            }
+          }, 100);
+        }, 300); // 300ms待機
       }
-    }, 120); // タイピング速度
+    }, 120);
 
-    return () => clearInterval(titleInterval);
+    return () => {
+      clearInterval(titleInterval);
+    };
   }, [t]);
-
-  // サブタイトルのタイピング（タイトル完了後）
-  useEffect(() => {
-    if (!titleComplete) return;
-
-    const subtitleText = t('hero.subtitle');
-    let subtitleIndex = 0;
-
-    const subtitleInterval = setInterval(() => {
-      if (subtitleIndex < subtitleText.length) {
-        setDisplayedSubtitle(subtitleText.slice(0, subtitleIndex + 1));
-        subtitleIndex++;
-      } else {
-        clearInterval(subtitleInterval);
-      }
-    }, 100); // サブタイトルは少し速く
-
-    return () => clearInterval(subtitleInterval);
-  }, [titleComplete, t]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -338,11 +342,11 @@ export default function Hero() {
           >
             <span className="block">
               {displayedTitle}
-              {!titleComplete && <span className="animate-pulse">|</span>}
+              {isTypingTitle && <span className="animate-pulse">|</span>}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
               {displayedSubtitle}
-              {titleComplete && displayedSubtitle !== t('hero.subtitle') && <span className="animate-pulse">|</span>}
+              {isTypingSubtitle && <span className="animate-pulse">|</span>}
             </span>
           </h1>
           
