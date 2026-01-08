@@ -136,14 +136,20 @@ const translations = {
             name: "グローバル消費インテリジェンス寄附講座 2025 Summer",
             issuer: "松尾研究室（東京大学）",
             date: "修了：2025年8月",
-            description: "データ駆動型アプローチを用いてグローバル消費者行動を分析する手法を学習。AIテクニックと市場ビジネスの視点を組み合わせ、ケーススタディやプロジェクトを通じて実践的なスキルを習得。",
+            description: [
+              "データ駆動型アプローチを用いてグローバル消費者行動を分析する手法を学習",
+              "最終プロジェクトでは、AIテクニックと市場ビジネスの視点を組み合わせた実践的なアプローチをまなんだ",
+            ],
             link: "/certificates/gci-certificate.pdf"
           },
           {
             name: "Deep Learning 基礎講座 2025 Spring",
             issuer: "松尾研究室（東京大学）",
             date: "修了：2025年7月",
-            description: "ニューラルネットワーク、畳み込み、及び深層学習など、深層学習の基礎的な概念を学習。ハンズオン演習を通じてプロダクトのモデルの実装を経験。",
+            description: [
+              "ニューラルネットワーク、畳み込み、及び深層強化学習など、深層学習の基礎的な概念を学習",
+              "演習を通じてプロダクトレベルのモデルの実装を経験"
+            ],
             link: "/certificates/dl-foundations-certificate.pdf"
           }
         ]
@@ -367,14 +373,20 @@ const translations = {
             name: "Global Consumer Intelligence Program 2025 Summer",
             issuer: "Matsuo Lab (The University of Tokyo)",
             date: "Completed: Aug 2025",
-            description: "Learned methods to analyze global consumer behavior using data-driven approaches. Combined AI techniques with market business perspectives and acquired practical skills through case studies and projects.",
+            description: [
+              "Learned methods to analyze global consumer behavior using data-driven approaches",
+              "In the final project, learned practical approaches combining AI techniques with market business perspectives"
+            ],
             link: "/certificates/gci-certificate.pdf"
           },
           {
             name: "Deep Learning Foundations Course 2025 Spring",
             issuer: "Matsuo Lab (The University of Tokyo)",
             date: "Completed: Jul 2025",
-            description: "Learned fundamental concepts of deep learning including neural networks, convolution, and advanced deep learning. Gained experience implementing production-level models through hands-on exercises.",
+            description: [
+              "Learned fundamental concepts of deep learning including neural networks, convolution, and deep reinforcement learning",
+              "Gained experience implementing production-level models through hands-on exercises"
+            ],
             link: "/certificates/dl-foundations-certificate.pdf"
           }
         ]

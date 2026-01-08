@@ -208,7 +208,14 @@ export default function About() {
                     <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{cert.date}</span>
                   </div>
                   {cert.description && (
-                    <p className="text-zinc-100 mt-3">{cert.description}</p>
+                    <ul className="space-y-2 text-zinc-100 mt-3">
+                      {cert.description.map((desc: string, descIndex: number) => (
+                        <li key={descIndex} className="flex gap-2">
+                          <span className="text-accent mt-1">•</span>
+                          <span>{desc}</span>
+                        </li>
+                      ))}
+                    </ul>
                   )}
                   <motion.a
                     href={cert.link}
