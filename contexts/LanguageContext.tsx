@@ -71,14 +71,25 @@ const translations = {
       experience: {
         title: "職歴",
         starup: {
-          role: "ソフトウェアエンジニアインターン（Feature Lead）",
+          role: "ソフトウェアエンジニアインターン（機能リード）",
           company: "株式会社 STAR UP",
           period: "2025年5月 - 現在",
-          location: "京都、日本（ハイブリッド）",
+          location: "京都、日本（リモート）",
           tasks: [
             "TypeScript、React/Next.js、FastAPIを使用した製造業向けSaaSプラットフォームの開発に貢献",
             "継続的なリファクタリング、ユニットテストの作成、バグ修正によりコード品質とシステム信頼性を向上",
-            "新機能の企画と実行を主導し、エンジニアとビジネスステークホルダー間で要件調整、タスク分解、進捗管理を担当"
+            "新機能の企画と実行を主導し、エンジニアとビジネス側との定期的なキックオフミーティングで要件調整、タスク分解、進捗管理を担当"
+          ]
+        },
+        equos: {
+          role: "AIエンジニアインターン",
+          company: "株式会社EQUOS",
+          period: "2026年1月 - 現在",
+          location: "東京、日本（リモート）",
+          tasks: [
+            "原子力発電所における入構管理業務のDXを目的としたAI導入プロジェクトに参画",
+            "定例ミーティングに参加し、先方と業務課題やシステム導入方針の理解・方向性のすり合わせを実施",
+            "要件定義内容をもとに、AI適用範囲やシステム構成に関する検討・整理を担当"
           ]
         },
         freelance: {
@@ -294,11 +305,22 @@ const translations = {
           role: "Software Engineer Intern (Feature Lead)",
           company: "STAR UP, Inc.",
           period: "May 2025 - Present",
-          location: "Kyoto, Japan (Hybrid)",
+          location: "Kyoto, Japan (Remote)",
           tasks: [
             "Contributed to the development of a SaaS platform for the manufacturing industry using TypeScript, React/Next.js, and FastAPI",
             "Improved code quality and system reliability through continuous refactoring, unit testing, and bug fixes",
             "Led the planning and execution of new features, coordinating requirements between engineers and business stakeholders, task breakdown, and progress management"
+          ]
+        },
+        equos: {
+          role: "AI Engineer Intern",
+          company: "EQUOS, Inc.",
+          period: "Jan 2026 - Present",
+          location: "Tokyo, Japan (Remote)",
+          tasks: [
+            "Participated in an AI implementation project aimed at digitally transforming entry management operations at nuclear power plants",
+            "Attended regular meetings to understand business challenges and system implementation policies, and aligned project direction with stakeholders",
+            "Responsible for examining and organizing the scope of AI application and system architecture based on requirement definitions"
           ]
         },
         freelance: {

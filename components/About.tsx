@@ -63,6 +63,27 @@ export default function About() {
           <motion.div variants={item} className="mb-16">
             <h3 className="text-2xl font-bold mb-6">{t('about.experience.title')}</h3>
             <div className="space-y-8">
+
+              {/* EQUOS */}
+              <div className="border-l-2 border-accent pl-6">
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 className="text-xl font-semibold">{t('about.experience.equos.role')}</h4>
+                    <p className="text-accent font-medium">{t('about.experience.equos.company')}</p>
+                  </div>
+                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.equos.period')}</span>
+                </div>
+                <p className="text-zinc-300 mb-3">{t('about.experience.equos.location')}</p>
+                <ul className="space-y-2 text-zinc-100">
+                  {t('about.experience.equos.tasks').map((task: string, index: number) => (
+                    <li key={index} className="flex gap-2">
+                      <span className="text-accent mt-1">•</span>
+                      <span>{task}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {/* STAR UP */}
               <div className="border-l-2 border-accent pl-6">
                 <div className="flex justify-between items-start mb-2">
