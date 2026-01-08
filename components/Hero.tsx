@@ -244,20 +244,50 @@ function Scene3D() {
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [displayedTitle, setDisplayedTitle] = useState("");
+  const [displayedSubtitle, setDisplayedSubtitle] = useState("");
+  const [titleComplete, setTitleComplete] = useState(false);
   const { t } = useLanguage();
 
+  // タイピングアニメーション
   useEffect(() => {
-    // GSAPでテキストアニメーション
-    if (titleRef.current) {
-      gsap.from(titleRef.current.children, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out",
-      });
-    }
-  }, []);
+    const titleText = t('hero.title');
+    const subtitleText = t('hero.subtitle');
+    let titleIndex = 0;
+    let subtitleIndex = 0;
+
+    // タイトルのタイピング
+    const titleInterval = setInterval(() => {
+      if (titleIndex < titleText.length) {
+        setDisplayedTitle(titleText.slice(0, titleIndex + 1));
+        titleIndex++;
+      } else {
+        clearInterval(titleInterval);
+        setTitleComplete(true);
+      }
+    }, 120); // タイピング速度
+
+    return () => clearInterval(titleInterval);
+  }, [t]);
+
+  // サブタイトルのタイピング（タイトル完了後）
+  useEffect(() => {
+    if (!titleComplete) return;
+
+    const subtitleText = t('hero.subtitle');
+    let subtitleIndex = 0;
+
+    const subtitleInterval = setInterval(() => {
+      if (subtitleIndex < subtitleText.length) {
+        setDisplayedSubtitle(subtitleText.slice(0, subtitleIndex + 1));
+        subtitleIndex++;
+      } else {
+        clearInterval(subtitleInterval);
+      }
+    }, 100); // サブタイトルは少し速く
+
+    return () => clearInterval(subtitleInterval);
+  }, [titleComplete, t]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -301,14 +331,18 @@ export default function Hero() {
             {t('hero.greeting')}<span className="text-foreground font-large">{t('hero.name')}</span>
           </motion.p>
 
-          {/* タイトル */}
+          {/* タイトル - タイピングアニメーション */}
           <h1 
             ref={titleRef}
             className="text-5xl md:text-7xl font-bold tracking-tight mb-6"
           >
-            <span className="block">{t('hero.title')}</span>
+            <span className="block">
+              {displayedTitle}
+              {!titleComplete && <span className="animate-pulse">|</span>}
+            </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-              {t('hero.subtitle')}
+              {displayedSubtitle}
+              {titleComplete && displayedSubtitle !== t('hero.subtitle') && <span className="animate-pulse">|</span>}
             </span>
           </h1>
           
