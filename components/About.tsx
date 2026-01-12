@@ -123,7 +123,21 @@ export default function About() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 max-w-md">
+                
+                {/* Google Search Console Evidence */}
+                <div className="mt-6 max-w-2xl">
+                  <div className="relative w-full h-auto rounded-lg overflow-hidden border border-accent/20">
+                    <Image
+                      src="/images/clinic_search_console.png"
+                      alt="Google Search Console Performance"
+                      width={800}
+                      height={400}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-6 max-w-md">
                   <motion.a
                     href="https://kuwabara-ortho.jp"
                     target="_blank"
