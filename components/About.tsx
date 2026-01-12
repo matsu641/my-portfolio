@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Image from "next/image";
 
 const container = {
   hidden: { opacity: 0 },
@@ -122,19 +123,33 @@ export default function About() {
                     </li>
                   ))}
                 </ul>
-                <motion.a
-                  href="https://kuwabara-ortho.jp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all"
-                >
-                  {language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </motion.a>
+                <div className="mt-4 max-w-md">
+                  <motion.a
+                    href="https://kuwabara-ortho.jp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="block overflow-hidden rounded-lg border border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all"
+                  >
+                    <div className="relative w-full h-60 mb-3">
+                      <Image
+                        src="/images/clinic-tumbnail.png"
+                        alt="Kuwabara Orthodontic Clinic Website"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="px-4 pb-4 flex items-center justify-between">
+                      <span className="text-accent font-medium">
+                        {language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                  </motion.a>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -159,19 +174,33 @@ export default function About() {
                     </li>
                   ))}
                 </ul>
-                <motion.a
-                  href="https://uoftjn.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all"
-                >
-                  {language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </motion.a>
+                <div className="mt-4 max-w-md">
+                  <motion.a
+                    href="https://uoftjn.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="block overflow-hidden rounded-lg border border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all"
+                  >
+                    <div className="relative w-full h-60 mb-3">
+                      <Image
+                        src="/images/utjn-tumbnail.png"
+                        alt="UofT Japan Network Website"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="px-4 pb-4 flex items-center justify-between">
+                      <span className="text-accent font-medium">
+                        {language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                  </motion.a>
+                </div>
               </div>
 
               <div className="border-l-2 border-accent pl-6">
