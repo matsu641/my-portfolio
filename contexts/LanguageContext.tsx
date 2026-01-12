@@ -138,7 +138,7 @@ const translations = {
             date: "修了：2025年8月",
             description: [
               "データ駆動型アプローチを用いてグローバル消費者行動を分析する手法を学習",
-              "最終プロジェクトでは、AIテクニックと市場ビジネスの視点を組み合わせた実践的なアプローチを取得",
+              "最終プロジェクトでは、AI技術と市場ビジネスの視点を組み合わせた実践的なアプローチを取得",
             ],
             link: "/certificates/gci-certificate.pdf"
           },
@@ -148,7 +148,7 @@ const translations = {
             date: "修了：2025年7月",
             description: [
               "ニューラルネットワーク、畳み込み、及び深層強化学習など、深層学習の基礎的な概念を学習",
-              "演習を通じてプロダクトレベルのモデルの実装を経験"
+              "演習を通じて深層学習モデルの実装経験を習得"
             ],
             link: "/certificates/dl-foundations-certificate.pdf"
           }
@@ -385,7 +385,7 @@ const translations = {
             date: "Completed: Jul 2025",
             description: [
               "Learned fundamental concepts of deep learning including neural networks, convolution, and deep reinforcement learning",
-              "Gained experience implementing production-level models through hands-on exercises"
+              "Gained hands-on experience implementing deep learning models through practical exercises"
             ],
             link: "/certificates/dl-foundations-certificate.pdf"
           }
