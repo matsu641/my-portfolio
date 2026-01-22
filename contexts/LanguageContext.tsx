@@ -83,7 +83,7 @@ const translations = {
         },
         equos: {
           role: "AIエンジニアインターン",
-          company: "株式会社EQUOS",
+          company: "株式会社 EQUES",
           period: "2026年1月 - 現在",
           location: "東京、日本（リモート）",
           tasks: [
@@ -321,7 +321,7 @@ const translations = {
         },
         equos: {
           role: "AI Engineer Intern",
-          company: "EQUOS, Inc.",
+          company: "EQUES, Inc.",
           period: "Jan 2026 - Present",
           location: "Tokyo, Japan (Remote)",
           tasks: [
