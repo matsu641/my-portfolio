@@ -175,6 +175,7 @@ const translations = {
       solutions: "解決アプローチ",
       learnings: "学びと結果",
       viewDemo: "デモ動画",
+      demoImage: "アプリ画面",
       Slides: "スライドを見る",
       slidesTitle: "スライド",
       viewSlides: "スライドを見る",
@@ -203,6 +204,7 @@ const translations = {
             "表現設計の安全化：因果断定を避け『傾向表示』に限定、相関係数は内部実装に留める"
           ],
           learnings: "Firebaseをバックエンドとしたモバイルアプリのフルスタック設計・実装を一人で行いテストデプロイまで完了。Firestoreのコスト構造を考慮し、ローカルとクラウドを分離したハイブリッド設計を採用。Repositoryパターンによるサービス層分離で保守性を確保し、TypeScriptで型安全な設計を構築した。医療ドメインのUI設計を通して、入力負荷を下げるUX設計の重要性を学んだ。",
+          demoImageUrl: "/images/KaradaNote.png",
           slideUrl: "/images/からだノート.pdf",
           githubUrl: "https://github.com/matsu641/karada-diary"
         },
@@ -437,6 +439,7 @@ const translations = {
       solutions: "Solutions",
       learnings: "Learnings & Results",
       viewDemo: "Demo",
+      demoImage: "App Screenshots",
       slidesTitle: "Project Slides",
       viewSlides: "View Slides",
       viewGithub: "View GitHub",
@@ -464,6 +467,7 @@ const translations = {
             "Safety-focused presentation design: Limited to 'trend display' avoiding causal statements, keeping correlation coefficients internal"
           ],
           learnings: "Completed full-stack design and implementation of a mobile app with Firebase as backend through test deployment by myself. Adopted hybrid design separating local and cloud considering Firestore cost structure. Ensured maintainability through service layer separation using Repository pattern and built type-safe design with TypeScript. Learned the importance of UX design that reduces input burden through medical domain UI design.",
+          demoImageUrl: "/images/KaradaNote.png",
           slideUrl: "/images/からだノート.pdf",
           githubUrl: "https://github.com/matsu641/karada-diary"
         },

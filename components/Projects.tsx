@@ -202,6 +202,20 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
 
 
 
+          {/* Demo Image */}
+          {project.demoImageUrl && (
+            <div>
+              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
+                {t('projects.demoImage')}
+              </h4>
+              <img 
+                src={project.demoImageUrl} 
+                alt="Application Demo"
+                className="w-full rounded-lg border border-zinc-700/50"
+              />
+            </div>
+          )}
+
           {/* Demo Video */}
           {project.videoUrl && (
             <div>
