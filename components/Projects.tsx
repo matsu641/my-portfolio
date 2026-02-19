@@ -19,7 +19,7 @@ const item = {
 
 function ProjectCard({ project, index }: { project: any; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <motion.article
@@ -62,6 +62,21 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
               <span className="text-sm font-medium">{t('projects.viewSlides')}</span>
+            </a>
+          )}
+          
+          {project.websiteUrl && (
+            <a
+              href={project.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-green-400 hover:opacity-80 transition-opacity"
+              aria-label="View Website"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              <span className="text-sm font-medium">{language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}</span>
             </a>
           )}
         </div>
@@ -230,6 +245,20 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
                 <source src={project.videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
+            </div>
+          )}
+
+          {/* Google Search Console */}
+          {project.searchConsoleImageUrl && (
+            <div>
+              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
+                {language === 'ja' ? 'Google Search Consoleパフォーマンス' : 'Google Search Console Performance'}
+              </h4>
+              <img 
+                src={project.searchConsoleImageUrl} 
+                alt="Google Search Console Performance"
+                className="w-full rounded-lg border border-zinc-700/50"
+              />
             </div>
           )}
         </motion.div>

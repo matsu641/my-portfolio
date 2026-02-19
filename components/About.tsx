@@ -123,47 +123,6 @@ export default function About() {
                     </li>
                   ))}
                 </ul>
-                
-                {/* Google Search Console Evidence */}
-                <div className="mt-6 max-w-2xl">
-                  <div className="relative w-full h-auto rounded-lg overflow-hidden border border-accent/20">
-                    <Image
-                      src="/images/clinic_search_console.png"
-                      alt="Google Search Console Performance"
-                      width={800}
-                      height={400}
-                      className="w-full h-auto"
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6 max-w-md">
-                  <motion.a
-                    href="https://kuwabara-ortho.jp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="block overflow-hidden rounded-lg border border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all"
-                  >
-                    <div className="relative w-full h-60 mb-3">
-                      <Image
-                        src="/images/clinic-tumbnail.png"
-                        alt="Kuwabara Orthodontic Clinic Website"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="px-4 pb-4 flex items-center justify-between">
-                      <span className="text-accent font-medium">
-                        {language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}
-                      </span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </div>
-                  </motion.a>
-                </div>
               </div>
             </div>
           </motion.div>

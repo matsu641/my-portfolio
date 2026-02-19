@@ -296,6 +296,31 @@ const translations = {
           learnings: "組み込みシステムの基礎を習得できた。特に、割り込み処理、メモリ管理、リアルタイム処理の実装は難易度は高かったが、より低レベルハードウェア制御について深い理解を得ることができた。また、限られたリソースの中で動作するシステムを設計する経験を通じて、効率的なプログラミングの重要性を学んだ。",
           videoUrl: "/demos/rush-hour-demo.mp4",
           githubUrl: "https://github.com/matsu641/RushHour"
+        },
+        {
+          title: "クリニックウェブサイト（くわばら整形外科クリニック）",
+          period: "2024年5月 - 2024年7月",
+          what: "HTML、CSS、JavaScriptを使用して、完全レスポンシブなクリニックウェブサイトをゼロから設計・開発（フリーランス案件）",
+          impact: [
+            "ローンチ後3ヶ月以内に2,856インプレッション、343クリック（CTR 12%）を達成",
+            "若年層患者の増加に貢献し、クリニックのオンライン可視性を向上",
+            "追加依頼で、QRコードでアクセスできる専用情報ページを実装"
+          ],
+          tags: ["HTML", "CSS", "JavaScript", "Responsive Design", "SEO", "Freelance"],
+          background: "フリーランス案件として、整形外科クリニックのウェブサイト制作を受注。クライアントは既存のウェブサイトを持っておらず、オンライン上での存在感がなかったため、新規患者の獲得が困難という課題を抱えていた。特に若年層へのリーチを強化し、クリニックの情報を分かりやすく提供するためのウェブサイトが必要とされていた。",
+          challenges: "クライアントとの初めてのプロジェクトであり、要件定義から設計・実装・デプロイまで全てを一人で担当する必要があった。クライアントはウェブ技術に詳しくなかったため、要望を技術的な要件に変換し、UI/UXに落とし込む必要があった。また、SEO最適化を実装し、検索エンジンでの可視性を高める必要があった。さらに、ローンチ後も追加機能の依頼に対応し、継続的なサポートを提供する必要があった。",
+          solutions: [
+            "クライアントと密接に協力し、定期的なミーティングを通じて要件を明確化",
+            "HTML、CSS、JavaScriptを使用したシンプルで保守性の高い実装を採用",
+            "完全レスポンシブデザインを実装し、モバイル・タブレット・デスクトップ全てに対応",
+            "SEO最適化（メタタグ、構造化データ、画像最適化など）を実装し、検索エンジンでの可視性を向上",
+            "ユーザビリティを重視したシンプルなUI/UX設計を採用し、患者がクリニック情報に容易にアクセスできるように設計",
+            "追加依頼として、QRコードでアクセス可能な専用情報ページを実装"
+          ],
+          learnings: "フリーランス案件として初めてのウェブサイト制作を経験し、要件定義から設計・実装・デプロイまでの一連のフローを習得した。クライアントとのコミュニケーションの重要性を実感し、技術的な知識がないクライアントに対しても分かりやすく説明するスキルを向上させた。SEO最適化の実装を通じて、ウェブサイトの可視性向上の重要性を学んだ。また、ローンチ後の追加機能依頼に対応することで、継続的なサポートとメンテナンスの重要性を理解した。",
+          websiteUrl: "https://kuwabara-ortho.jp",
+          searchConsoleImageUrl: "/images/clinic_search_console.png",
+          thumbnailImageUrl: "/images/clinic-tumbnail.png"
         }
       ]
     },
@@ -561,6 +586,31 @@ const translations = {
           learnings: "Mastered the fundamentals of embedded systems. In particular, implementing interrupt handling, memory management, and real-time processing was challenging but provided a deeper understanding of low-level hardware control. Through the experience of designing a system that operates within limited resources, I learned the importance of efficient programming.",
           videoUrl: "/demos/rush-hour-demo.mp4",
           githubUrl: "https://github.com/matsu641/RushHour"
+        },
+        {
+          title: "Clinic Website (Kuwabara Orthopedic Clinic)",
+          period: "May 2024 - Jul 2024",
+          what: "Designed and developed a fully responsive clinic website from scratch using HTML, CSS, and JavaScript (freelance project)",
+          impact: [
+            "Achieved 2,856 impressions and 343 clicks (CTR 12%) within 3 months post-launch",
+            "Contributed to increased younger patient demographics and improved clinic's online visibility",
+            "Implemented a dedicated information page accessible via QR code upon additional request"
+          ],
+          tags: ["HTML", "CSS", "JavaScript", "Responsive Design", "SEO", "Freelance"],
+          background: "As a freelance project, I was commissioned to create a website for an orthopedic clinic. The client had no existing website and lacked online presence, making it difficult to attract new patients. A website was needed to strengthen outreach to younger demographics and provide clear clinic information.",
+          challenges: "This was my first project with a client, requiring me to handle everything from requirement definition to design, implementation, and deployment independently. The client had limited web technology knowledge, necessitating translation of their requests into technical requirements and UI/UX design. SEO optimization was needed to increase search engine visibility. Additionally, I needed to provide ongoing support for post-launch feature requests.",
+          solutions: [
+            "Collaborated closely with the client, clarifying requirements through regular meetings",
+            "Adopted simple, maintainable implementation using HTML, CSS, and JavaScript",
+            "Implemented fully responsive design supporting mobile, tablet, and desktop devices",
+            "Implemented SEO optimization (meta tags, structured data, image optimization, etc.) to improve search engine visibility",
+            "Adopted simple UI/UX design emphasizing usability, ensuring patients could easily access clinic information",
+            "Implemented a dedicated information page accessible via QR code upon additional request"
+          ],
+          learnings: "Experienced my first freelance website project, mastering the entire workflow from requirement definition to design, implementation, and deployment. Realized the importance of client communication and improved my ability to explain technical concepts clearly to non-technical clients. Learned the importance of improving website visibility through SEO optimization implementation. By responding to post-launch feature requests, I understood the importance of continuous support and maintenance.",
+          websiteUrl: "https://kuwabara-ortho.jp",
+          searchConsoleImageUrl: "/images/clinic_search_console.png",
+          thumbnailImageUrl: "/images/clinic-tumbnail.png"
         }
       ]
     },
