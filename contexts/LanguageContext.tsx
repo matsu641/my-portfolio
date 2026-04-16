@@ -73,7 +73,7 @@ const translations = {
         starup: {
           role: "ソフトウェアエンジニアインターン（機能リード）",
           company: "株式会社 STAR UP",
-          period: "2025年5月 - 現在",
+          period: "2025年5月 - 2025年12月",
           location: "京都、日本（リモート）",
           tasks: [
             "TypeScript、React/Next.js、FastAPIを使用した製造業向けSaaSプラットフォームの開発に貢献",
@@ -87,9 +87,9 @@ const translations = {
           period: "2026年1月 - 現在",
           location: "東京、日本（リモート）",
           tasks: [
-            "原子力発電所における入構管理業務のDXを目的としたAI導入プロジェクトに参画",
-            // "定例ミーティングに参加し、先方と業務課題やシステム導入方針の理解・方向性のすり合わせを実施",
-            // "要件定義内容をもとに、AI適用範囲やシステム構成に関する検討・整理を担当"
+            "Pythonを用いた製薬スケジュール最適化アルゴリズムの開発に従事",
+            "複数の制約条件を考慮し、大手製薬会社向けの生産計画に対応した効率的なスケジュールを自動生成",
+            "最適化結果をCSV形式で出力し、実務で扱いやすいスケジュール表として整備"
           ]
         },
         freelance: {
@@ -182,32 +182,32 @@ const translations = {
       viewGithub: "GitHubで見る",
       viewLeaderboard: "リーダーボード",
       items: [
-        {
-          title: "からだ日記（ヘルスケア記録アプリ）",
-          period: "2025/09 - 現在",
-          what: "慢性関節疾患向けの症状・服薬・リハビリ・気圧データを統合管理するモバイルアプリ（個人開発）",
-          impact: [
-            "症状・服薬・運動の3系統データを統合表示する日付ベース集約ロジックを設計",
-            "異なる痛みスケール（0–10 / 0–3）を統合する共通アルゴリズムを実装",
-            "Firestore + AsyncStorage のハイブリッド構成でパフォーマンスとコストを両立",
-            "トレンド分析画面においてデータ取得最適化とMap構造による高速参照を実現",
-          ],
-          tags: ["React Native", "TypeScript", "Firebase", "Firestore", "AsyncStorage", "UI/UX", "Data Aggregation", "Mobile"],
-          background: "家族がリウマチを患っており、日々の体調変化を記録・可視化できるツールの必要性を感じたことがきっかけ。既存の健康管理アプリは汎用的で、関節ごとの痛み・腫れ・しびれの記録や、気圧変化との相関を追える専門的な機能が不足していた。『毎日の記録を簡単に続けられ、長期的な変化を把握できるアプリ』を目指して開発を開始した。",
-          challenges: "数値入力中心のUIでは記録継続が困難。症状ログ（0–10）と詳細関節ログ（0–3）のスケール不一致。症状・服薬・運動が独立データ構造であり、画面間同期が複雑。詳細症状データをクラウド保存するとコスト増大。トレンド画面で期間変更ごとに大量再計算が発生。相関表示が医学的因果と誤認される可能性。",
-          solutions: [
-            "タップ中心UI設計：関節マップ入力 + 0–3段階プリセットスケールを採用し、入力時間を最小化",
-            "スケール統合ロジック設計：詳細ログ優先 + 最大関節痛を代表値とする共通計算アルゴリズムを設計し、Home・Calendar・Trend画面で統一",
-            "日付ベース集約構造の導入：useCalendarRecordsカスタムフックを作成し、90日分データを一括取得後Map構造へ変換（O(1)参照）",
-            "クラウド×ローカルの分離設計：詳細症状はAsyncStorage、集約値はFirestoreへ保存するハイブリッド構成",
-            "パフォーマンス最適化：期間前データの事前取得、グラフ用データのサンプリング処理、不要再フェッチ回避",
-            "表現設計の安全化：因果断定を避け『傾向表示』に限定、相関係数は内部実装に留める"
-          ],
-          learnings: "Firebaseをバックエンドとしたモバイルアプリのフルスタック設計・実装を一人で行いテストデプロイまで完了。Firestoreのコスト構造を考慮し、ローカルとクラウドを分離したハイブリッド設計を採用。Repositoryパターンによるサービス層分離で保守性を確保し、TypeScriptで型安全な設計を構築した。医療ドメインのUI設計を通して、入力負荷を下げるUX設計の重要性を学んだ。",
-          demoImageUrl: "/images/KaradaNote.png",
-          slideUrl: "/images/からだノート.pdf",
-          githubUrl: "https://github.com/matsu641/karada-diary"
-        },
+        // {
+        //   title: "からだ日記（ヘルスケア記録アプリ）",
+        //   period: "2025/09 - 現在",
+        //   what: "慢性関節疾患向けの症状・服薬・リハビリ・気圧データを統合管理するモバイルアプリ（個人開発）",
+        //   impact: [
+        //     "症状・服薬・運動の3系統データを統合表示する日付ベース集約ロジックを設計",
+        //     "異なる痛みスケール（0–10 / 0–3）を統合する共通アルゴリズムを実装",
+        //     "Firestore + AsyncStorage のハイブリッド構成でパフォーマンスとコストを両立",
+        //     "トレンド分析画面においてデータ取得最適化とMap構造による高速参照を実現",
+        //   ],
+        //   tags: ["React Native", "TypeScript", "Firebase", "Firestore", "AsyncStorage", "UI/UX", "Data Aggregation", "Mobile"],
+        //   background: "家族がリウマチを患っており、日々の体調変化を記録・可視化できるツールの必要性を感じたことがきっかけ。既存の健康管理アプリは汎用的で、関節ごとの痛み・腫れ・しびれの記録や、気圧変化との相関を追える専門的な機能が不足していた。『毎日の記録を簡単に続けられ、長期的な変化を把握できるアプリ』を目指して開発を開始した。",
+        //   challenges: "数値入力中心のUIでは記録継続が困難。症状ログ（0–10）と詳細関節ログ（0–3）のスケール不一致。症状・服薬・運動が独立データ構造であり、画面間同期が複雑。詳細症状データをクラウド保存するとコスト増大。トレンド画面で期間変更ごとに大量再計算が発生。相関表示が医学的因果と誤認される可能性。",
+        //   solutions: [
+        //     "タップ中心UI設計：関節マップ入力 + 0–3段階プリセットスケールを採用し、入力時間を最小化",
+        //     "スケール統合ロジック設計：詳細ログ優先 + 最大関節痛を代表値とする共通計算アルゴリズムを設計し、Home・Calendar・Trend画面で統一",
+        //     "日付ベース集約構造の導入：useCalendarRecordsカスタムフックを作成し、90日分データを一括取得後Map構造へ変換（O(1)参照）",
+        //     "クラウド×ローカルの分離設計：詳細症状はAsyncStorage、集約値はFirestoreへ保存するハイブリッド構成",
+        //     "パフォーマンス最適化：期間前データの事前取得、グラフ用データのサンプリング処理、不要再フェッチ回避",
+        //     "表現設計の安全化：因果断定を避け『傾向表示』に限定、相関係数は内部実装に留める"
+        //   ],
+        //   learnings: "Firebaseをバックエンドとしたモバイルアプリのフルスタック設計・実装を一人で行いテストデプロイまで完了。Firestoreのコスト構造を考慮し、ローカルとクラウドを分離したハイブリッド設計を採用。Repositoryパターンによるサービス層分離で保守性を確保し、TypeScriptで型安全な設計を構築した。医療ドメインのUI設計を通して、入力負荷を下げるUX設計の重要性を学んだ。",
+        //   demoImageUrl: "/images/KaradaNote.png",
+        //   slideUrl: "/images/からだノート.pdf",
+        //   githubUrl: "https://github.com/matsu641/karada-diary"
+        // },
         {
           title: "胸部X線画像の疾患分類（マルチモーダル深層学習）",
           period: "2025/10 - 2025/12",
@@ -363,7 +363,7 @@ const translations = {
         starup: {
           role: "Software Engineer Intern (Feature Lead)",
           company: "STAR UP, Inc.",
-          period: "May 2025 - Present",
+          period: "May 2025 - Dec 2025",
           location: "Kyoto, Japan (Remote)",
           tasks: [
             "Contributed to the development of a SaaS platform for the manufacturing industry using TypeScript, React/Next.js, and FastAPI",
@@ -377,9 +377,9 @@ const translations = {
           period: "Jan 2026 - Present",
           location: "Tokyo, Japan (Remote)",
           tasks: [
-            "Participated in an AI implementation project aimed at digitally transforming entry management operations at nuclear power plants",
-            "Attended regular meetings to understand business challenges and system implementation policies, and aligned project direction with stakeholders",
-            "Responsible for examining and organizing the scope of AI application and system architecture based on requirement definitions"
+            "Developed a pharmaceutical production schedule optimization algorithm using Python",
+            "Generated efficient schedules for major pharmaceutical companies by considering multiple constraints in production planning",
+            "Exported optimization results in CSV format and prepared user-friendly schedule tables for practical use"
           ]
         },
         freelance: {
@@ -470,32 +470,32 @@ const translations = {
       viewGithub: "View GitHub",
       viewLeaderboard: "Leaderboard",
       items: [
-        {
-          title: "Karada Diary (Healthcare Tracking App)",
-          period: "Sep 2025 - Present",
-          what: "A mobile app for integrated management of symptoms, medications, rehabilitation, and barometric pressure data for chronic joint diseases (personal development)",
-          impact: [
-            "Designed date-based aggregation logic integrating three data systems: symptoms, medications, and exercise",
-            "Implemented a unified algorithm integrating different pain scales (0–10 / 0–3)",
-            "Achieved balance between performance and cost with Firestore + AsyncStorage hybrid architecture",
-            "Realized optimized data retrieval and high-speed reference using Map structure in trend analysis screen",
-          ],
-          tags: ["React Native", "TypeScript", "Firebase", "Firestore", "AsyncStorage", "UI/UX", "Data Aggregation", "Mobile"],
-          background: "Motivated by a family member suffering from rheumatoid arthritis, I felt the need for a tool to record and visualize daily health changes. Existing health management apps were generic and lacked specialized features for recording pain, swelling, and numbness by joint, or tracking correlations with barometric pressure changes. I started development aiming to create 'an app that makes daily recording easy to continue and enables long-term change tracking.'",
-          challenges: "UI centered on numerical input made continuous recording difficult. Scale mismatch between symptom logs (0–10) and detailed joint logs (0–3). Symptoms, medications, and exercise had independent data structures, making cross-screen synchronization complex. Cloud storage of detailed symptom data increased costs. Massive recalculations occurred with each period change on the trend screen. Correlation displays risked misinterpretation as medical causation.",
-          solutions: [
-            "Tap-centric UI design: Adopted joint map input + 0–3 level preset scale to minimize input time",
-            "Scale integration logic design: Designed a unified calculation algorithm prioritizing detailed logs + using maximum joint pain as representative value, unified across Home, Calendar, and Trend screens",
-            "Introduction of date-based aggregation structure: Created useCalendarRecords custom hook to batch-fetch 90 days of data and convert to Map structure (O(1) reference)",
-            "Cloud × Local separation design: Hybrid architecture storing detailed symptoms in AsyncStorage and aggregate values in Firestore",
-            "Performance optimization: Pre-fetching previous period data, sampling processing for graph data, avoiding unnecessary re-fetches",
-            "Safety-focused presentation design: Limited to 'trend display' avoiding causal statements, keeping correlation coefficients internal"
-          ],
-          learnings: "Completed full-stack design and implementation of a mobile app with Firebase as backend through test deployment by myself. Adopted hybrid design separating local and cloud considering Firestore cost structure. Ensured maintainability through service layer separation using Repository pattern and built type-safe design with TypeScript. Learned the importance of UX design that reduces input burden through medical domain UI design.",
-          demoImageUrl: "/images/KaradaNote.png",
-          slideUrl: "/images/からだノート.pdf",
-          githubUrl: "https://github.com/matsu641/karada-diary"
-        },
+        // {
+        //   title: "Karada Diary (Healthcare Tracking App)",
+        //   period: "Sep 2025 - Present",
+        //   what: "A mobile app for integrated management of symptoms, medications, rehabilitation, and barometric pressure data for chronic joint diseases (personal development)",
+        //   impact: [
+        //     "Designed date-based aggregation logic integrating three data systems: symptoms, medications, and exercise",
+        //     "Implemented a unified algorithm integrating different pain scales (0–10 / 0–3)",
+        //     "Achieved balance between performance and cost with Firestore + AsyncStorage hybrid architecture",
+        //     "Realized optimized data retrieval and high-speed reference using Map structure in trend analysis screen",
+        //   ],
+        //   tags: ["React Native", "TypeScript", "Firebase", "Firestore", "AsyncStorage", "UI/UX", "Data Aggregation", "Mobile"],
+        //   background: "Motivated by a family member suffering from rheumatoid arthritis, I felt the need for a tool to record and visualize daily health changes. Existing health management apps were generic and lacked specialized features for recording pain, swelling, and numbness by joint, or tracking correlations with barometric pressure changes. I started development aiming to create 'an app that makes daily recording easy to continue and enables long-term change tracking.'",
+        //   challenges: "UI centered on numerical input made continuous recording difficult. Scale mismatch between symptom logs (0–10) and detailed joint logs (0–3). Symptoms, medications, and exercise had independent data structures, making cross-screen synchronization complex. Cloud storage of detailed symptom data increased costs. Massive recalculations occurred with each period change on the trend screen. Correlation displays risked misinterpretation as medical causation.",
+        //   solutions: [
+        //     "Tap-centric UI design: Adopted joint map input + 0–3 level preset scale to minimize input time",
+        //     "Scale integration logic design: Designed a unified calculation algorithm prioritizing detailed logs + using maximum joint pain as representative value, unified across Home, Calendar, and Trend screens",
+        //     "Introduction of date-based aggregation structure: Created useCalendarRecords custom hook to batch-fetch 90 days of data and convert to Map structure (O(1) reference)",
+        //     "Cloud × Local separation design: Hybrid architecture storing detailed symptoms in AsyncStorage and aggregate values in Firestore",
+        //     "Performance optimization: Pre-fetching previous period data, sampling processing for graph data, avoiding unnecessary re-fetches",
+        //     "Safety-focused presentation design: Limited to 'trend display' avoiding causal statements, keeping correlation coefficients internal"
+        //   ],
+        //   learnings: "Completed full-stack design and implementation of a mobile app with Firebase as backend through test deployment by myself. Adopted hybrid design separating local and cloud considering Firestore cost structure. Ensured maintainability through service layer separation using Repository pattern and built type-safe design with TypeScript. Learned the importance of UX design that reduces input burden through medical domain UI design.",
+        //   demoImageUrl: "/images/KaradaNote.png",
+        //   slideUrl: "/images/からだノート.pdf",
+        //   githubUrl: "https://github.com/matsu641/karada-diary"
+        // },
         {
           title: "Chest X-ray Disease Classification (Multimodal Deep Learning)",
           period: "Oct 2025 - Dec 2025",
