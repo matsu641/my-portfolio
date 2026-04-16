@@ -82,7 +82,7 @@ const translations = {
           ]
         },
         equos: {
-          role: "AIエンジニアインターン",
+          role: "ソフトウェアエンジニアインターン",
           company: "株式会社 EQUES",
           period: "2026年1月 - 現在",
           location: "東京、日本（リモート）",
