@@ -55,9 +55,9 @@ const translations = {
     about: {
       title: "About Me",
       intro: [
-        "日本で生まれ育ち、高校時代はアメリカへ留学しました。現在はカナダのトロント大学でComputer Engineeringを専攻する学部3年生です。",
-        "大学では1・2年次に、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などを経験しました。現在は、制御工学・半導体デバイス・深層学習といった専門分野を中心に学びながら、サークル活動やスタートアップ企業でフルスタックWeb開発にも取り組んでいます。",
-        "将来的には、AIやソフトウェアやハードウェアの技術的制約を理解した上で、課題設定から実装・評価までを一貫してリードできるエンジニアを目指しています。"
+        "日本で生まれ育ち、高校時代はアメリカへ留学しました。現在はカナダのトロント大学でComputer Engineeringを専攻しています。",
+        "大学では1・2年次に、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などを経験しました。3年次にはAI副専攻取得に向けて深層学習といった専門分野を中心に学びながら、サークル活動やスタートアップ企業でフルスタックWeb開発にも取り組んでいます。",
+        "将来的には、AI・ソフトウェア・ハードウェアの技術的制約を理解した上で、課題設定から実装・評価までを一貫してリードできるエンジニアを目指しています。"
       ],
       education: {
         title: "学歴",
@@ -71,13 +71,13 @@ const translations = {
       experience: {
         title: "職歴",
         starup: {
-          role: "ソフトウェアエンジニアインターン（機能リード）",
+          role: "ソフトウェアエンジニアインターン",
           company: "株式会社 STAR UP",
-          period: "2025年5月 - 2025年12月",
+          period: "2025年5月 - 2025年12月（パートタイム）、2026年5月 - 現在（フルタイム）",
           location: "京都、日本（リモート）",
           tasks: [
             "TypeScript、React/Next.js、FastAPIを使用した製造業向けSaaSプラットフォームの開発に貢献",
-            "継続的なリファクタリング、ユニットテストの作成、バグ修正によりコード品質とシステム信頼性を向上",
+            "継続的なリファクタリング、ユニットテストの作成、バグ修正などを担当",
             "新機能の企画と実行を主導し、エンジニアとビジネス側との定期的なキックオフミーティングで要件調整、タスク分解、進捗管理を担当"
           ]
         },
@@ -113,7 +113,7 @@ const translations = {
           organization: "University of Toronto Japan Network (UTJN)",
           period: "2025年8月 - 現在",
           tasks: [
-            "TypeScriptとPythonを使用した組織公式ウェブサイトの技術運用およびフルスタック開発を担当",
+            "TypeScriptとPythonとPostgreSQLを使用した組織公式ウェブサイトの設計・開発・保守をチームで担当",
             "フロントエンドバックエンド全体の機能開発やバグ修正に貢献",
             "メンバーと定期的なミーティングを行い、機能とUI/UXの両面で問題を特定し改善提案を実施",
             "他部門と連携して新機能リクエストの要求やメンテナンス、バグ修正タスクに対応"
@@ -363,7 +363,7 @@ const translations = {
         starup: {
           role: "Software Engineer Intern (Feature Lead)",
           company: "STAR UP, Inc.",
-          period: "May 2025 - Dec 2025",
+          period: "May 2025 - Dec 2025 (Part-time), May 2026 - Present (Full-time)",
           location: "Kyoto, Japan (Remote)",
           tasks: [
             "Contributed to the development of a SaaS platform for the manufacturing industry using TypeScript, React/Next.js, and FastAPI",

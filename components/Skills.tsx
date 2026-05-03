@@ -75,6 +75,12 @@ const skills: Skill[] = [
     category: "backend", 
     usedIn: ["Rush Hour", "GIS Application"]
   },
+  { 
+    name: "PostgreSQL", 
+    level: 4, 
+    category: "backend", 
+    usedIn: ["Volunteer"]
+  },
   
   // DevOps
   { 
