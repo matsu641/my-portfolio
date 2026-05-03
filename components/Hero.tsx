@@ -42,10 +42,10 @@ function AnimatedSphere() {
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (meshRef.current) {
-      // 8の字軌道（リサジュー曲線）
-      meshRef.current.position.x = Math.sin(time * 0.5) * 1.5;
-      meshRef.current.position.y = Math.sin(time * 1) * 1.2;
-      meshRef.current.position.z = Math.cos(time * 0.5) * 0.5;
+      // 8の字軌道（リサジュー曲線）- 左上側を大きく動く
+      meshRef.current.position.x = Math.sin(time * 0.5) * 3.5 - 2;
+      meshRef.current.position.y = Math.sin(time * 1) * 2.5 + 1;
+      meshRef.current.position.z = Math.cos(time * 0.5) * 2;
       
       // 滑らかな回転
       meshRef.current.rotation.x = time * 0.3;
@@ -62,14 +62,14 @@ function AnimatedSphere() {
       onPointerOut={() => setHovered(false)}
     >
       <MeshDistortMaterial
-        color="#6366f1"
+        color="#00D9FF"
         attach="material"
         distort={0.3}
         speed={1.5}
         roughness={0.1}
         metalness={0.9}
-        emissive="#6366f1"
-        emissiveIntensity={0.4}
+        emissive="#00D9FF"
+        emissiveIntensity={0.5}
       />
     </Sphere>
   );
@@ -83,11 +83,11 @@ function AnimatedTorus() {
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (meshRef.current) {
-      // 円軌道
-      const radius = 2;
-      meshRef.current.position.x = Math.cos(time * 0.4) * radius;
-      meshRef.current.position.y = Math.sin(time * 0.6) * 0.8;
-      meshRef.current.position.z = Math.sin(time * 0.4) * radius;
+      // 円軌道 - 右側を大きく動く
+      const radius = 4;
+      meshRef.current.position.x = Math.cos(time * 0.4) * radius + 1;
+      meshRef.current.position.y = Math.sin(time * 0.6) * 2.5 - 0.5;
+      meshRef.current.position.z = Math.sin(time * 0.4) * 2.5;
       
       // 複雑な回転
       meshRef.current.rotation.x = time * 0.4;
@@ -104,11 +104,11 @@ function AnimatedTorus() {
     >
       <torusGeometry args={[0.5, 0.2, 16, 32]} />
       <meshStandardMaterial
-        color="#8b5cf6"
+        color="#14B8A6"
         metalness={0.9}
         roughness={0.1}
-        emissive="#8b5cf6"
-        emissiveIntensity={0.5}
+        emissive="#14B8A6"
+        emissiveIntensity={0.6}
       />
     </mesh>
   );
@@ -122,11 +122,11 @@ function AnimatedBox() {
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (meshRef.current) {
-      // 螺旋軌道
-      const radius = 1.8;
+      // 螺旋軌道 - 下側を大きく動く
+      const radius = 3.5;
       meshRef.current.position.x = Math.cos(time * 0.6) * radius;
-      meshRef.current.position.y = Math.sin(time * 0.8) * 1.5;
-      meshRef.current.position.z = Math.sin(time * 0.6) * radius;
+      meshRef.current.position.y = Math.sin(time * 0.8) * 2.8 - 1.2;
+      meshRef.current.position.z = Math.sin(time * 0.6) * 2.2;
       
       // 3軸回転
       meshRef.current.rotation.x = time * 0.5;
@@ -144,11 +144,11 @@ function AnimatedBox() {
     >
       <boxGeometry args={[0.6, 0.6, 0.6]} />
       <meshStandardMaterial
-        color="#ec4899"
+        color="#10B981"
         metalness={0.8}
         roughness={0.2}
-        emissive="#ec4899"
-        emissiveIntensity={0.4}
+        emissive="#10B981"
+        emissiveIntensity={0.5}
       />
     </mesh>
   );
@@ -213,9 +213,9 @@ function ParticleField() {
       </bufferGeometry>
       <pointsMaterial
         size={0.02}
-        color="#ffffff"
+        color="#00F0FF"
         transparent
-        opacity={0.9}
+        opacity={0.7}
         sizeAttenuation
         blending={THREE.AdditiveBlending}
       />
@@ -227,13 +227,13 @@ function ParticleField() {
 function Scene3D() {
   return (
     <Canvas
-      camera={{ position: [0, 0, 5], fov: 75 }}
+      camera={{ position: [0, 0, 8], fov: 80 }}
       style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
     >
       <ambientLight intensity={0.8} />
       <directionalLight position={[10, 10, 5]} intensity={1.5} />
-      <pointLight position={[-10, -10, -5]} intensity={1} color="#8b5cf6" />
-      <pointLight position={[10, -10, 5]} intensity={0.8} color="#ec4899" />
+      <pointLight position={[-10, -10, -5]} intensity={1.2} color="#00D9FF" />
+      <pointLight position={[10, -10, 5]} intensity={1} color="#10B981" />
       <GeometricShapes />
       <ParticleField />
       <OrbitControls enableZoom={false} enablePan={false} />
@@ -306,23 +306,30 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 md:px-8 overflow-hidden">
-      {/* 3D背景 */}
-      <div className="absolute inset-0 opacity-50">
+    <section className="relative min-h-screen flex items-center justify-center px-6 md:px-8 overflow-hidden bg-gradient-to-br from-slate-950 via-cyan-950 to-teal-950">
+      {/* 3D背景 - 明るく表示 */}
+      <div className="absolute inset-0 z-0">
         <Scene3D />
       </div>
 
-      {/* グラデーション背景 */}
+      {/* オーバーレイグラデーション - 軽く */}
       <div 
-        className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20"
+        className="absolute inset-0 z-[1] bg-gradient-to-br from-cyan-950/40 via-transparent to-emerald-950/40 pointer-events-none"
       />
 
-      {/* コンテンツ */}
+      {/* コンテンツ - ガラスモーフィズム */}
       <div className="relative z-10 max-w-4xl w-full">
+        {/* ガラス効果用の外側グロー */}
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 rounded-3xl blur-3xl"></div>
+        
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
+          className="relative backdrop-blur-2xl bg-gradient-to-br from-white/[0.08] via-cyan-500/[0.05] to-emerald-500/[0.08] p-8 md:p-12 rounded-3xl border-2 border-white/30 shadow-[0_8px_32px_0_rgba(0,217,255,0.2)] before:absolute before:inset-0 before:rounded-3xl before:p-[2px] before:bg-gradient-to-br before:from-cyan-400/40 before:via-transparent before:to-emerald-400/40 before:-z-10"
+          style={{
+            boxShadow: '0 8px 32px 0 rgba(0, 217, 255, 0.2), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2)'
+          }}
         >
 
           {/* 挨拶と名前 */}
@@ -344,7 +351,7 @@ export default function Hero() {
               {displayedTitle}
               {isTypingTitle && <span className="animate-pulse">|</span>}
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400">
               {displayedSubtitle}
               {isTypingSubtitle && <span className="animate-pulse">|</span>}
             </span>
@@ -370,7 +377,7 @@ export default function Hero() {
               href="#about"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all"
+              className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-lg font-medium shadow-lg shadow-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/70 transition-all backdrop-blur-sm"
             >
               About Me
             </motion.a>
@@ -378,7 +385,7 @@ export default function Hero() {
               href="#skills"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-zinc-800/80 border-2 border-zinc-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-blue-400 transition-all"
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-cyan-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-cyan-400/60 hover:bg-white/20 transition-all"
             >
               Skills
             </motion.a>
@@ -386,7 +393,7 @@ export default function Hero() {
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-zinc-800/80 border-2 border-zinc-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-blue-400 transition-all"
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-teal-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-teal-400/60 hover:bg-white/20 transition-all"
             >
               Projects
             </motion.a>
@@ -394,7 +401,7 @@ export default function Hero() {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-zinc-800/80 border-2 border-zinc-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-blue-400 transition-all"
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-emerald-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-emerald-400/60 hover:bg-white/20 transition-all"
             >
               Contact
             </motion.a>
