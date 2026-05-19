@@ -73,7 +73,7 @@ const translations = {
         starup: {
           role: "ソフトウェアエンジニアインターン",
           company: "株式会社 STAR UP",
-          period: "2025年5月 - 2025年12月（パートタイム）、2026年5月 - 現在（フルタイム）",
+          period: "2025年5月 - 2025年12月（パートタイム）、2026年9月（フルタイム）",
           location: "京都、日本（リモート）",
           tasks: [
             "TypeScript、React/Next.js、FastAPIを使用した製造業向けSaaSプラットフォームの開発に貢献",
@@ -82,14 +82,29 @@ const translations = {
           ]
         },
         equos: {
-          role: "ソフトウェアエンジニアインターン",
+          role: "AIエンジニアインターン",
           company: "株式会社 EQUES",
-          period: "2026年1月 - 現在",
+          period: "2026年2月 - 現在",
           location: "東京、日本（リモート）",
-          tasks: [
-            "Pythonを用いた製薬スケジュール最適化アルゴリズムの開発に従事",
-            "複数の制約条件を考慮し、大手製薬会社向けの生産計画に対応した効率的なスケジュールを自動生成",
-            "最適化結果をCSV形式で出力し、実務で扱いやすいスケジュール表として整備"
+          projects: [
+            {
+              title: "QAI Generator（製薬AI事業）",
+              period: "2026年5月 - 現在",
+              tasks: [
+                "製薬QA文書をLLMで自動生成するQAI Generatorの開発に従事",
+                "各製薬会社の要件に合わせてLLMへのプロンプトをカスタマイズし、高品質な文書生成パイプラインを構築",
+                "RAG（検索拡張生成）を活用し、社内ドキュメントを知識ベースとして取り込むことで生成精度と文脈整合性を向上"
+              ]
+            },
+            {
+              title: "製薬スケジュール最適化アルゴリズム開発",
+              period: "2026年2月 - 2026年3月",
+              tasks: [
+                "Pythonを用いた製薬スケジュール最適化アルゴリズムの開発に従事",
+                "複数の制約条件を考慮し、大手製薬会社向けの生産計画に対応した効率的なスケジュールを自動生成",
+                "最適化結果をCSV形式で出力し、実務で扱いやすいスケジュール表として整備"
+              ]
+            }
           ]
         },
         freelance: {
@@ -363,7 +378,7 @@ const translations = {
         starup: {
           role: "Software Engineer Intern (Feature Lead)",
           company: "STAR UP, Inc.",
-          period: "May 2025 - Dec 2025 (Part-time), May 2026 - Present (Full-time)",
+          period: "May 2025 - Dec 2025 (Part-time)",
           location: "Kyoto, Japan (Remote)",
           tasks: [
             "Contributed to the development of a SaaS platform for the manufacturing industry using TypeScript, React/Next.js, and FastAPI",
@@ -374,12 +389,27 @@ const translations = {
         equos: {
           role: "AI Engineer Intern",
           company: "EQUES, Inc.",
-          period: "Jan 2026 - Present",
+          period: "Feb 2026 - Present",
           location: "Tokyo, Japan (Remote)",
-          tasks: [
-            "Developed a pharmaceutical production schedule optimization algorithm using Python",
-            "Generated efficient schedules for major pharmaceutical companies by considering multiple constraints in production planning",
-            "Exported optimization results in CSV format and prepared user-friendly schedule tables for practical use"
+          projects: [
+            {
+              title: "QAI Generator (Pharmaceutical AI)",
+              period: "May 2026 - Present",
+              tasks: [
+                "Developing QAI Generator, an AI-powered system for automatic generation of pharmaceutical QA documents",
+                "Customizing LLM prompts tailored to each pharmaceutical company's specific requirements to ensure high-quality output",
+                "Building RAG (Retrieval-Augmented Generation) pipelines that leverage internal documents as a knowledge base, improving accuracy and contextual consistency"
+              ]
+            },
+            {
+              title: "Pharmaceutical Schedule Optimization Algorithm",
+              period: "Feb 2026 - Mar 2026",
+              tasks: [
+                "Developed a pharmaceutical production schedule optimization algorithm using Python",
+                "Generated efficient schedules for major pharmaceutical companies by considering multiple production planning constraints",
+                "Exported optimization results in CSV format and prepared user-friendly schedule tables for practical use"
+              ]
+            }
           ]
         },
         freelance: {

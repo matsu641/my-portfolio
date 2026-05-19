@@ -74,15 +74,25 @@ export default function About() {
                   </div>
                   <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.equos.period')}</span>
                 </div>
-                <p className="text-zinc-300 mb-3">{t('about.experience.equos.location')}</p>
-                <ul className="space-y-2 text-zinc-100">
-                  {t('about.experience.equos.tasks').map((task: string, index: number) => (
-                    <li key={index} className="flex gap-2">
-                      <span className="text-accent mt-1">•</span>
-                      <span>{task}</span>
-                    </li>
+                <p className="text-zinc-300 mb-4">{t('about.experience.equos.location')}</p>
+                <div className="space-y-5">
+                  {t('about.experience.equos.projects').map((project: { title: string; period: string; tasks: string[] }, pIndex: number) => (
+                    <div key={pIndex}>
+                      <div className="flex justify-between items-baseline mb-2">
+                        <h5 className="text-sm font-semibold text-zinc-200">{project.title}</h5>
+                        <span className="text-xs text-zinc-400 whitespace-nowrap ml-3">{project.period}</span>
+                      </div>
+                      <ul className="space-y-2 text-zinc-100">
+                        {project.tasks.map((task: string, index: number) => (
+                          <li key={index} className="flex gap-2">
+                            <span className="text-accent mt-1">•</span>
+                            <span>{task}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
               {/* STAR UP */}
