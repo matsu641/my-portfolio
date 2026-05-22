@@ -335,7 +335,8 @@ const translations = {
           learnings: "フリーランス案件として初めてのウェブサイト制作を経験し、要件定義から設計・実装・デプロイまでの一連のフローを習得した。クライアントとのコミュニケーションの重要性を実感し、技術的な知識がないクライアントに対しても分かりやすく説明するスキルを向上させた。SEO最適化の実装を通じて、ウェブサイトの可視性向上の重要性を学んだ。また、ローンチ後の追加機能依頼に対応することで、継続的なサポートとメンテナンスの重要性を理解した。",
           websiteUrl: "https://kuwabara-ortho.jp",
           searchConsoleImageUrl: "/images/clinic_search_console.png",
-          thumbnailImageUrl: "/images/clinic-tumbnail.png"
+          thumbnailImageUrl: "/images/clinic-tumbnail.png",
+          githubUrl: "https://github.com/matsu641/clinic-website"
         }
       ]
     },
@@ -640,7 +641,8 @@ const translations = {
           learnings: "Experienced my first freelance website project, mastering the entire workflow from requirement definition to design, implementation, and deployment. Realized the importance of client communication and improved my ability to explain technical concepts clearly to non-technical clients. Learned the importance of improving website visibility through SEO optimization implementation. By responding to post-launch feature requests, I understood the importance of continuous support and maintenance.",
           websiteUrl: "https://kuwabara-ortho.jp",
           searchConsoleImageUrl: "/images/clinic_search_console.png",
-          thumbnailImageUrl: "/images/clinic-tumbnail.png"
+          thumbnailImageUrl: "/images/clinic-tumbnail.png",
+          githubUrl: "https://github.com/matsu641/clinic-website"
         }
       ]
     },
