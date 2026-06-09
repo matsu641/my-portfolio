@@ -73,7 +73,7 @@ const translations = {
         starup: {
           role: "ソフトウェアエンジニアインターン",
           company: "株式会社 STAR UP",
-          period: "2025年5月 - 2025年12月（パートタイム）、2026年9月（フルタイム）",
+          period: "2025年5月 - 2026年2月",
           location: "京都、日本（リモート）",
           tasks: [
             "TypeScript、React/Next.js、FastAPIを使用した製造業向けSaaSプラットフォームの開発に貢献",
@@ -379,7 +379,7 @@ const translations = {
         starup: {
           role: "Software Engineer Intern (Feature Lead)",
           company: "STAR UP, Inc.",
-          period: "May 2025 - Dec 2025 (Part-time)",
+          period: "May 2025 - Feb 2026",
           location: "Kyoto, Japan (Remote)",
           tasks: [
             "Contributed to the development of a SaaS platform for the manufacturing industry using TypeScript, React/Next.js, and FastAPI",
