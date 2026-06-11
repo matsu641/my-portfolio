@@ -374,7 +374,7 @@ export default function Hero() {
             className="flex flex-wrap gap-4"
           >
             <motion.a
-              href="#about"
+              href="/about"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-lg font-medium shadow-lg shadow-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/70 transition-all backdrop-blur-sm"
@@ -382,7 +382,7 @@ export default function Hero() {
               About Me
             </motion.a>
             <motion.a
-              href="#skills"
+              href="/skills"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-cyan-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-cyan-400/60 hover:bg-white/20 transition-all"
@@ -390,7 +390,7 @@ export default function Hero() {
               Skills
             </motion.a>
             <motion.a
-              href="#projects"
+              href="/projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-teal-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-teal-400/60 hover:bg-white/20 transition-all"
@@ -398,7 +398,7 @@ export default function Hero() {
               Projects
             </motion.a>
             <motion.a
-              href="#contact"
+              href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-emerald-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-emerald-400/60 hover:bg-white/20 transition-all"
@@ -417,7 +417,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
       >
         <motion.a
-          href="#about"
+          href="/about"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2 text-muted hover:text-foreground transition-colors cursor-pointer group"
