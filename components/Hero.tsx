@@ -382,12 +382,12 @@ export default function Hero() {
               About Me
             </motion.a>
             <motion.a
-              href="/skills"
+              href="/experience"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-cyan-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-cyan-400/60 hover:bg-white/20 transition-all"
             >
-              Skills
+              Experience
             </motion.a>
             <motion.a
               href="/projects"
@@ -396,6 +396,22 @@ export default function Hero() {
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-teal-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-teal-400/60 hover:bg-white/20 transition-all"
             >
               Projects
+            </motion.a>
+            <motion.a
+              href="/skills"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-emerald-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-emerald-400/60 hover:bg-white/20 transition-all"
+            >
+              Skills
+            </motion.a>
+            <motion.a
+              href="/certifications"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-cyan-400/30 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:border-cyan-400/60 hover:bg-white/20 transition-all"
+            >
+              Certifications
             </motion.a>
             <motion.a
               href="/contact"

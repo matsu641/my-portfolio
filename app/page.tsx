@@ -1,7 +1,9 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import LanguageToggle from "@/components/LanguageToggle";
 import SectionPathScroller from "@/components/SectionPathScroller";
@@ -13,8 +15,10 @@ export default function Home() {
       <LanguageToggle />
       <Hero />
       <About />
-      <Skills />
+      <Experience />
       <Projects />
+      <Skills />
+      <Certifications />
       <Contact />
     </main>
   );

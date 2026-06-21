@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import Image from "next/image";
 
 const container = {
   hidden: { opacity: 0 },
@@ -20,7 +19,7 @@ const item = {
 };
 
 export default function About() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   
   return (
     <section id="about" className="py-24 md:py-32 px-6 md:px-8">
@@ -57,193 +56,6 @@ export default function About() {
                   <p>{t('about.education.uoft.minor')}</p>
                 </div>
               </div>
-            </div>
-          </motion.div>
-
-          {/* Work Experience */}
-          <motion.div variants={item} className="mb-16">
-            <h3 className="text-2xl font-bold mb-6">{t('about.experience.title')}</h3>
-            <div className="space-y-8">
-
-              {/* EQUOS */}
-              <div className="border-l-2 border-accent pl-6">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="text-xl font-semibold">{t('about.experience.equos.role')}</h4>
-                    <p className="text-accent font-medium">{t('about.experience.equos.company')}</p>
-                  </div>
-                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.equos.period')}</span>
-                </div>
-                <p className="text-zinc-300 mb-4">{t('about.experience.equos.location')}</p>
-                <div className="space-y-5">
-                  {t('about.experience.equos.projects').map((project: { title: string; period: string; tasks: string[] }, pIndex: number) => (
-                    <div key={pIndex}>
-                      <div className="flex justify-between items-baseline mb-2">
-                        <h5 className="text-sm font-semibold text-zinc-200">{project.title}</h5>
-                        <span className="text-xs text-zinc-400 whitespace-nowrap ml-3">{project.period}</span>
-                      </div>
-                      <ul className="space-y-2 text-zinc-100">
-                        {project.tasks.map((task: string, index: number) => (
-                          <li key={index} className="flex gap-2">
-                            <span className="text-accent mt-1">•</span>
-                            <span>{task}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* STAR UP */}
-              <div className="border-l-2 border-accent pl-6">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="text-xl font-semibold">{t('about.experience.starup.role')}</h4>
-                    <p className="text-accent font-medium">{t('about.experience.starup.company')}</p>
-                  </div>
-                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.starup.period')}</span>
-                </div>
-                <p className="text-zinc-300 mb-3">{t('about.experience.starup.location')}</p>
-                <ul className="space-y-2 text-zinc-100">
-                  {t('about.experience.starup.tasks').map((task: string, index: number) => (
-                    <li key={index} className="flex gap-2">
-                      <span className="text-accent mt-1">•</span>
-                      <span>{task}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Freelance */}
-              <div className="border-l-2 border-accent pl-6">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="text-xl font-semibold">{t('about.experience.freelance.role')}</h4>
-                    <p className="text-accent font-medium">{t('about.experience.freelance.company')}</p>
-                  </div>
-                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.freelance.period')}</span>
-                </div>
-                <p className="text-zinc-300 mb-3">{t('about.experience.freelance.location')}</p>
-                <ul className="space-y-2 text-zinc-100">
-                  {t('about.experience.freelance.tasks').map((task: string, index: number) => (
-                    <li key={index} className="flex gap-2">
-                      <span className="text-accent mt-1">•</span>
-                      <span>{task}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Activities */}
-          <motion.div variants={item} className="mb-16">
-            <h3 className="text-2xl font-bold mb-6">{t('about.activities.title')}</h3>
-            <div className="space-y-8">
-              <div className="border-l-2 border-accent pl-6">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="text-xl font-semibold">{t('about.activities.utjn.role')}</h4>
-                    <p className="text-accent font-medium">{t('about.activities.utjn.organization')}</p>
-                  </div>
-                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.activities.utjn.period')}</span>
-                </div>
-                <ul className="space-y-2 text-zinc-100 mt-3">
-                  {t('about.activities.utjn.tasks').map((task: string, index: number) => (
-                    <li key={index} className="flex gap-2">
-                      <span className="text-accent mt-1">•</span>
-                      <span>{task}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4 max-w-md">
-                  <motion.a
-                    href="https://uoftjn.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="block overflow-hidden rounded-lg border border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all"
-                  >
-                    <div className="relative w-full h-60 mb-3">
-                      <Image
-                        src="/images/utjn-tumbnail.png"
-                        alt="UofT Japan Network Website"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="px-4 pb-4 flex items-center justify-between">
-                      <span className="text-accent font-medium">
-                        {language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}
-                      </span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </div>
-                  </motion.a>
-                </div>
-              </div>
-
-              <div className="border-l-2 border-accent pl-6">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="text-xl font-semibold">{t('about.activities.torontonians.role')}</h4>
-                    <p className="text-accent font-medium">{t('about.activities.torontonians.organization')}</p>
-                  </div>
-                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.activities.torontonians.period')}</span>
-                </div>
-                <ul className="space-y-2 text-zinc-100 mt-3">
-                  {t('about.activities.torontonians.tasks').map((task: string, index: number) => (
-                    <li key={index} className="flex gap-2">
-                      <span className="text-accent mt-1">•</span>
-                      <span>{task}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Certifications */}
-          <motion.div variants={item} className="mb-16">
-            <h3 className="text-2xl font-bold mb-6">{t('about.certifications.title')}</h3>
-            <div className="space-y-6">
-              {t('about.certifications.items').map((cert: any, index: number) => (
-                <div key={index} className="border-l-2 border-accent pl-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <h4 className="text-xl font-semibold">{cert.name}</h4>
-                      <p className="text-accent font-medium">{cert.issuer}</p>
-                    </div>
-                    <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{cert.date}</span>
-                  </div>
-                  {cert.description && (
-                    <ul className="space-y-2 text-zinc-100 mt-3">
-                      {cert.description.map((desc: string, descIndex: number) => (
-                        <li key={descIndex} className="flex gap-2">
-                          <span className="text-accent mt-1">•</span>
-                          <span>{desc}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  <motion.a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg text-accent font-medium transition-all"
-                  >
-                    {language === 'ja' ? '修了証を見る' : 'View Certificate'}
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </motion.a>
-                </div>
-              ))}
             </div>
           </motion.div>
         </motion.div>

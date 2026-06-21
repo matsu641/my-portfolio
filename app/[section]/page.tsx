@@ -3,8 +3,11 @@ import Home from "../page";
 
 const supportedSections = new Set([
   "about",
+  "experience",
   "skill",
   "skills",
+  "certification",
+  "certifications",
   "project",
   "projects",
   "contact",

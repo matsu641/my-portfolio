@@ -5,8 +5,11 @@ import { useEffect } from "react";
 
 const sectionByPath: Record<string, string> = {
   about: "about",
+  experience: "experience",
   skill: "skills",
   skills: "skills",
+  certification: "certifications",
+  certifications: "certifications",
   project: "projects",
   projects: "projects",
   contact: "contact",

@@ -49,7 +49,7 @@ const translations = {
       name: "松戸美純です！",
       title: "I design systems,",
       subtitle: "not just interfaces.",
-      description: "Software engineer focused on architecture, performance, and user experience.",
+      description: "I turn technical ideas into practical AI and software products.",
       cta: "View Projects"
     },
     about: {
@@ -73,10 +73,9 @@ const translations = {
           company: "株式会社 STAR UP",
           period: "2025年5月 - 2026年2月",
           location: "京都、日本（リモート）",
+          tags: ["React/Next.js", "TypeScript", "FastAPI", "Project Management"],
           tasks: [
-            "TypeScript、React/Next.js、FastAPIを使用した製造業向けSaaSプラットフォームの開発に貢献",
-            "継続的なリファクタリング、ユニットテストの作成、バグ修正などを担当",
-            "新機能の企画と実行を主導し、エンジニアとビジネス側との定期的なキックオフミーティングで要件調整、タスク分解、進捗管理を担当"
+            "製造業向けSaaSの機能開発を主導し、要件整理・タスク分解・実装まで担当。入社3ヶ月で昇給を受けるなど、早期に成果を評価されました。"
           ]
         },
         equos: {
@@ -84,62 +83,44 @@ const translations = {
           company: "株式会社 EQUES",
           period: "2026年2月 - 現在",
           location: "東京、日本（リモート）",
+          tags: ["LLM", "RAG", "Document Review", "Python", "AI Research"],
           projects: [
             {
               title: "QAI Generator（製薬AI事業）",
               period: "2026年5月 - 現在",
               tasks: [
-                "製薬QA文書をLLMで自動生成するQAI Generatorの開発に従事",
-                "各製薬会社の要件に合わせてLLMへのプロンプトをカスタマイズし、高品質な文書生成パイプラインを構築",
-                "RAG（検索拡張生成）を活用し、社内ドキュメントを知識ベースとして取り込むことで生成精度と文脈整合性を向上"
+                "製薬QA文書生成において、RAGなどを用いて手順書を参照しながらLLM出力の精度と根拠性を高める方法を調査・検証しました。"
               ]
             },
             {
               title: "製薬スケジュール最適化アルゴリズム開発",
               period: "2026年2月 - 2026年3月",
               tasks: [
-                "Pythonを用いた製薬スケジュール最適化アルゴリズムの開発に従事",
-                "複数の制約条件を考慮し、大手製薬会社向けの生産計画に対応した効率的なスケジュールを自動生成",
-                "最適化結果をCSV形式で出力し、実務で扱いやすいスケジュール表として整備"
+                "Pythonで製薬スケジュール最適化アルゴリズムを開発し、複数制約を考慮した生産計画の自動生成に取り組みました。"
               ]
             }
           ]
         },
         freelance: {
-          role: "フリーランスウェブ開発",
+          role: "ソフトウェアエンジニア（フリーランス）",
           company: "くわばら整形外科クリニック",
           period: "2024年5月 - 2024年7月",
           location: "リモート",
+          tags: ["HTML", "CSS", "JavaScript", "SEO", "Client Work"],
           tasks: [
-            "HTML、CSS、JavaScriptを使用して、完全レスポンシブなクリニックウェブサイトをゼロから設計・開発",
-            "クライアントと密接に協力し、要件を明確化してサイト構造とUI/UXに変換",
-            "SEO最適化を実装しウェブサイトをデプロイ。オンライン可視性と患者のアクセシビリティを向上",
-            "ローンチ後3ヶ月以内に2,856インプレッション、343クリック（CTR 12%）を達成し、若年層患者の増加に貢献",
-            "追加の依頼で、QRコードでアクセスできる専用情報ページの実装も担当"
+            "整形外科クリニックの公式Webサイトをゼロから制作し、要件整理から実装、SEO、公開後の追加対応まで一貫して担当しました。"
           ]
         },
       },
       activities: {
-        title: "ボランティア活動",
+        title: "Team Experience",
         utjn: {
-          role: "Web Executive Member",
+          role: "ソフトウェアエンジニア（チームメンバー）",
           organization: "University of Toronto Japan Network (UTJN)",
-          period: "2025年8月 - 現在",
+          period: "2023年9月 - 現在",
+          tags: ["TypeScript", "PostgreSQL", "AWS", "Maintenance"],
           tasks: [
-            "TypeScriptとPythonとPostgreSQLを使用した組織公式ウェブサイトの設計・開発・保守をチームで担当",
-            "フロントエンドバックエンド全体の機能開発やバグ修正に貢献",
-            "メンバーと定期的なミーティングを行い、機能とUI/UXの両面で問題を特定し改善提案を実施",
-            "他部門と連携して新機能リクエストの要求やメンテナンス、バグ修正タスクに対応"
-          ]
-        },
-        torontonians: {
-          role: "Torontonians Executive Member",
-          organization: "University of Toronto Japan Network (UTJN)",
-          period: "2023年9月 - 2025年8月",
-          tasks: [
-            "トロント大学に興味のある人に向けてブログを書き各年に、大学生活や学業に関する情報を発信",
-            "インスタグラム動画投稿の企画と制作を補助し、SNSを通じた情報発信を強化",
-            "新入生向けにイベントを企画し、コミュニティ形成に貢献"
+            "チームメンバーと協力して組織公式Webサイトの開発・運用を担当し、他部門からの新機能開発依頼やバグ修正依頼に対応しました。"
           ]
         }
       },
@@ -154,6 +135,7 @@ const translations = {
               "データ駆動型アプローチを用いてグローバル消費者行動を分析する手法を学習",
               "最終プロジェクトでは、AI技術と市場ビジネスの視点を組み合わせた実践的なアプローチを取得",
             ],
+            tags: ["ML", "Data Analysis", "Business Proposal"],
             link: "/certificates/gci-certificate.pdf"
           },
           {
@@ -164,6 +146,7 @@ const translations = {
               "ニューラルネットワーク、畳み込み、及び深層強化学習など、深層学習の基礎的な概念を学習",
               "演習を通じて深層学習モデルの実装経験を習得"
             ],
+            tags: ["DL", "Neural Networks", "PyTorch"],
             link: "/certificates/dl-foundations-certificate.pdf"
           }
         ]
@@ -310,9 +293,9 @@ const translations = {
     hero: {
       greeting: "Hi, I'm ",
       name: "Misumi Matsudo",
-      title: "I design systems,",
-      subtitle: "not just interfaces.",
-      description: "Software engineer focused on architecture, performance, and user experience.",
+      title: "CE student at UofT,",
+      subtitle: "building AI and full-stack systems.",
+      description: "I turn technical ideas into practical AI and software products.",
       cta: "View Projects"
     },
     about: {
@@ -336,77 +319,62 @@ const translations = {
           company: "STAR UP, Inc.",
           period: "May 2025 - Feb 2026",
           location: "Kyoto, Japan (Remote)",
+          tags: ["React", "Next.js", "TypeScript", "FastAPI", "Project Management"],
           tasks: [
-            "Contributed to the development of a SaaS platform for the manufacturing industry using TypeScript, React/Next.js, and FastAPI",
-            "Improved code quality and system reliability through continuous refactoring, unit testing, and bug fixes",
-            "Led the planning and execution of new features, coordinating requirements between engineers and business stakeholders, task breakdown, and progress management"
+            "Led feature development for a manufacturing SaaS platform, covering requirement clarification, task breakdown, and implementation; earned a raise within three months of joining."
           ]
         },
         equos: {
-          role: "AI Engineer Intern",
+          role: "AI Engineer Intern (Member)",
           company: "EQUES, Inc.",
           period: "Feb 2026 - Present",
           location: "Tokyo, Japan (Remote)",
-          projects: [
-            {
-              title: "QAI Generator (Pharmaceutical AI)",
-              period: "May 2026 - Present",
-              tasks: [
-                "Developing QAI Generator, an AI-powered system for automatic generation of pharmaceutical QA documents",
-                "Customizing LLM prompts tailored to each pharmaceutical company's specific requirements to ensure high-quality output",
-                "Building RAG (Retrieval-Augmented Generation) pipelines that leverage internal documents as a knowledge base, improving accuracy and contextual consistency"
-              ]
-            },
-            {
-              title: "Pharmaceutical Schedule Optimization Algorithm",
-              period: "Feb 2026 - Mar 2026",
-              tasks: [
-                "Developed a pharmaceutical production schedule optimization algorithm using Python",
-                "Generated efficient schedules for major pharmaceutical companies by considering multiple production planning constraints",
-                "Exported optimization results in CSV format and prepared user-friendly schedule tables for practical use"
-              ]
-            }
+          tags: ["LLM", "RAG", "Document Review", "Python", "AI Research"],
+          // projects: [
+          //   {
+          //     title: "QAI Generator (Pharmaceutical AI)",
+          //     period: "May 2026 - Present",
+          //     tasks: [
+          //       "Researched and validated ways to improve LLM-generated pharmaceutical QA documents by referencing SOPs and internal documents through methods such as RAG."
+          //     ]
+          //   },
+          //   {
+          //     title: "Pharmaceutical Schedule Optimization Algorithm",
+          //     period: "Feb 2026 - Mar 2026",
+          //     tasks: [
+          //       "Developed a Python-based pharmaceutical schedule optimization algorithm that generated production plans under multiple operational constraints."
+          //     ]
+          //   }
+          // ]
+          tasks: [
+            "Researched and validated ways to improve LLM-generated pharmaceutical QA documents by referencing SOPs and internal documents through methods such as RAG."
           ]
         },
         freelance: {
-          role: "Freelance Web Developer",
+          role: "Software Engineer (Freelance)",
           company: "Kuwabara Orthopedic Clinic",
           period: "May 2024 - Jul 2024",
-          location: "Remote",
+          location: "Hybrid",
+          tags: ["HTML", "CSS", "JavaScript", "SEO", "Client Work"],
           tasks: [
-            "Designed and developed a fully responsive clinic website from scratch using HTML, CSS, and JavaScript",
-            "Collaborated closely with clients to clarify requirements and translate them into site structure and UI/UX",
-            "Implemented SEO optimization and deployed the website, improving online visibility and patient accessibility",
-            "Achieved 2,856 impressions and 343 clicks (CTR 12%) within 3 months post-launch, contributing to increased younger patient demographics"
+            "Built the clinic's official website from scratch, owning the full process from requirements and implementation to SEO, launch, and post-launch updates."
           ]
         },
       },
       activities: {
-        title: "Volunteer Activities",
+        title: "Team Experience",
         utjn: {
-          role: "Web Executive Member",
+          role: "Software Engineer (Team Member)",
           organization: "University of Toronto Japan Network (UTJN)",
-          period: "Aug 2025 - Present",
+          period: "Sep 2023 - Present",
+          tags: ["TypeScript", "PostgreSQL", "AWS", "Maintenance"],
           tasks: [
-            "Responsible for technical operations and full-stack development of the organization's official website using TypeScript and Python",
-            "Contributed to feature development and bug fixes across front-end and back-end",
-            "Held regular meetings with members to identify issues and implement improvement proposals for both functionality and UI/UX",
-            "Collaborated with other departments to address new feature requests, maintenance, and bug fix tasks"
-          ]
-        },
-        torontonians: {
-          role: "Torontonians Executive Member",
-          organization: "University of Toronto Japan Network (UTJN)",
-          period: "Sep 2023 - Aug 2025",
-          tasks: [
-            "Wrote blog posts for people interested in the University of Toronto, sharing information about university life and academics",
-            "Assisted in planning and producing Instagram video posts to strengthen information dissemination through SNS",
-            "Organized events for new students and contributed to community building"
+            "Collaborated with team members on the development and operation of the organization's official website, handling new feature requests and bug fixes from other departments."
           ]
         }
       },
       certifications: {
-        title: "Completed Courses",
+        title: "Certifications",
         items: [
           {
             name: "Global Consumer Intelligence Program 2025 Summer",
@@ -416,6 +384,7 @@ const translations = {
               "Learned methods to analyze global consumer behavior using data-driven approaches",
               "In the final project, learned practical approaches combining AI techniques with market business perspectives"
             ],
+            tags: ["ML", "Data Analysis", "Business Proposal"],
             link: "/certificates/gci-certificate.pdf"
           },
           {
@@ -426,6 +395,7 @@ const translations = {
               "Learned fundamental concepts of deep learning including neural networks, convolution, and deep reinforcement learning",
               "Gained hands-on experience implementing deep learning models through practical exercises"
             ],
+            tags: ["DL", "Neural Networks", "PyTorch"],
             link: "/certificates/dl-foundations-certificate.pdf"
           }
         ]
