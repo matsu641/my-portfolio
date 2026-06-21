@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const container = {
@@ -17,8 +16,26 @@ const item = {
   show: { opacity: 1, y: 0 }
 };
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+type Project = {
+  title: string;
+  period: string;
+  tags?: string[];
+  background?: string;
+  challenges?: string;
+  solutions?: string[];
+  learnings?: string;
+  githubUrl?: string;
+  slideUrl?: string;
+  websiteUrl?: string;
+  confusionMatrixImages?: string[];
+  confusionMatrixLabels?: string[];
+  leaderboardImageUrl?: string;
+  demoImageUrl?: string;
+  videoUrl?: string;
+  searchConsoleImageUrl?: string;
+};
+
+function ProjectCard({ project }: { project: Project }) {
   const { t, language } = useLanguage();
 
   return (
@@ -97,59 +114,26 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       </div>
 
 
-      {/* What */}
-      <div className="mb-6">
-        <p className="text-lg text-zinc-100 leading-relaxed">{project.what}</p>
-      </div>
-
-      {/* Impact */}
-      {project.impact && project.impact.length > 0 && (
-        <div className="mb-6">
-          <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
-            {t('projects.impact')}
-          </h4>
-          <ul className="space-y-2">
-            {project.impact.map((item: string, idx: number) => (
-              <li key={idx} className="flex gap-3 text-zinc-100">
-                <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
-                <span className="leading-relaxed"><strong>{item}</strong></span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Expandable Section */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="text-blue-400 hover:text-blue-300 hover:underline mb-4 text-sm font-semibold transition-colors"
-        aria-expanded={isExpanded}
-      >
-        {isExpanded ? t('projects.viewLess') : t('projects.viewMore')}
-      </button>
-
-      {isExpanded && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="space-y-6 pt-4 border-t border-zinc-700/50"
-        >
+      <div className="space-y-6 pt-4 border-t border-zinc-700/50">
           {/* Background */}
-          <div>
-            <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
-              {t('projects.background')}
-            </h4>
-            <p className="text-zinc-100 leading-relaxed">{project.background}</p>
-          </div>
+          {project.background && (
+            <div>
+              <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
+                {t('projects.background')}
+              </h4>
+              <p className="text-zinc-100 leading-relaxed">{project.background}</p>
+            </div>
+          )}
 
           {/* Challenges */}
-          <div>
-            <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
-              {t('projects.challenges')}
-            </h4>
-            <p className="text-zinc-100 leading-relaxed">{project.challenges}</p>
-          </div>
+          {project.challenges && (
+            <div>
+              <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
+                {t('projects.challenges')}
+              </h4>
+              <p className="text-zinc-100 leading-relaxed">{project.challenges}</p>
+            </div>
+          )}
 
           {/* Solutions */}
           {project.solutions && project.solutions.length > 0 && (
@@ -169,12 +153,14 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           )}
 
           {/* Learnings */}
-          <div>
-            <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
-              {t('projects.learnings')}
-            </h4>
-            <p className="text-zinc-100 leading-relaxed">{project.learnings}</p>
-          </div>
+          {project.learnings && (
+            <div>
+              <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
+                {t('projects.learnings')}
+              </h4>
+              <p className="text-zinc-100 leading-relaxed">{project.learnings}</p>
+            </div>
+          )}
 
           {/* Confusion Matrix Images */}
           {project.confusionMatrixImages && project.confusionMatrixImages.length > 0 && (
@@ -261,8 +247,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
               />
             </div>
           )}
-        </motion.div>
-      )}
+      </div>
     </motion.article>
   );
 }
@@ -288,8 +273,8 @@ export default function Projects() {
           viewport={{ once: true, margin: "-100px" }}
           className="space-y-8"
         >
-          {projects.map((project: any, idx: number) => (
-            <ProjectCard key={`${language}-${project.title}-${idx}`} project={project} index={idx} />
+          {(projects as Project[]).map((project, idx) => (
+            <ProjectCard key={`${language}-${project.title}-${idx}`} project={project} />
           ))}
         </motion.div>
       </div>

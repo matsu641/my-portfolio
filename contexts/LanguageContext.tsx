@@ -182,9 +182,6 @@ const translations = {
     },
     projects: {
       title: "Projects",
-      viewMore: "詳細を見る",
-      viewLess: "閉じる",
-      impact: "成果",
       background: "背景",
       challenges: "課題",
       solutions: "解決アプローチ",
@@ -226,21 +223,16 @@ const translations = {
         {
           title: "胸部X線画像の疾患分類（マルチモーダル深層学習）",
           period: "2025/10 - 2025/12",
-          what: "PyTorchを用いて胸部X線画像を4クラス分類するマルチモーダルモデル",
-          impact: [
-            "画像のみのベースラインと比較して、Effusion・CardiomegalyのRecallおよびMacro F1が大幅に向上",
-            "極端なクラス不均衡（No Finding 多数）下での少数疾患クラス検出性能を改善",
-          ],
           tags: ["PyTorch", "ResNet-50", "Multimodal Learning", "Focal Loss"],
-          background: "個人プロジェクト。胸部X線データは『No Finding』が大多数を占め、画像のみのCNNでは少数疾患クラスのRecallが著しく低下する課題があった。医療文脈ではAccuracyが高くても疾患の見逃しが起こり得るため、画像特徴量と患者メタデータを統合したマルチモーダルモデルで少数クラス検出性能の改善を目指した。",
-          challenges: "胸部X線データの約93%が『No Finding』に偏った極端なクラス不均衡が存在し、画像のみのCNNでは少数疾患クラス（Effusion、Cardiomegaly、Pneumonia）のRecallが0となる課題があった。医療AIにおいてAccuracyが高くても疾患の見逃しは許容できないため、少数クラスの検出性能を改善する必要があった。",
+          background: "胸部X線画像と年齢・性別・撮影方向などの患者メタデータを組み合わせ、PyTorchで4クラス分類モデルを構築しました。",
+          challenges: "データの約93%が「No Finding」に偏っていたため、AccuracyではなくMacro F1とクラス別Recallを重視して評価しました。",
           solutions: [
-            "ResNet-50による安定した特徴抽出を基盤とし、画像特徴量と患者メタデータ（年齢・性別・View Position）を統合するマルチモーダルアーキテクチャを採用",
-            "クラス不均衡対策として、Focal Loss・クラス重み付け・Oversamplingを組み合わせて実装",
-            "計算資源を考慮し、NIH Chest X-rayデータの15疾患ラベルを4クラスに再構成",
-            "単一モデル設計で実装の透明性と推論効率を優先"
+            "ResNet-50、Focal Loss、クラス重み付け、Oversamplingを使用",
+            "画像特徴量と患者メタデータを統合し、少数クラス検出を改善"
           ],
-          learnings: "Accuracyに依存しない評価指標の重要性を習得。ベースラインはAccuracy 93%だが少数疾患クラスのRecallは全て0。マルチモーダルモデルでMacro F1が0.24→0.46（+92%）に向上。Effusion Recall 0.00→0.55、Cardiomegaly 0.00→0.33と大幅改善。Accuracyは0.93→0.86に低下したが、医療文脈で重要な「見逃し削減」を優先する設計判断の妥当性を確認した。",          confusionMatrixImages: ["/images/Baseline.png", "/images/Improved.png"],          confusionMatrixLabels: [
+          learnings: "Macro F1を0.24から0.46に改善し、EffusionとCardiomegalyのRecallも大きく改善しました。",
+          confusionMatrixImages: ["/images/Baseline.png", "/images/Improved.png"],
+          confusionMatrixLabels: [
             "Baseline Model (画像のみ)",
             "Primary Model (マルチモーダル)"
           ],
@@ -249,43 +241,28 @@ const translations = {
         {
           title: "若手社員離職リスク予測モデル",
           period: "2025/08",
-          what: "クラス不均衡な社員データからLightGBMを用いて離職リスクを予測するモデル",
-          impact: [
-            "クラス不均衡を考慮したRecall重視の閾値最適化により、離職リスクの高い社員を効果的に検出",
-            "企業の人事施策への活用提案を含むレポートを作成",
-          ],
           tags: ["LightGBM", "Python", "scikit-learn", "Feature Engineering"],
-          background: "松尾研究室GCI 2025 Summerの最終課題（個人プロジェクト）。入社5年以内の若手社員の離職率が高く、人事施策の効果的な介入タイミングの特定が困難という課題があった。過去の社員データから離職リスクを事前に予測する仕組みが必要とされていた。",
-          challenges: "離職者と非離職者のクラス不均衡により、単純な精度指標では少数クラス（離職者）を適切に検出できない課題があった。人事施策への活用を考慮すると、モデルの予測根拠を説明できる解釈性が必須であり、ブラックボックスなモデルは採用できなかった。",
+          background: "松尾研究室GCI 2025 Summerの最終課題として、クラス不均衡のある社員データを用いた離職リスク予測モデルをLightGBMで構築しました。",
+          challenges: "Accuracyだけでは離職リスクの高い社員を見逃す可能性があるため、Recallを重視して分類閾値を調整しました。",
           solutions: [
-            "表形式データに対する高精度・高速学習・解釈性を兼ね備えたLightGBMを採用",
-            "Python + scikit-learnで標準的なデータ前処理とモデル評価パイプラインを構築",
-            "クラス不均衡対策として、Precision-Recall Curveを用いてRecallを重視した閾値最適化を実施",
-            "特徴量重要度を活用し、人事部門が理解できる予測根拠を提供"
+            "前処理、学習、評価、レポート作成までの機械学習パイプラインを構築",
+            "Precision-Recall分析と特徴量重要度を用いて、予測根拠も分析"
           ],
-          learnings: "特徴量重要度を用いた解釈可能なモデル構築の重要性を実感し、ビジネス課題への機械学習の実践的な適用方法を習得した。",
+          learnings: "モデルの予測要因と人事施策への活用可能性を最終レポートに整理しました。",
           slideUrl: "/certificates/gci-final-project-slides.pdf",
           githubUrl: "https://github.com/matsu641/GCI_final_project"
         },
         {
           title: "Interactive Map & Navigation System（GISアプリケーション）",
           period: "2025/01 - 2025/04",
-          what: "OpenStreetMapを活用した経路探索最適化GISアプリケーション（3人チーム開発）",
-          impact: [
-            "Traveling Courier Problemの最適化で高精度と高速性を実現",
-            "全チームで競い合うリーダーボード上で上位14位/98チームを獲得",
-            "制作物を学期末にプレゼン発表",
-          ],
           tags: ["C++", "Algorithms", "A*", "GIS", "UI/UX", "Linux"],
-          background: "ECE297（Design and Communication）の3人グループのプロジェクト課題。大規模都市データを扱う実用的なGISアプリケーション構築において、単なる地図表示だけでなく、高速な経路探索・UI/UX・パフォーマンス最適化を統合したシステムが求められた。",
-          challenges: "OpenStreetMapの大規模都市データに対する高速な経路探索とスムーズ車の両立が必要だった。Traveling Courier Problemでは、Pickup → Delivery制約を満たしつつ、限られた計算時間内で商品質な経路を生成する必要があった。UI側では、複雑な地図情報をわかりやすく表示し、直感的な操作性を実現する必要があった。",
+          background: "ECE297の3人チームプロジェクトとして、OpenStreetMapのデータを用いたC++製GISアプリケーションを開発しました。",
+          challenges: "大規模な道路ネットワークデータを扱いながら、地図表示、経路探索、配送経路最適化を実装しました。",
           solutions: [
-            "大規模グラフ処理に最適化されたC++ + STLを採用し、効率的なデータ構造を設計",
-            "A*アルゴリズムのヒューリスティック関数を最適化し、Dijkstraと組み合わせて高速な最短経路探索を実現",
-            "Traveling Courier Problemには、Greedyによる初期解生成と2-opt局所探索を実装し、完全最適解ではないが計算時間と解の品質のバランスを重視",
-            "UI側では、情報過多を避けたシンプルなデザインを採用し、ユーザビリティを優先"
+            "A*ベースの最短経路探索を実装",
+            "Greedyによる初期解生成と2-opt局所探索で、経路品質と実行時間のバランスを調整"
           ],
-          learnings: "個人ではA*機能、経路探索機能、UI/UX改善を担当し、チームと競技探索アルゴリズム改計とTraveling Courier Problem最適化を協力して行った。大規模システム開発でアルゴリズム理論を考慮した実計が重要であることを学んだ。実世界の道路ネットワークデータを扱う経験を通じて、大規模データ処理とパフォーマンス最適化の重要性を学んだ。",
+          learnings: "経路探索機能と地図UI/UXの改善を担当し、授業内リーダーボードで98チーム中14位を獲得しました。",
           leaderboardImageUrl: "/images/ECE297_leaderboard.png",
           slideUrl: "/images/ECE297_Presentation.pdf",
           videoUrl: "/demos/map_application.mp4"
@@ -293,46 +270,28 @@ const translations = {
         {
           title: "Rush Hour（駐車場パズルゲーム）",
           period: "2025/03 - 2025/04",
-          what: "C言語でVGA描画・PS/2割り込み処理を実装した組み込みパズルゲーム",
-          impact: [
-            "CPUlator上で完全動作するパズルゲームを実装",
-            "VGA描画、キーボード入力、衝突判定、タイマー、ビープ音機能を実現",
-          ],
           tags: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems","RISC-V"],
-          background: "ECE243（Computer Organization）の個人プロジェクト課題。組み込みシステムと低レベルハードウェア制御の実践的な学習が必要だった。VGA描画とPS/2デバイス入力処理をC言語で実装し、動作するゲームを作成することが求められた。",
-          challenges: "限られた組み込みシステムリソース下で、スムーズな2D描画とちらつき防止を実現する必要があった。PS/2キーボードからのリアルタイム入力を割り込み処理で適切にハンドリングし、ゲームの応答性を確保する必要があった。複雑な入力デバイス対応とパフォーマンスの両立が課題だった。",
+          background: "ECE243の個人プロジェクトとして、CPUlator上で動作するRush Hour形式のパズルゲームをC言語で実装しました。",
+          challenges: "VGA描画とPS/2キーボード入力を直接扱い、限られた組み込み環境の中でリアルタイムに動作するゲームを作成しました。",
           solutions: [
-            "低レベルハードウェア制御に適したC言語を採用",
-            "VGA + Double Bufferingでスムーズな描画とちらつき防止を実現",
-            "PS/2割り込み処理（IRQ line 22）を実装し、リアルタイムなキーボード入力に対応",
-            "マウス入力の代わりにキーボード操作に簡素化し、実装の複雑性を低減",
-            "シンプルな矩形描画で車を表現し、パフォーマンスと実装速度を優先した設計を採用"
+            "Double Bufferingを用いて画面のちらつきを軽減",
+            "PS/2キーボード入力を割り込み処理で扱い、メモリマップドI/Oを実践"
           ],
-          learnings: "組み込みシステムの基礎を習得できた。特に、割り込み処理、メモリ管理、リアルタイム処理の実装は難易度は高かったが、より低レベルハードウェア制御について深い理解を得ることができた。また、限られたリソースの中で動作するシステムを設計する経験を通じて、効率的なプログラミングの重要性を学んだ。",
+          learnings: "VGA描画、割り込み処理、メモリマップドI/Oなど、低レベルなハードウェア制御を実践しました。",
           videoUrl: "/demos/rush-hour-demo.mp4",
           githubUrl: "https://github.com/matsu641/RushHour"
         },
         {
           title: "クリニックウェブサイト（くわばら整形外科クリニック）",
           period: "2024年5月 - 2024年7月",
-          what: "HTML、CSS、JavaScriptを使用して、完全レスポンシブなクリニックウェブサイトをゼロから設計・開発（フリーランス案件）",
-          impact: [
-            "ローンチ後3ヶ月以内に2,856インプレッション、343クリック（CTR 12%）を達成",
-            "若年層患者の増加に貢献し、クリニックのオンライン可視性を向上",
-            "追加依頼で、QRコードでアクセスできる専用情報ページを実装"
-          ],
           tags: ["HTML", "CSS", "JavaScript", "Responsive Design", "SEO", "Freelance"],
-          background: "フリーランス案件として、整形外科クリニックのウェブサイト制作を受注。クライアントは既存のウェブサイトを持っておらず、オンライン上での存在感がなかったため、新規患者の獲得が困難という課題を抱えていた。特に若年層へのリーチを強化し、クリニックの情報を分かりやすく提供するためのウェブサイトが必要とされていた。",
-          challenges: "クライアントとの初めてのプロジェクトであり、要件定義から設計・実装・デプロイまで全てを一人で担当する必要があった。クライアントはウェブ技術に詳しくなかったため、要望を技術的な要件に変換し、UI/UXに落とし込む必要があった。また、SEO最適化を実装し、検索エンジンでの可視性を高める必要があった。さらに、ローンチ後も追加機能の依頼に対応し、継続的なサポートを提供する必要があった。",
+          background: "フリーランス案件として、整形外科クリニックの公式Webサイトを設計・開発・公開しました。",
+          challenges: "要件整理、サイト構成、実装、SEO、公開、公開後の追加対応まで一貫して担当しました。",
           solutions: [
-            "クライアントと密接に協力し、定期的なミーティングを通じて要件を明確化",
-            "HTML、CSS、JavaScriptを使用したシンプルで保守性の高い実装を採用",
-            "完全レスポンシブデザインを実装し、モバイル・タブレット・デスクトップ全てに対応",
-            "SEO最適化（メタタグ、構造化データ、画像最適化など）を実装し、検索エンジンでの可視性を向上",
-            "ユーザビリティを重視したシンプルなUI/UX設計を採用し、患者がクリニック情報に容易にアクセスできるように設計",
-            "追加依頼として、QRコードでアクセス可能な専用情報ページを実装"
+            "HTML、CSS、JavaScriptでレスポンシブサイトを実装",
+            "基本的なSEO対策と、QRコードからアクセスできる専用情報ページを追加"
           ],
-          learnings: "フリーランス案件として初めてのウェブサイト制作を経験し、要件定義から設計・実装・デプロイまでの一連のフローを習得した。クライアントとのコミュニケーションの重要性を実感し、技術的な知識がないクライアントに対しても分かりやすく説明するスキルを向上させた。SEO最適化の実装を通じて、ウェブサイトの可視性向上の重要性を学んだ。また、ローンチ後の追加機能依頼に対応することで、継続的なサポートとメンテナンスの重要性を理解した。",
+          learnings: "公開後3ヶ月で2,856インプレッション、343クリック、CTR 12%を達成しました。",
           websiteUrl: "https://kuwabara-ortho.jp",
           searchConsoleImageUrl: "/images/clinic_search_console.png",
           thumbnailImageUrl: "/images/clinic-tumbnail.png",
@@ -487,9 +446,6 @@ const translations = {
     },
     projects: {
       title: "Projects",
-      viewMore: "View Details",
-      viewLess: "Close",
-      impact: "Impact",
       background: "Background",
       challenges: "Challenges",
       solutions: "Solutions",
@@ -530,21 +486,14 @@ const translations = {
         {
           title: "Chest X-ray Disease Classification (Multimodal Deep Learning)",
           period: "Oct 2025 - Dec 2025",
-          what: "A multimodal model for classifying chest X-ray images into 4 classes using PyTorch",
-          impact: [
-            "Significantly improved Recall for Effusion and Cardiomegaly, as well as Macro F1, compared to the image-only baseline",
-            "Improved detection performance for minority disease classes under extreme class imbalance (majority No Finding)",
-          ],
           tags: ["PyTorch", "ResNet-50", "Multimodal Learning", "Focal Loss"],
-          background: "Personal project. Chest X-ray data is predominantly 'No Finding', causing image-only CNNs to suffer from significantly low Recall for minority disease classes. In medical contexts, high Accuracy alone can still lead to disease misses, so I aimed to improve minority class detection performance by integrating image features and patient metadata in a multimodal model.",
-          challenges: "About 93% of chest X-ray data is biased towards 'No Finding', creating extreme class imbalance. Image-only CNNs resulted in zero Recall for minority disease classes (Effusion, Cardiomegaly, Pneumonia). In medical AI, missing diseases is unacceptable even with high Accuracy, so improving minority class detection was essential.",
+          background: "Built a PyTorch-based multimodal model for 4-class chest X-ray classification by combining image features with patient metadata such as age, sex, and view position.",
+          challenges: "The dataset was highly imbalanced, with approximately 93% of samples labeled “No Finding,” so I focused on Macro F1 and class-specific Recall rather than Accuracy.",
           solutions: [
-            "Adopted a multimodal architecture integrating image features with patient metadata (age, sex, View Position) based on stable feature extraction using ResNet-50",
-            "Implemented a combination of Focal Loss, class weighting, and Oversampling to address class imbalance",
-            "Restructured 15 disease labels from NIH Chest X-ray data into 4 classes considering computational resources",
-            "Prioritized implementation transparency and inference efficiency with a single model design"
+            "Used ResNet-50, focal loss, class weighting, and oversampling",
+            "Fused patient metadata with image features to improve minority-class detection"
           ],
-          learnings: "Learned the importance of evaluation metrics beyond Accuracy. Baseline achieved 93% Accuracy but zero Recall for all minority disease classes. Multimodal model improved Macro F1 from 0.24 to 0.46 (+92%). Effusion Recall improved from 0.00 to 0.55, and Cardiomegaly from 0.00 to 0.33. Although Accuracy decreased from 0.93 to 0.86, I confirmed the validity of the design decision prioritizing 'reducing missed diagnoses' in a medical context.",
+          learnings: "Improved Macro F1 from 0.24 to 0.46, Effusion Recall from 0.00 to 0.55, and Cardiomegaly Recall from 0.00 to 0.33.",
           confusionMatrixImages: ["/images/Baseline.png", "/images/Improved.png"],
           confusionMatrixLabels: [
             "Baseline Model (Image Only)",
@@ -555,43 +504,28 @@ const translations = {
         {
           title: "Employee Attrition Risk Prediction Model",
           period: "Aug 2025",
-          what: "A model using LightGBM to predict attrition risk from class-imbalanced employee data",
-          impact: [
-            "Effectively detected employees at high attrition risk through Recall-focused threshold optimization considering class imbalance",
-            "Created a report including proposals for HR policy utilization",
-          ],
           tags: ["LightGBM", "Python", "scikit-learn", "Feature Engineering"],
-          background: "Final assignment for Matsuo Lab GCI 2025 Summer (individual project). High attrition rates among employees within their first five years made it difficult to identify effective intervention timing for HR policies. A mechanism to predict attrition risk in advance from past employee data was needed.",
-          challenges: "Class imbalance between resigned and non-resigned employees meant simple accuracy metrics could not properly detect the minority class (resigned employees). Considering HR policy utilization, model interpretability to explain prediction rationale was essential, and black-box models were not feasible.",
+          background: "Built a LightGBM model to predict employee attrition risk from class-imbalanced tabular data as an individual final project for Matsuo Lab GCI 2025 Summer.",
+          challenges: "Since accuracy alone could miss high-risk employees, I tuned the classification threshold with a focus on Recall.",
           solutions: [
-            "Adopted LightGBM for its high accuracy, fast learning, and interpretability on tabular data",
-            "Built a standard data preprocessing and model evaluation pipeline using Python + scikit-learn",
-            "Implemented Recall-focused threshold optimization using Precision-Recall Curve as a class imbalance countermeasure",
-            "Provided prediction rationale understandable to HR departments using feature importance"
+            "Built a full machine learning pipeline for preprocessing, training, evaluation, and reporting",
+            "Used Precision-Recall analysis and feature importance for interpretability"
           ],
-          learnings: "Realized the importance of interpretable model construction using feature importance and learned practical application methods of machine learning to business problems.",
+          learnings: "Created a final report explaining model behavior and potential HR use cases.",
           slideUrl: "/certificates/gci-final-project-slides.pdf",
           githubUrl: "https://github.com/matsu641/GCI_final_project"
         },
         {
           title: "Interactive Map & Navigation System (GIS Application)",
           period: "Jan 2025 - Apr 2025",
-          what: "A route search optimization GIS application leveraging OpenStreetMap (3-person team development)",
-          impact: [
-            "Achieved high accuracy and speed in Traveling Courier Problem optimization",
-            "Ranked 14th out of 98 teams on the competitive leaderboard",
-            "Presented the project at the end of the semester",
-          ],
           tags: ["C++", "Algorithms", "A*", "GIS", "UI/UX", "Linux"],
-          background: "Project assignment for ECE297 (Design and Communication) in a 3-person group. In building a practical GIS application handling large-scale urban data, a system integrating not just map display but also high-speed route search, UI/UX, and performance optimization was required.",
-          challenges: "High-speed route search and smooth performance were both required for large-scale OpenStreetMap urban data. For the Traveling Courier Problem, it was necessary to generate high-quality routes within limited computation time while satisfying Pickup → Delivery constraints. On the UI side, complex map information needed to be displayed clearly with intuitive operability.",
+          background: "Developed a C++ GIS application using OpenStreetMap data in a 3-person team project for ECE297.",
+          challenges: "The application supported map visualization, route search, and delivery route optimization while handling large-scale road network data efficiently.",
           solutions: [
-            "Adopted C++ + STL optimized for large-scale graph processing and designed efficient data structures",
-            "Optimized A* algorithm heuristic function and combined with Dijkstra to achieve high-speed shortest path search",
-            "For Traveling Courier Problem, implemented initial solution generation by Greedy and 2-opt local search, prioritizing balance between computation time and solution quality rather than complete optimal solution",
-            "On the UI side, adopted simple design avoiding information overload, prioritizing usability"
+            "Used A*-based shortest-path search for route search features",
+            "Used greedy initialization and 2-opt local search to balance route quality and runtime performance"
           ],
-          learnings: "Individually handled A* functionality, route search features, and UI/UX improvements, while collaborating with the team on competitive search algorithm refinement and Traveling Courier Problem optimization. Learned that practical implementation considering algorithm theory is crucial in large-scale system development. Through experience handling real-world road network data, learned the importance of large-scale data processing and performance optimization.",
+          learnings: "Implemented route search features and improved map UI/UX, contributing to a 14th-place ranking out of 98 teams.",
           leaderboardImageUrl: "/images/ECE297_leaderboard.png",
           slideUrl: "/images/ECE297_Presentation.pdf",
           videoUrl: "/demos/map_application.mp4"
@@ -599,46 +533,28 @@ const translations = {
         {
           title: "Rush Hour (Parking Puzzle Game)",
           period: "Mar 2025 - Apr 2025",
-          what: "An embedded puzzle game implemented in C with VGA rendering and PS/2 interrupt handling",
-          impact: [
-            "Implemented a fully functional puzzle game on CPUlator",
-            "Realized VGA rendering, keyboard input, collision detection, timer, and beep sound features",
-          ],
           tags: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems","RISC-V"],
-          background: "Individual project assignment for ECE243 (Computer Organization). Practical learning of embedded systems and low-level hardware control was required. Tasked with implementing VGA rendering and PS/2 device input processing in C to create a working game.",
-          challenges: "Under limited embedded system resources, it was necessary to achieve smooth 2D rendering and prevent flickering. PS/2 keyboard real-time input needed to be properly handled through interrupt processing to ensure game responsiveness. The challenge was to balance complex input device support with performance.",
+          background: "Implemented a Rush Hour-style puzzle game in C on CPUlator for ECE243.",
+          challenges: "The project involved direct control of VGA graphics and PS/2 keyboard input, requiring real-time interaction under limited embedded-system resources.",
           solutions: [
-            "Adopted C language suitable for low-level hardware control",
-            "Achieved smooth rendering and flicker prevention with VGA + Double Buffering",
-            "Implemented PS/2 interrupt handling (IRQ line 22) for real-time keyboard input",
-            "Simplified to keyboard operation instead of mouse input to reduce implementation complexity",
-            "Adopted a design prioritizing performance and implementation speed by representing cars with simple rectangle rendering"
+            "Used double buffering to reduce screen flickering",
+            "Handled PS/2 keyboard input through interrupts and practiced memory-mapped I/O"
           ],
-          learnings: "Mastered the fundamentals of embedded systems. In particular, implementing interrupt handling, memory management, and real-time processing was challenging but provided a deeper understanding of low-level hardware control. Through the experience of designing a system that operates within limited resources, I learned the importance of efficient programming.",
+          learnings: "Practiced low-level hardware control through VGA rendering, interrupts, and memory-mapped I/O.",
           videoUrl: "/demos/rush-hour-demo.mp4",
           githubUrl: "https://github.com/matsu641/RushHour"
         },
         {
           title: "Clinic Website (Kuwabara Orthopedic Clinic)",
           period: "May 2024 - Jul 2024",
-          what: "Designed and developed a fully responsive clinic website from scratch using HTML, CSS, and JavaScript (freelance project)",
-          impact: [
-            "Achieved 2,856 impressions and 343 clicks (CTR 12%) within 3 months post-launch",
-            "Contributed to increased younger patient demographics and improved clinic's online visibility",
-            "Implemented a dedicated information page accessible via QR code upon additional request"
-          ],
           tags: ["HTML", "CSS", "JavaScript", "Responsive Design", "SEO", "Freelance"],
-          background: "As a freelance project, I was commissioned to create a website for an orthopedic clinic. The client had no existing website and lacked online presence, making it difficult to attract new patients. A website was needed to strengthen outreach to younger demographics and provide clear clinic information.",
-          challenges: "This was my first project with a client, requiring me to handle everything from requirement definition to design, implementation, and deployment independently. The client had limited web technology knowledge, necessitating translation of their requests into technical requirements and UI/UX design. SEO optimization was needed to increase search engine visibility. Additionally, I needed to provide ongoing support for post-launch feature requests.",
+          background: "Designed, developed, and deployed a responsive website for an orthopedic clinic as a freelance web development project.",
+          challenges: "I handled the full process from requirements gathering and site structure to implementation, SEO, deployment, and post-launch updates.",
           solutions: [
-            "Collaborated closely with the client, clarifying requirements through regular meetings",
-            "Adopted simple, maintainable implementation using HTML, CSS, and JavaScript",
-            "Implemented fully responsive design supporting mobile, tablet, and desktop devices",
-            "Implemented SEO optimization (meta tags, structured data, image optimization, etc.) to improve search engine visibility",
-            "Adopted simple UI/UX design emphasizing usability, ensuring patients could easily access clinic information",
-            "Implemented a dedicated information page accessible via QR code upon additional request"
+            "Built the website with HTML, CSS, and JavaScript for mobile, tablet, and desktop",
+            "Implemented basic SEO improvements to improve online visibility and accessibility"
           ],
-          learnings: "Experienced my first freelance website project, mastering the entire workflow from requirement definition to design, implementation, and deployment. Realized the importance of client communication and improved my ability to explain technical concepts clearly to non-technical clients. Learned the importance of improving website visibility through SEO optimization implementation. By responding to post-launch feature requests, I understood the importance of continuous support and maintenance.",
+          learnings: "Achieved 2,856 impressions and 343 clicks with a 12% CTR within 3 months after launch, and the website continues to receive daily visitors while contributing to an increase in new patients.",
           websiteUrl: "https://kuwabara-ortho.jp",
           searchConsoleImageUrl: "/images/clinic_search_console.png",
           thumbnailImageUrl: "/images/clinic-tumbnail.png",
