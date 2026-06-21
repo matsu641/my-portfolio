@@ -55,9 +55,7 @@ const translations = {
     about: {
       title: "About Me",
       intro: [
-        "日本で生まれ育ち、高校時代はアメリカへ留学しました。現在はカナダのトロント大学でComputer Engineeringを専攻しています。",
-        "大学では1・2年次に、ソフトウェアとハードウェアの両面から基礎を学び、C/C++やアセンブリ言語を用いた組み込み開発、回路設計などを経験しました。3年次にはAI副専攻取得に向けて深層学習といった専門分野を中心に学びました。また、学業と並行して、サークル活動やスタートアップ企業でフルスタックWeb開発にも取り組んでいます。",
-        "将来的には、AI・ソフトウェア・ハードウェアの技術的制約を理解した上で、課題設定から実装・評価までを一貫してリードできるエンジニアを目指しています。"
+        "トロント大学でComputer Engineeringを専攻しており、ソフトウェア開発とAIを活用したプロダクト開発に注力しています。インターン、大学プロジェクト、サークル活動を通じて、フルスタック開発、機械学習、実運用を意識したWebアプリ開発を経験してきました。低レイヤやComputer Engineeringの基礎にも触れており、システムとプロダクトの両面からソフトウェアを理解する力を身につけています。将来的には、AIを活用して実際の課題解決につながる、信頼性の高いプロダクトを開発できるエンジニアを目指しています。"
       ],
       education: {
         title: "学歴",
@@ -320,9 +318,7 @@ const translations = {
     about: {
       title: "About Me",
       intro: [
-        "Born and raised in Japan, I studied abroad in the United States during high school. I am currently a third-year undergraduate student majoring in Computer Engineering at the University of Toronto, Canada.",
-        "During my first and second years at university, I learned fundamentals from both software and hardware perspectives, gaining experience in embedded development using C/C++ and assembly language, as well as circuit design. Currently, I am focusing on specialized fields such as control engineering, semiconductor devices, and deep learning, while also engaging in full-stack web development through club activities and startup work.",
-        "In the future, I aim to become an engineer who can lead consistently from problem definition to implementation and evaluation, with a deep understanding of technical constraints in AI, software, and hardware."
+        "I am a Computer Engineering student at the UofT, pursuing an AI minor and focusing on software engineering and AI-driven product development. Through internships, university projects, and student organization work, I have gained hands-on experience in full-stack development, machine learning, and production web applications. My background also includes low-level programming and computer engineering fundamentals, which helps me understand software from both system and product perspectives. I aim to build reliable, user-centered products that apply AI to solve real problems."
       ],
       education: {
         title: "Education",
