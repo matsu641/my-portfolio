@@ -55,7 +55,7 @@ const translations = {
     about: {
       title: "About Me",
       intro: [
-        "トロント大学でComputer Engineeringを専攻しており、ソフトウェア開発とAIを活用したプロダクト開発に注力しています。インターン、大学プロジェクト、サークル活動を通じて、フルスタック開発、機械学習、実運用を意識したWebアプリ開発を経験してきました。低レイヤやComputer Engineeringの基礎にも触れており、システムとプロダクトの両面からソフトウェアを理解する力を身につけています。将来的には、AIを活用して実際の課題解決につながる、信頼性の高いプロダクトを開発できるエンジニアを目指しています。"
+        "トロント大学でComputer Engineeringを専攻し、AIを副専攻として学びながら、ソフトウェア開発とAIを活用したプロダクト開発に注力しています。インターン、大学プロジェクト、サークル活動を通じて、フルスタック開発、機械学習、実運用を意識したWebアプリ開発を経験してきました。ソフトウェアエンジニアインターンでは、実装だけでなく、要件整理やタスク管理を含む機能開発の主導も経験しています。将来的には、AIや技術的なアイデアを、実際のユーザー課題を解決する信頼性の高いプロダクトに落とし込めるソフトウェアエンジニアを目指しています。"
       ],
       education: {
         title: "学歴",
@@ -240,13 +240,13 @@ const translations = {
           title: "若手社員離職リスク予測モデル",
           period: "2025/08",
           tags: ["LightGBM", "Python", "scikit-learn", "Feature Engineering"],
-          background: "松尾研究室GCI 2025 Summerの最終課題として、クラス不均衡のある社員データを用いた離職リスク予測モデルをLightGBMで構築しました。",
-          challenges: "Accuracyだけでは離職リスクの高い社員を見逃す可能性があるため、Recallを重視して分類閾値を調整しました。",
+          background: "書類審査制の松尾研究室GCI 2025 Summerに選抜され、企業提供の社員データを用いた最終課題に取り組みました。",
+          challenges: "単に予測モデルを構築するだけでなく、データ分析からビジネス上の課題を特定し、人事施策として活用できる提案に落とし込むことが求められました。",
           solutions: [
-            "前処理、学習、評価、レポート作成までの機械学習パイプラインを構築",
-            "Precision-Recall分析と特徴量重要度を用いて、予測根拠も分析"
+            "NumPy、Pandas、可視化ツールを用いて探索的データ分析を実施し、離職に関係する傾向を特定",
+            "そのうえで、LightGBMを用いた勾配ブースティング分類モデルを構築し、離職リスクの高い社員を見逃さないようRecallを重視して閾値を調整"
           ],
-          learnings: "モデルの予測要因と人事施策への活用可能性を最終レポートに整理しました。",
+          learnings: "分析結果、モデルの予測結果、改善施策をビジネス提案スライドとして整理し、データ分析からAIモデル実装、ビジネス提案まで一貫して実施しました。最終的に修了要件を満たし、修了率約14%の同講座を修了しました。",
           slideUrl: "/certificates/gci-final-project-slides.pdf",
           githubUrl: "https://github.com/matsu641/GCI_final_project"
         },
@@ -318,7 +318,7 @@ const translations = {
     about: {
       title: "About Me",
       intro: [
-        "I am a Computer Engineering student at the UofT, pursuing an AI minor and focusing on software engineering and AI-driven product development. Through internships, university projects, and student organization work, I have gained hands-on experience in full-stack development, machine learning, and production web applications. My background also includes low-level programming and computer engineering fundamentals, which helps me understand software from both system and product perspectives. I aim to build reliable, user-centered products that apply AI to solve real problems."
+        "I am a Computer Engineering student at the University of Toronto, pursuing an AI minor and focusing on software engineering and AI-driven product development. Through internships, university projects, and student organization work, I have built experience in full-stack development, machine learning, and production web applications. As a software engineering intern, I have also led feature development, working across implementation, requirement clarification, and task coordination. I aim to become a software engineer who can turn AI and technical ideas into reliable products that solve real user problems."
       ],
       education: {
         title: "Education",
@@ -498,16 +498,16 @@ const translations = {
           githubUrl: "https://github.com/matsu641/Multimodal-Chest-X-ray-Classification-with-CNN"
         },
         {
-          title: "Employee Attrition Risk Prediction Model",
+          title: "Employee Attrition Risk Analysis & Business Proposal",
           period: "Aug 2025",
           tags: ["LightGBM", "Python", "scikit-learn", "Feature Engineering"],
-          background: "Built a LightGBM model to predict employee attrition risk from class-imbalanced tabular data as an individual final project for Matsuo Lab GCI 2025 Summer.",
-          challenges: "Since accuracy alone could miss high-risk employees, I tuned the classification threshold with a focus on Recall.",
+          background: "Selected for Matsuo Lab’s application-based GCI 2025 Summer program and worked on a final project using a company-provided employee dataset.",
+          challenges: "The project required more than building a prediction model; I needed to identify business issues from the data and translate the findings into actionable HR recommendations.",
           solutions: [
-            "Built a full machine learning pipeline for preprocessing, training, evaluation, and reporting",
-            "Used Precision-Recall analysis and feature importance for interpretability"
+            "Used NumPy, Pandas, and visualization tools for exploratory data analysis,and identified patterns related to attrition",
+            "Built a LightGBM-based gradient boosting classifier to predict high-risk employees, adjusting thresholds to prioritize Recall and minimize false negatives"
           ],
-          learnings: "Created a final report explaining model behavior and potential HR use cases.",
+          learnings: "Summarized the analysis, model results, and proposed countermeasures into a business proposal slide deck, completing the full process from data analysis to AI model implementation and business solution design. I met the completion requirements and completed the program, which had an approximately 14% completion rate.",
           slideUrl: "/certificates/gci-final-project-slides.pdf",
           githubUrl: "https://github.com/matsu641/GCI_final_project"
         },
