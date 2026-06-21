@@ -23,10 +23,17 @@ type ProjectExperience = {
   tasks: string[];
 };
 
+type WebsiteExperience = {
+  title: string;
+  url: string;
+  image?: string;
+};
+
 type ExperienceEntry = {
   tags?: string[];
   tasks?: string[];
   projects?: ProjectExperience[];
+  websites?: WebsiteExperience[];
 };
 
 function SkillTags({ tags }: { tags?: string[] }) {
@@ -65,6 +72,13 @@ export default function Experience() {
   const starup = t('about.experience.starup') as ExperienceEntry;
   const freelance = t('about.experience.freelance') as ExperienceEntry;
   const utjn = t('about.activities.utjn') as ExperienceEntry;
+  const utjnWebsites = utjn.websites ?? [
+    {
+      title: "UofT Japan Network",
+      url: "https://uoftjn.com/",
+      image: "/images/utjn-tumbnail.png"
+    }
+  ];
 
   return (
     <section id="experience" className="py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
@@ -148,32 +162,44 @@ export default function Experience() {
                 <SkillTags tags={utjn.tags} />
                 <TaskList tasks={t('about.activities.utjn.tasks')} />
               </div>
-              <div className="mt-4 max-w-md">
-                <motion.a
-                  href="https://uoftjn.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="block overflow-hidden rounded-lg border border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all"
-                >
-                  <div className="relative w-full h-60 mb-3">
-                    <Image
-                      src="/images/utjn-tumbnail.png"
-                      alt="UofT Japan Network Website"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="px-4 pb-4 flex items-center justify-between">
-                    <span className="text-accent font-medium">
-                      {language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </div>
-                </motion.a>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                {utjnWebsites.map((website) => (
+                  <motion.a
+                    key={website.url}
+                    href={website.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="block overflow-hidden rounded-lg border border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all"
+                  >
+                    {website.image ? (
+                      <div className="relative w-full h-48 mb-3">
+                        <Image
+                          src={website.image}
+                          alt={`${website.title} Website`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-48 mb-3 items-center justify-center bg-zinc-900/70 px-5 text-center">
+                        <span className="text-lg font-semibold text-zinc-100">{website.title}</span>
+                      </div>
+                    )}
+                    <div className="px-4 pb-4 flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-zinc-100 font-medium">{website.title}</p>
+                        <span className="text-accent text-sm font-medium">
+                          {language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}
+                        </span>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                  </motion.a>
+                ))}
               </div>
             </div>
           </motion.div>

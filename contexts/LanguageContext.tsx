@@ -118,9 +118,22 @@ const translations = {
           role: "ソフトウェアエンジニア（チームメンバー）",
           organization: "University of Toronto Japan Network (UTJN)",
           period: "2023年9月 - 現在",
-          tags: ["TypeScript", "PostgreSQL", "AWS", "Maintenance"],
+          tags: ["TypeScript", "PostgreSQL", "AWS", "Caddy", "Software Deployment"],
           tasks: [
-            "チームメンバーと協力して組織公式Webサイトの開発・運用を担当し、他部門からの新機能開発依頼やバグ修正依頼に対応しました。"
+            "チームメンバーと協力して組織公式Webサイトの開発・運用を担当し、他部門からの新機能開発依頼やバグ修正依頼に対応しました。",
+            "Docker ComposeとCaddyリバースプロキシを用いて、単一のAWS EC2インスタンス上に2つの本番Webサイトをデプロイし、DNS、TLS、環境変数、マルチコンテナ構成のリソース制約を設定しました。"
+          ],
+          websites: [
+            {
+              title: "University of Toronto Japan Network",
+              url: "https://uoftjn.com/",
+              image: "/images/utjn-tumbnail.png"
+            },
+            {
+              title: "University of Toronto Japan Alumni Association",
+              url: "https://uoftkaedekai.com/",
+              image: "/images/kaedekai-tumbnail.png"
+            }
           ]
         }
       },
@@ -367,9 +380,22 @@ const translations = {
           role: "Software Engineer (Team Member)",
           organization: "University of Toronto Japan Network (UTJN)",
           period: "Sep 2023 - Present",
-          tags: ["TypeScript", "PostgreSQL", "AWS", "Maintenance"],
+          tags: ["TypeScript", "PostgreSQL", "AWS", "Caddy", "Software Deployment"],
           tasks: [
-            "Collaborated with team members on the development and operation of the organization's official website, handling new feature requests and bug fixes from other departments."
+            "Collaborated with team members on the development and operation of the organization's official website, handling new feature requests and bug fixes from other departments.",
+            "Deployed two production websites on a single AWS EC2 instance using Docker Compose and Caddy reverse proxy, configuring DNS, TLS, environment variables, and resource constraints for a multi-container stack."
+          ],
+          websites: [
+            {
+              title: "University of Toronto Japan Network",
+              url: "https://uoftjn.com/",
+              image: "/images/utjn-tumbnail.png"
+            },
+            {
+              title: "University of Toronto Japan Alumni Association",
+              url: "https://uoftkaedekai.com/",
+              image: "/images/kaedekai-tumbnail.png"
+            }
           ]
         }
       },
