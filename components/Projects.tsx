@@ -30,6 +30,8 @@ type Project = {
   websiteUrl?: string;
   confusionMatrixImages?: string[];
   confusionMatrixLabels?: string[];
+  analysisImages?: string[];
+  analysisImageLabels?: string[];
   leaderboardImageUrl?: string;
   demoImageUrl?: string;
   videoUrl?: string;
@@ -151,6 +153,33 @@ function ProjectCard({ project, projectId }: { project: Project; projectId: stri
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {/* Analysis Images */}
+          {project.analysisImages && project.analysisImages.length > 0 && (
+            <div>
+              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
+                {language === 'ja' ? '分析・モデル出力' : 'Analysis & Model Outputs'}
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {project.analysisImages.map((imgPath: string, idx: number) => (
+                  <div key={imgPath} className="space-y-2">
+                    <div className="bg-white rounded-lg border border-zinc-600/60 p-2">
+                      <img
+                        src={imgPath}
+                        alt={project.analysisImageLabels?.[idx] || `Analysis output ${idx + 1}`}
+                        className="w-full h-40 object-contain"
+                      />
+                    </div>
+                    {project.analysisImageLabels?.[idx] && (
+                      <p className="text-xs text-zinc-300 text-center leading-snug">
+                        {project.analysisImageLabels[idx]}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 

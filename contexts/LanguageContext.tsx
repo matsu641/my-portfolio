@@ -250,6 +250,16 @@ const translations = {
             "NumPy、Pandas、可視化ツールを用いて探索的データ分析を実施し、離職に関係する傾向を特定",
             "そのうえで、LightGBMを用いた勾配ブースティング分類モデルを構築し、離職リスクの高い社員を見逃さないようRecallを重視して閾値を調整"
           ],
+          analysisImages: [
+            "/images/GCIdemo1.png",
+            "/images/GCIdemo2.png",
+            "/images/GCIdemo3.png"
+          ],
+          analysisImageLabels: [
+            "データセットの探索的可視化",
+            "特徴量・傾向分析",
+            "モデル出力の確認"
+          ],
           learnings: "分析結果、モデルの予測結果、改善施策をビジネス提案スライドとして整理し、データ分析からAIモデル実装、ビジネス提案まで一貫して実施しました。最終的に修了要件を満たし、修了率約14%の同講座を修了しました。",
           slideUrl: "/certificates/gci-final-project-slides.pdf",
           githubUrl: "https://github.com/matsu641/GCI_final_project"
@@ -525,6 +535,16 @@ const translations = {
           solutions: [
             "Used NumPy, Pandas, and visualization tools for exploratory data analysis,and identified patterns related to attrition",
             "Built a LightGBM-based gradient boosting classifier to predict high-risk employees, adjusting thresholds to prioritize Recall and minimize false negatives"
+          ],
+          analysisImages: [
+            "/images/GCIdemo1.png",
+            "/images/GCIdemo2.png",
+            "/images/GCIdemo3.png"
+          ],
+          analysisImageLabels: [
+            "Exploratory dataset visualization",
+            "Feature and trend analysis",
+            "Model output review"
           ],
           learnings: "Summarized the analysis, model results, and proposed countermeasures into a business proposal slide deck, completing the full process from data analysis to AI model implementation and business solution design. I met the completion requirements and completed the program, which had an approximately 14% completion rate.",
           slideUrl: "/certificates/gci-final-project-slides.pdf",
