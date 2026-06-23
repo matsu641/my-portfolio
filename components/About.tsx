@@ -34,7 +34,7 @@ export default function About() {
           <motion.div variants={item} className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-8">{t('about.title')}</h2>
               <div className="space-y-6">
-                {t('about.intro').map((paragraph: string, index: number) => (
+                {t<string[]>('about.intro').map((paragraph: string, index: number) => (
                   <p key={index} className="text-lg text-zinc-100 leading-relaxed">
                     {paragraph}
                   </p>

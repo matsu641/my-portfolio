@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { projectSlugs } from "@/lib/projectRoutes";
 
 const container = {
   hidden: { opacity: 0 },
@@ -35,13 +36,14 @@ type Project = {
   searchConsoleImageUrl?: string;
 };
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, projectId }: { project: Project; projectId: string }) {
   const { t, language } = useLanguage();
 
   return (
     <motion.article
+      id={projectId}
       variants={item}
-      className="bg-gradient-to-br from-zinc-800/90 to-zinc-700/70 border-2 border-zinc-600/60 rounded-xl p-8 hover:border-blue-400/70 hover:shadow-lg hover:shadow-blue-400/25 transition-all duration-300"
+      className="scroll-mt-8 bg-gradient-to-br from-zinc-800/90 to-zinc-700/70 border-2 border-zinc-600/60 rounded-xl p-8 hover:border-blue-400/70 hover:shadow-lg hover:shadow-blue-400/25 transition-all duration-300"
     >
       {/* Header: Title + Period */}
       <div className="mb-6">
@@ -254,7 +256,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function Projects() {
   const { t, language } = useLanguage();
-  const projects = t('projects.items');
+  const projects = t<Project[]>('projects.items');
   
   if (!projects || !Array.isArray(projects)) {
     return <div className="text-center text-zinc-300">No projects found</div>;
@@ -274,7 +276,11 @@ export default function Projects() {
           className="space-y-8"
         >
           {(projects as Project[]).map((project, idx) => (
-            <ProjectCard key={`${language}-${project.title}-${idx}`} project={project} />
+            <ProjectCard
+              key={`${language}-${project.title}-${idx}`}
+              project={project}
+              projectId={`project-${projectSlugs[idx] ?? idx}`}
+            />
           ))}
         </motion.div>
       </div>

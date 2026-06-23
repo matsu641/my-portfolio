@@ -44,7 +44,7 @@ function SkillTags({ tags }: { tags?: string[] }) {
 
 export default function Certifications() {
   const { t, language } = useLanguage();
-  const certifications = t('about.certifications.items') as Certification[];
+  const certifications = t<Certification[]>('about.certifications.items');
 
   return (
     <section id="certifications" className="py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">

@@ -68,10 +68,10 @@ function TaskList({ tasks }: { tasks: string[] }) {
 
 export default function Experience() {
   const { t, language } = useLanguage();
-  const equos = t('about.experience.equos') as ExperienceEntry;
-  const starup = t('about.experience.starup') as ExperienceEntry;
-  const freelance = t('about.experience.freelance') as ExperienceEntry;
-  const utjn = t('about.activities.utjn') as ExperienceEntry;
+  const equos = t<ExperienceEntry>('about.experience.equos');
+  const starup = t<ExperienceEntry>('about.experience.starup');
+  const freelance = t<ExperienceEntry>('about.experience.freelance');
+  const utjn = t<ExperienceEntry>('about.activities.utjn');
   const utjnWebsites = utjn.websites ?? [
     {
       title: "UofT Japan Network",
@@ -130,7 +130,7 @@ export default function Experience() {
                 </div>
                 <p className="text-zinc-300 mb-3">{t('about.experience.starup.location')}</p>
                 <SkillTags tags={starup.tags} />
-                <TaskList tasks={t('about.experience.starup.tasks')} />
+                <TaskList tasks={t<string[]>('about.experience.starup.tasks')} />
               </div>
 
               <div className="border-l-2 border-accent pl-6">
@@ -143,7 +143,7 @@ export default function Experience() {
                 </div>
                 <p className="text-zinc-300 mb-3">{t('about.experience.freelance.location')}</p>
                 <SkillTags tags={freelance.tags} />
-                <TaskList tasks={t('about.experience.freelance.tasks')} />
+                <TaskList tasks={t<string[]>('about.experience.freelance.tasks')} />
               </div>
             </div>
           </motion.div>
@@ -160,7 +160,7 @@ export default function Experience() {
               </div>
               <div className="mt-3">
                 <SkillTags tags={utjn.tags} />
-                <TaskList tasks={t('about.activities.utjn.tasks')} />
+                <TaskList tasks={t<string[]>('about.activities.utjn.tasks')} />
               </div>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {utjnWebsites.map((website) => (
