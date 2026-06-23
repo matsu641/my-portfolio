@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { projectSlugs } from "@/lib/projectRoutes";
 
@@ -38,8 +39,106 @@ type Project = {
   searchConsoleImageUrl?: string;
 };
 
+type ProjectMedia = {
+  src: string;
+  alt: string;
+  label?: string;
+  type: "image" | "video";
+};
+
+function MediaPreview({
+  media,
+  className = "h-40",
+  onOpen,
+}: {
+  media: ProjectMedia;
+  className?: string;
+  onOpen: (media: ProjectMedia) => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(media)}
+      className="group block w-full text-left"
+      aria-label={`Open ${media.label || media.alt}`}
+    >
+      <div className="relative w-full overflow-hidden rounded-lg border border-zinc-600/60 bg-white p-2 transition-all group-hover:border-blue-400/70 group-hover:shadow-lg group-hover:shadow-blue-400/20">
+        {media.type === "video" ? (
+          <>
+            <video muted preload="metadata" className={`w-full ${className} object-contain`}>
+              <source src={media.src} type="video/mp4" />
+            </video>
+          </>
+        ) : (
+          <img src={media.src} alt={media.alt} className={`w-full ${className} object-contain`} />
+        )}
+        <span className="absolute inset-0 flex items-center justify-center bg-black/0 text-white opacity-0 transition-all group-hover:bg-black/35 group-hover:opacity-100">
+          <span className="inline-flex items-center gap-2 rounded-full bg-black/75 px-4 py-2 text-sm font-medium shadow-lg">
+            {media.type === "video" ? (
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            ) : (
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+            )}
+            <span>{media.type === "video" ? "Click to play" : "Click to view"}</span>
+          </span>
+        </span>
+      </div>
+      {media.label && (
+        <p className="mt-2 text-xs text-zinc-300 text-center leading-snug">{media.label}</p>
+      )}
+    </button>
+  );
+}
+
+function MediaModal({
+  media,
+  onClose,
+}: {
+  media: ProjectMedia | null;
+  onClose: () => void;
+}) {
+  if (!media) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-6"
+      role="dialog"
+      aria-modal="true"
+      aria-label={media.label || media.alt}
+      onClick={onClose}
+    >
+      <div className="relative w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute -top-12 right-0 rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white hover:bg-white/20"
+          aria-label="Close media preview"
+        >
+          Close
+        </button>
+        <div className="rounded-lg border border-white/20 bg-zinc-950 p-3 shadow-2xl">
+          {media.type === "video" ? (
+            <video controls autoPlay className="max-h-[82vh] w-full object-contain">
+              <source src={media.src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <img src={media.src} alt={media.alt} className="max-h-[82vh] w-full object-contain" />
+          )}
+        </div>
+        {media.label && <p className="mt-3 text-center text-sm text-zinc-200">{media.label}</p>}
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({ project, projectId }: { project: Project; projectId: string }) {
   const { t, language } = useLanguage();
+  const [selectedMedia, setSelectedMedia] = useState<ProjectMedia | null>(null);
 
   return (
     <motion.article
@@ -164,20 +263,17 @@ function ProjectCard({ project, projectId }: { project: Project; projectId: stri
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {project.analysisImages.map((imgPath: string, idx: number) => (
-                  <div key={imgPath} className="space-y-2">
-                    <div className="bg-white rounded-lg border border-zinc-600/60 p-2">
-                      <img
-                        src={imgPath}
-                        alt={project.analysisImageLabels?.[idx] || `Analysis output ${idx + 1}`}
-                        className="w-full h-40 object-contain"
-                      />
-                    </div>
-                    {project.analysisImageLabels?.[idx] && (
-                      <p className="text-xs text-zinc-300 text-center leading-snug">
-                        {project.analysisImageLabels[idx]}
-                      </p>
-                    )}
-                  </div>
+                  <MediaPreview
+                    key={imgPath}
+                    media={{
+                      src: imgPath,
+                      alt: project.analysisImageLabels?.[idx] || `Analysis output ${idx + 1}`,
+                      label: project.analysisImageLabels?.[idx],
+                      type: "image",
+                    }}
+                    className="h-40"
+                    onOpen={setSelectedMedia}
+                  />
                 ))}
               </div>
             </div>
@@ -201,18 +297,17 @@ function ProjectCard({ project, projectId }: { project: Project; projectId: stri
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {project.confusionMatrixImages.map((imgPath: string, idx: number) => (
-                  <div key={idx} className="space-y-2">
-                    <p className="text-sm font-medium text-zinc-200 text-center">
-                      {project.confusionMatrixLabels?.[idx]}
-                    </p>
-                    <div className="w-full bg-white rounded-lg border border-zinc-600/60 p-4">
-                      <img 
-                        src={imgPath} 
-                        alt={project.confusionMatrixLabels?.[idx] || `Confusion Matrix ${idx + 1}`}
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                  </div>
+                  <MediaPreview
+                    key={imgPath}
+                    media={{
+                      src: imgPath,
+                      alt: project.confusionMatrixLabels?.[idx] || `Confusion Matrix ${idx + 1}`,
+                      label: project.confusionMatrixLabels?.[idx],
+                      type: "image",
+                    }}
+                    className="h-48"
+                    onOpen={setSelectedMedia}
+                  />
                 ))}
               </div>
             </div>
@@ -224,11 +319,17 @@ function ProjectCard({ project, projectId }: { project: Project; projectId: stri
               <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
                 {t('projects.viewLeaderboard')}
               </h4>
-              <img 
-                src={project.leaderboardImageUrl} 
-                alt="Leaderboard Results"
-                className="w-full rounded-lg border border-zinc-700/50"
-              />
+              <div className="max-w-md">
+                <MediaPreview
+                  media={{
+                    src: project.leaderboardImageUrl,
+                    alt: "Leaderboard Results",
+                    type: "image",
+                  }}
+                  className="h-48"
+                  onOpen={setSelectedMedia}
+                />
+              </div>
             </div>
           )}
 
@@ -240,11 +341,17 @@ function ProjectCard({ project, projectId }: { project: Project; projectId: stri
               <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
                 {t('projects.demoImage')}
               </h4>
-              <img 
-                src={project.demoImageUrl} 
-                alt="Application Demo"
-                className="w-full rounded-lg border border-zinc-700/50"
-              />
+              <div className="max-w-xl">
+                <MediaPreview
+                  media={{
+                    src: project.demoImageUrl,
+                    alt: "Application Demo",
+                    type: "image",
+                  }}
+                  className="h-56"
+                  onOpen={setSelectedMedia}
+                />
+              </div>
             </div>
           )}
 
@@ -254,14 +361,17 @@ function ProjectCard({ project, projectId }: { project: Project; projectId: stri
               <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
                 {t('projects.viewDemo')}
               </h4>
-              <video 
-                controls 
-                className="w-full rounded-lg border border-zinc-700/50"
-                preload="metadata"
-              >
-                <source src={project.videoUrl} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <div className="max-w-xl">
+                <MediaPreview
+                  media={{
+                    src: project.videoUrl,
+                    alt: "Demo Video",
+                    type: "video",
+                  }}
+                  className="h-56"
+                  onOpen={setSelectedMedia}
+                />
+              </div>
             </div>
           )}
 
@@ -271,14 +381,21 @@ function ProjectCard({ project, projectId }: { project: Project; projectId: stri
               <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
                 {language === 'ja' ? 'Google Search Consoleパフォーマンス' : 'Google Search Console Performance'}
               </h4>
-              <img 
-                src={project.searchConsoleImageUrl} 
-                alt="Google Search Console Performance"
-                className="w-full rounded-lg border border-zinc-700/50"
-              />
+              <div className="max-w-xl">
+                <MediaPreview
+                  media={{
+                    src: project.searchConsoleImageUrl,
+                    alt: "Google Search Console Performance",
+                    type: "image",
+                  }}
+                  className="h-56"
+                  onOpen={setSelectedMedia}
+                />
+              </div>
             </div>
           )}
       </div>
+      <MediaModal media={selectedMedia} onClose={() => setSelectedMedia(null)} />
     </motion.article>
   );
 }
