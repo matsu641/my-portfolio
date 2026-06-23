@@ -284,6 +284,21 @@ const translations = {
           githubUrl: "https://github.com/matsu641/RushHour"
         },
         {
+          title: "クリニック在庫管理システム（くわばら整形外科クリニック）",
+          period: "2026/06",
+          tags: ["Electron", "React", "TypeScript", "Vite", "pdf-lib", "Tailwind CSS", "GitHub Actions"],
+          background: "くわばら整形外科クリニック向けに、物品・検査用品・日用品・松葉杖の在庫をオフラインで管理できるWindowsデスクトップアプリを開発しました。",
+          challenges: "院内PCではWi-Fiやクラウドサービスを前提にしづらく、既存の紙・PDF注文票や外付けSSDバックアップの運用も残しながら、在庫不足と発注漏れを防ぐ必要がありました。",
+          solutions: [
+            "Electron / React / TypeScriptで端末単体で動作するアプリを構築し、商品マスタ、入出庫、アラート、発注管理、注文履歴を一体化",
+            "既存のGoods / Ciメディカル用PDF注文票に商品コード・商品名・数量を座標指定で出力し、現場の発注フローを大きく変えずに効率化",
+            "在庫データ、注文履歴、設定情報をJSONとして外付けSSDなど任意フォルダにバックアップできる仕組みを実装"
+          ],
+          learnings: "現場の制約に合わせたオフラインファースト設計、既存帳票を活かしたPDF出力、Windows x64向け配布とGitHub Actionsによるビルド検証までを一通り設計・実装しました。",
+          demoImageUrl: "/images/clinic-inventory-demo.png",
+          githubUrl: "https://github.com/matsu641/Clinic-Inventory-Management-System"
+        },
+        {
           title: "クリニックウェブサイト（くわばら整形外科クリニック）",
           period: "2024年5月 - 2024年7月",
           tags: ["HTML", "CSS", "JavaScript", "Responsive Design", "SEO", "Freelance"],
@@ -543,6 +558,21 @@ const translations = {
           learnings: "Practiced low-level hardware control through VGA rendering, interrupts, and memory-mapped I/O.",
           videoUrl: "/demos/rush-hour-demo.mp4",
           githubUrl: "https://github.com/matsu641/RushHour"
+        },
+        {
+          title: "Clinic Inventory Management System (Kuwabara Orthopedic Clinic)",
+          period: "Jun 2026",
+          tags: ["Electron", "React", "TypeScript", "Vite", "pdf-lib", "Tailwind CSS", "GitHub Actions"],
+          background: "Built a Windows desktop app for Kuwabara Orthopedic Clinic to manage supplies, examination items, daily-use goods, and crutches in an offline environment.",
+          challenges: "The clinic needed inventory visibility and ordering support without relying on Wi-Fi or cloud services, while keeping existing paper/PDF order forms and external SSD backup workflows practical.",
+          solutions: [
+            "Built an offline-first Electron / React / TypeScript app covering item masters, stock in/out records, alerts, order management, and order history",
+            "Generated order PDFs by writing item codes, names, and quantities onto existing Goods and Ci Medical PDF templates at fixed coordinates",
+            "Implemented backups for inventory data, order history, and settings to an external SSD or another local folder"
+          ],
+          learnings: "Designed and implemented a workflow-centered desktop system, including offline-first data handling, PDF template output, Windows x64 distribution, and GitHub Actions build verification.",
+          demoImageUrl: "/images/clinic-inventory-demo.png",
+          githubUrl: "https://github.com/matsu641/Clinic-Inventory-Management-System"
         },
         {
           title: "Clinic Website (Kuwabara Orthopedic Clinic)",

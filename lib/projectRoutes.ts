@@ -3,6 +3,7 @@ export const projectSlugs = [
   "employee-attrition",
   "gis-map",
   "rush-hour",
+  "clinic-inventory",
   "clinic-website",
 ] as const;
 

@@ -29,6 +29,10 @@ export function getSectionIdFromPath(pathname: string) {
   return sectionByPath[section];
 }
 
+function scrollToElement(id: string, block: ScrollLogicalPosition) {
+  document.getElementById(id)?.scrollIntoView({ block });
+}
+
 export default function SectionPathScroller() {
   const pathname = usePathname();
 
@@ -36,11 +40,13 @@ export default function SectionPathScroller() {
     const sectionId = getSectionIdFromPath(pathname);
     if (!sectionId) return;
 
+    const isProjectItem = sectionId.startsWith("project-");
+    const block: ScrollLogicalPosition = isProjectItem ? "center" : "start";
     let attempts = 0;
     const scrollWhenReady = () => {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ block: "start" });
+        element.scrollIntoView({ block });
         return;
       }
 
@@ -51,6 +57,16 @@ export default function SectionPathScroller() {
     };
 
     requestAnimationFrame(scrollWhenReady);
+
+    if (isProjectItem) {
+      const timeouts = [150, 400, 900].map((delay) =>
+        window.setTimeout(() => scrollToElement(sectionId, block), delay)
+      );
+
+      return () => {
+        timeouts.forEach((timeout) => window.clearTimeout(timeout));
+      };
+    }
   }, [pathname]);
 
   return null;
