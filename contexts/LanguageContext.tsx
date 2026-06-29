@@ -265,6 +265,21 @@ const translations = {
           githubUrl: "https://github.com/matsu641/GCI_final_project"
         },
         {
+          title: "Commit Message Reviewer（LLM GitレビューCLI）",
+          period: "2026/06",
+          tags: ["TypeScript", "Node.js", "CLI", "OpenRouter", "LLM", "HTML Report"],
+          background: "Gitリポジトリの直近コミットメッセージをLLMで評価し、品質をレビューするCLIツールを開発しました。",
+          challenges: "ローカルリポジトリとリモートGitHub URLの両方に対応し、LLMの評価結果をターミナルとHTMLレポートの両方で確認できるようにする必要がありました。また、LLM評価の揺れを抑えるため、プロンプト設計と評価基準の調整も重要でした。",
+          solutions: [
+            "Node.js / TypeScriptで`review-commits` CLIを実装し、現在の作業ディレクトリまたは`--url`で指定したリモートリポジトリを解析",
+            "Gitコマンドから直近コミットのhash、author、date、subject、bodyを取得し、OpenRouter APIのLLMにJSON形式でレビューさせる構成を設計",
+            "評価結果を`excellent`、`good`、`bad`と理由に分けてターミナルに表示し、同時にHTMLレポートを生成してlocalhost:3546で配信",
+            "LLMの判定が`good`や`excellent`に偏る問題に対して、評価ルーブリックとtemperature設定を調整"
+          ],
+          learnings: "LLMを使った評価機能では、単にAPIを呼び出すだけでなく、出力形式の安定化、評価基準の設計、プロンプトの過学習回避、結果の再現性への配慮が重要であることを学びました。",
+          githubUrl: "https://github.com/matsu641/commit-message-reviewer"
+        },
+        {
           title: "Interactive Map & Navigation System（GISアプリケーション）",
           period: "2025/01 - 2025/04",
           tags: ["C++", "Algorithms", "A*", "GIS", "UI/UX", "Linux"],
@@ -549,6 +564,21 @@ const translations = {
           learnings: "Summarized the analysis, model results, and proposed countermeasures into a business proposal slide deck, completing the full process from data analysis to AI model implementation and business solution design. I met the completion requirements and completed the program, which had an approximately 14% completion rate.",
           slideUrl: "/certificates/gci-final-project-slides.pdf",
           githubUrl: "https://github.com/matsu641/GCI_final_project"
+        },
+        {
+          title: "Commit Message Reviewer (LLM Git Review CLI)",
+          period: "Jun 2026",
+          tags: ["TypeScript", "Node.js", "CLI", "OpenRouter", "LLM", "HTML Report"],
+          background: "Built a TypeScript CLI tool that reviews recent Git commit messages with an LLM and reports whether each message is excellent, good, or bad.",
+          challenges: "The tool needed to work on both the current local repository and remote GitHub repositories, then show results in terminal logs and an HTML report. A key challenge was making LLM-based evaluation useful and reasonably stable instead of drifting toward one rating.",
+          solutions: [
+            "Implemented a `review-commits` Node.js / TypeScript CLI that runs on the current working directory or clones a repository passed through `--url`",
+            "Collected recent commit hash, author, date, subject, and body data through Git commands and sent structured review requests to OpenRouter",
+            "Generated terminal logs and an HTML report, then served the report locally on port 3546 with Node's built-in HTTP server",
+            "Iterated on the LLM rubric, JSON-only prompt design, temperature settings, and rating boundaries to reduce bias toward `good` or `excellent`"
+          ],
+          learnings: "Learned that LLM product work requires more than API integration: prompt boundaries, output validation, reproducibility, fallback handling, and clear user-facing reports all matter for a reliable developer tool.",
+          githubUrl: "https://github.com/matsu641/commit-message-reviewer"
         },
         {
           title: "Interactive Map & Navigation System (GIS Application)",

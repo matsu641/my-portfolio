@@ -1,6 +1,7 @@
 export const projectSlugs = [
   "chest-xray",
   "employee-attrition",
+  "commit-message-reviewer",
   "gis-map",
   "rush-hour",
   "clinic-inventory",
