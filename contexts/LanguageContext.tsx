@@ -55,8 +55,8 @@ const translations = {
     hero: {
       greeting: "はじめまして、",
       name: "松戸美純です！",
-      title: "I design systems,",
-      subtitle: "not just interfaces.",
+      title: "Computer Engineering student",
+      subtitle: "at University of Toronto.",
       description: "I turn technical ideas into practical AI and software products.",
       cta: "View Projects"
     },
@@ -339,8 +339,8 @@ const translations = {
     hero: {
       greeting: "Hi, I'm ",
       name: "Misumi Matsudo",
-      title: "CE student at UofT,",
-      subtitle: "building AI and full-stack systems.",
+      title: "Computer Engineering student",
+      subtitle: "at University of Toronto.",
       description: "I turn technical ideas into practical AI and software products.",
       cta: "View Projects"
     },

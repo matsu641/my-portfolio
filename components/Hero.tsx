@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
+import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -246,7 +247,37 @@ export default function Hero() {
   const [displayedSubtitle, setDisplayedSubtitle] = useState("");
   const [isTypingTitle, setIsTypingTitle] = useState(true);
   const [isTypingSubtitle, setIsTypingSubtitle] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const highlights = [
+    {
+      icon: "🎓",
+      label: "Computer Engineering Student",
+      detail: "University of Toronto",
+      meta: "Expected May 2028",
+      tone: "border-cyan-300/25",
+    },
+    {
+      icon: "💼",
+      label: "3+ Internships",
+      detail: "AI Engineering, SWE, and Freelance",
+      meta: "2024 - Present",
+      tone: "border-orange-300/25",
+    },
+    {
+      icon: "</>",
+      label: "5+ Projects",
+      detail: "AI, Full-Stack, and Web Development",
+      meta: "Production-Ready",
+      tone: "border-emerald-300/25",
+    },
+    {
+      icon: "👥",
+      label: "Volunteer Work",
+      detail: "AWS, Caddy, TypeScript, Docker",
+      meta: "Since Sep 2023",
+      tone: "border-violet-300/25",
+    },
+  ];
 
   // タイピングアニメーション
   useEffect(() => {
@@ -304,7 +335,7 @@ export default function Hero() {
       />
 
       {/* コンテンツ - ガラスモーフィズム */}
-      <div className="relative z-10 max-w-4xl w-full">
+      <div className="relative z-10 w-full max-w-7xl pt-24 md:pt-16">
         {/* ガラス効果用の外側グロー */}
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 rounded-3xl blur-3xl"></div>
         
@@ -312,11 +343,20 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="relative backdrop-blur-2xl bg-gradient-to-br from-white/[0.08] via-cyan-500/[0.05] to-emerald-500/[0.08] p-8 md:p-12 rounded-3xl border-2 border-white/30 shadow-[0_8px_32px_0_rgba(0,217,255,0.2)] before:absolute before:inset-0 before:rounded-3xl before:p-[2px] before:bg-gradient-to-br before:from-cyan-400/40 before:via-transparent before:to-emerald-400/40 before:-z-10"
+          className="relative rounded-3xl border-2 border-white/25 bg-gradient-to-br from-white/[0.08] via-cyan-500/[0.05] to-emerald-500/[0.08] p-6 shadow-[0_8px_32px_0_rgba(0,217,255,0.2)] backdrop-blur-2xl before:absolute before:inset-0 before:-z-10 before:rounded-3xl before:bg-gradient-to-br before:from-cyan-400/40 before:via-transparent before:to-emerald-400/40 before:p-[2px] md:p-10"
           style={{
             boxShadow: '0 8px 32px 0 rgba(0, 217, 255, 0.2), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2)'
           }}
         >
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.6 }}
+            className="absolute -top-14 left-0 inline-flex items-center gap-3 rounded-full border border-emerald-300/25 bg-white/10 px-4 py-2 text-sm font-medium text-zinc-100 shadow-lg shadow-cyan-950/20 backdrop-blur-md"
+          >
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,0.9)]" />
+            {language === "ja" ? "Open to Internships & New Grad" : "Open to Internships & New Grad"}
+          </motion.div>
 
           {/* 挨拶と名前 */}
           <motion.p
@@ -352,6 +392,61 @@ export default function Hero() {
             {t('hero.description')}
           </motion.p>
 
+              {/* <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.95, duration: 0.6 }}
+                className="mb-8 max-w-2xl text-base leading-7 text-zinc-200 md:text-lg"
+              >
+                I build AI-powered and full-stack systems, from ML experiments to practical products used by real teams.
+              </motion.p> */}
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.05, duration: 0.6 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Link
+                  href="/#projects"
+                  className="inline-flex items-center gap-3 rounded-lg bg-gradient-to-r from-blue-500 to-emerald-400 px-6 py-3 font-semibold text-white shadow-lg shadow-cyan-500/25 transition-transform hover:-translate-y-0.5"
+                >
+                  View Projects
+                  <span aria-hidden="true">-&gt;</span>
+                </Link>
+                <a
+                  href="https://github.com/matsu641"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/15"
+                >
+                  GitHub
+                </a>
+              </motion.div>
+
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1, duration: 0.6 }}
+          className="relative mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {highlights.map((highlight) => (
+            <div
+              key={highlight.label}
+              className={`rounded-xl border ${highlight.tone} bg-transparent p-4`}
+            >
+              <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-lg shadow-lg shadow-black/20 backdrop-blur-sm">
+                {highlight.icon}
+              </div>
+              <h3 className="text-sm font-bold text-white md:text-base">{highlight.label}</h3>
+              <p className="mt-2 min-h-10 text-sm leading-5 text-zinc-300">{highlight.detail}</p>
+              <span className="mt-4 inline-flex rounded-md border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-zinc-200">
+                {highlight.meta}
+              </span>
+            </div>
+          ))}
         </motion.div>
       </div>
 

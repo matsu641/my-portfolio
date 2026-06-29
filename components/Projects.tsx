@@ -505,7 +505,7 @@ export default function Projects({
     ? projectIndices
         .map((projectIndex) => ({
           project: projects?.[projectIndex],
-          slug: projectSlugs[projectIndex],
+          slug: projectSlugs[projectIndex] as string | undefined,
         }))
         .filter((entry): entry is { project: Project; slug: string } => Boolean(entry.project && entry.slug))
     : (projects || []).map((project, idx) => ({
