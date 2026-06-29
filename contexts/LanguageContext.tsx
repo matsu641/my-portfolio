@@ -280,10 +280,10 @@ const translations = {
           videoUrl: "/demos/map_application.mp4"
         },
         {
-          title: "Rush Hour（駐車場パズルゲーム）",
+          title: "Rush Hour（駐車場パズルゲーム）組込みシステム開発",
           period: "2025/03 - 2025/04",
           tags: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems","RISC-V"],
-          background: "大学のプロジェクトとして、CPUlator上で動作するRush Hour形式のパズルゲームをC言語で実装しました。",
+          background: "大学のプロジェクトとして、DE1Socボード上でPCとキーボードを連携させて動作するパズルゲームをC言語で実装しました。",
           challenges: "VGA描画とPS/2キーボード入力を直接扱い、限られた組み込み環境の中でリアルタイムに動作するゲームを作成しました。",
           solutions: [
             "Double Bufferingを用いて画面のちらつきを軽減",
@@ -566,10 +566,10 @@ const translations = {
           videoUrl: "/demos/map_application.mp4"
         },
         {
-          title: "Rush Hour (Parking Puzzle Game)",
+          title: "Rush Hour (Parking Puzzle Game) on Embedded System",
           period: "Mar 2025 - Apr 2025",
           tags: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems","RISC-V"],
-          background: "Implemented a Rush Hour-style puzzle game in C on CPUlator for ECE243.",
+          background: "Implemented a Rush Hour-style puzzle game in C with VGA and PS/2 keyboard support for ECE243(Computer Organization).",
           challenges: "The project involved direct control of VGA graphics and PS/2 keyboard input, requiring real-time interaction under limited embedded-system resources.",
           solutions: [
             "Used double buffering to reduce screen flickering",
