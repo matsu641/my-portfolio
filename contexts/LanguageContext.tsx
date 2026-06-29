@@ -268,7 +268,7 @@ const translations = {
           title: "Interactive Map & Navigation System（GISアプリケーション）",
           period: "2025/01 - 2025/04",
           tags: ["C++", "Algorithms", "A*", "GIS", "UI/UX", "Linux"],
-          background: "ECE297の3人チームプロジェクトとして、OpenStreetMapのデータを用いたC++製GISアプリケーションを開発しました。",
+          background: "大学の3人チームプロジェクトとして、OpenStreetMapのデータを用いたC++でGISアプリケーションを開発しました。",
           challenges: "大規模な道路ネットワークデータを扱いながら、地図表示、経路探索、配送経路最適化を実装しました。",
           solutions: [
             "A*ベースの最短経路探索を実装",
@@ -283,7 +283,7 @@ const translations = {
           title: "Rush Hour（駐車場パズルゲーム）",
           period: "2025/03 - 2025/04",
           tags: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems","RISC-V"],
-          background: "ECE243の個人プロジェクトとして、CPUlator上で動作するRush Hour形式のパズルゲームをC言語で実装しました。",
+          background: "大学のプロジェクトとして、CPUlator上で動作するRush Hour形式のパズルゲームをC言語で実装しました。",
           challenges: "VGA描画とPS/2キーボード入力を直接扱い、限られた組み込み環境の中でリアルタイムに動作するゲームを作成しました。",
           solutions: [
             "Double Bufferingを用いて画面のちらつきを軽減",
@@ -297,7 +297,7 @@ const translations = {
           title: "クリニック在庫管理システム（くわばら整形外科クリニック）",
           period: "2026/06",
           tags: ["Electron", "React", "TypeScript", "Vite", "pdf-lib", "Tailwind CSS", "GitHub Actions"],
-          background: "くわばら整形外科クリニック向けに、物品・検査用品・日用品・松葉杖の在庫をオフラインで管理できるWindowsデスクトップアプリを開発しました。",
+          background: "クリニック向けに、物品・検査用品・日用品・松葉杖の在庫をオフラインで管理できるWindowsデスクトップアプリを開発しました。",
           challenges: "院内PCではWi-Fiやクラウドサービスを前提にしづらく、既存の紙・PDF注文票や外付けSSDバックアップの運用も残しながら、在庫不足と発注漏れを防ぐ必要がありました。",
           solutions: [
             "Electron / React / TypeScriptで端末単体で動作するアプリを構築し、商品マスタ、入出庫、アラート、発注管理、注文履歴を一体化",
@@ -311,11 +311,11 @@ const translations = {
         {
           title: "クリニックウェブサイト（くわばら整形外科クリニック）",
           period: "2024年5月 - 2024年7月",
-          tags: ["HTML", "CSS", "JavaScript", "Responsive Design", "SEO", "Freelance"],
+          tags: ["HTML", "CSS", "TypeScript", "Vercel", "SEO"],
           background: "フリーランス案件として、整形外科クリニックの公式Webサイトを設計・開発・公開しました。",
           challenges: "要件整理、サイト構成、実装、SEO、公開、公開後の追加対応まで一貫して担当しました。",
           solutions: [
-            "HTML、CSS、JavaScriptでレスポンシブサイトを実装",
+            "HTML、CSS、TypeScriptでレスポンシブサイトを実装",
             "基本的なSEO対策と、QRコードからアクセスできる専用情報ページを追加"
           ],
           learnings: "公開後3ヶ月で2,856インプレッション、343クリック、CTR 12%を達成しました。",
@@ -597,11 +597,11 @@ const translations = {
         {
           title: "Clinic Website (Kuwabara Orthopedic Clinic)",
           period: "May 2024 - Jul 2024",
-          tags: ["HTML", "CSS", "JavaScript", "Responsive Design", "SEO", "Freelance"],
+          tags: ["HTML", "CSS", "TypeScript", "Vercel", "SEO"],
           background: "Designed, developed, and deployed a responsive website for an orthopedic clinic as a freelance web development project.",
           challenges: "I handled the full process from requirements gathering and site structure to implementation, SEO, deployment, and post-launch updates.",
           solutions: [
-            "Built the website with HTML, CSS, and JavaScript for mobile, tablet, and desktop",
+            "Built the website with HTML, CSS, and TypeScript for mobile, tablet, and desktop",
             "Implemented basic SEO improvements to improve online visibility and accessibility"
           ],
           learnings: "Achieved 2,856 impressions and 343 clicks with a 12% CTR within 3 months after launch, and the website continues to receive daily visitors while contributing to an increase in new patients.",

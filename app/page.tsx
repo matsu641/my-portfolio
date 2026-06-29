@@ -1,25 +1,5 @@
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Certifications from "@/components/Certifications";
-import Contact from "@/components/Contact";
-import LanguageToggle from "@/components/LanguageToggle";
-import SectionPathScroller from "@/components/SectionPathScroller";
+import PortfolioPage from "@/components/PortfolioPage";
 
 export default function Home() {
-  return (
-    <main className="min-h-screen">
-      <SectionPathScroller />
-      <LanguageToggle />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Certifications />
-      <Contact />
-    </main>
-  );
+  return <PortfolioPage />;
 }

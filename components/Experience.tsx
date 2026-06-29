@@ -3,6 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  experienceKeysByVariant,
+  type PortfolioVariant,
+} from "@/lib/portfolioVariants";
 
 const container = {
   hidden: { opacity: 0 },
@@ -66,8 +70,13 @@ function TaskList({ tasks }: { tasks: string[] }) {
   );
 }
 
-export default function Experience() {
+export default function Experience({
+  variant = "default",
+}: {
+  variant?: PortfolioVariant;
+}) {
   const { t, language } = useLanguage();
+  const visibleExperienceKeys = experienceKeysByVariant[variant];
   const equos = t<ExperienceEntry>('about.experience.equos');
   const starup = t<ExperienceEntry>('about.experience.starup');
   const freelance = t<ExperienceEntry>('about.experience.freelance');
@@ -81,7 +90,7 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
+    <section id="experience" className="scroll-mt-24 py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
       <div className="max-w-4xl mx-auto">
         <motion.div
           variants={container}
@@ -96,58 +105,65 @@ export default function Experience() {
           <motion.div variants={item} className="mb-16">
             <h3 className="text-2xl font-bold mb-6">{t('about.experience.title')}</h3>
             <div className="space-y-8">
-              <div className="border-l-2 border-accent pl-6">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="text-xl font-semibold">{t('about.experience.equos.role')}</h4>
-                    <p className="text-accent font-medium">{t('about.experience.equos.company')}</p>
-                  </div>
-                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.equos.period')}</span>
-                </div>
-                <p className="text-zinc-300 mb-4">{t('about.experience.equos.location')}</p>
-                <SkillTags tags={equos.tags} />
-                <div className="space-y-5">
-                  {equos.projects?.map((project: ProjectExperience, index: number) => (
-                    <div key={index}>
-                      <div className="flex justify-between items-baseline mb-2">
-                        <h5 className="text-sm font-semibold text-zinc-200">{project.title}</h5>
-                        <span className="text-xs text-zinc-400 whitespace-nowrap ml-3">{project.period}</span>
-                      </div>
-                      <TaskList tasks={project.tasks} />
+              {visibleExperienceKeys.includes("equos") && (
+                <div className="border-l-2 border-accent pl-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="text-xl font-semibold">{t('about.experience.equos.role')}</h4>
+                      <p className="text-accent font-medium">{t('about.experience.equos.company')}</p>
                     </div>
-                  ))}
-                  {!equos.projects && equos.tasks && <TaskList tasks={equos.tasks} />}
-                </div>
-              </div>
-
-              <div className="border-l-2 border-accent pl-6">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="text-xl font-semibold">{t('about.experience.starup.role')}</h4>
-                    <p className="text-accent font-medium">{t('about.experience.starup.company')}</p>
+                    <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.equos.period')}</span>
                   </div>
-                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.starup.period')}</span>
-                </div>
-                <p className="text-zinc-300 mb-3">{t('about.experience.starup.location')}</p>
-                <SkillTags tags={starup.tags} />
-                <TaskList tasks={t<string[]>('about.experience.starup.tasks')} />
-              </div>
-
-              <div className="border-l-2 border-accent pl-6">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 className="text-xl font-semibold">{t('about.experience.freelance.role')}</h4>
-                    <p className="text-accent font-medium">{t('about.experience.freelance.company')}</p>
+                  <p className="text-zinc-300 mb-4">{t('about.experience.equos.location')}</p>
+                  <SkillTags tags={equos.tags} />
+                  <div className="space-y-5">
+                    {equos.projects?.map((project: ProjectExperience, index: number) => (
+                      <div key={index}>
+                        <div className="flex justify-between items-baseline mb-2">
+                          <h5 className="text-sm font-semibold text-zinc-200">{project.title}</h5>
+                          <span className="text-xs text-zinc-400 whitespace-nowrap ml-3">{project.period}</span>
+                        </div>
+                        <TaskList tasks={project.tasks} />
+                      </div>
+                    ))}
+                    {!equos.projects && equos.tasks && <TaskList tasks={equos.tasks} />}
                   </div>
-                  <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.freelance.period')}</span>
                 </div>
-                <p className="text-zinc-300 mb-3">{t('about.experience.freelance.location')}</p>
-                <SkillTags tags={freelance.tags} />
-                <TaskList tasks={t<string[]>('about.experience.freelance.tasks')} />
-              </div>
+              )}
+
+              {visibleExperienceKeys.includes("starup") && (
+                <div className="border-l-2 border-accent pl-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="text-xl font-semibold">{t('about.experience.starup.role')}</h4>
+                      <p className="text-accent font-medium">{t('about.experience.starup.company')}</p>
+                    </div>
+                    <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.starup.period')}</span>
+                  </div>
+                  <p className="text-zinc-300 mb-3">{t('about.experience.starup.location')}</p>
+                  <SkillTags tags={starup.tags} />
+                  <TaskList tasks={t<string[]>('about.experience.starup.tasks')} />
+                </div>
+              )}
+
+              {visibleExperienceKeys.includes("freelance") && (
+                <div className="border-l-2 border-accent pl-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <h4 className="text-xl font-semibold">{t('about.experience.freelance.role')}</h4>
+                      <p className="text-accent font-medium">{t('about.experience.freelance.company')}</p>
+                    </div>
+                    <span className="text-sm text-zinc-300 whitespace-nowrap ml-4">{t('about.experience.freelance.period')}</span>
+                  </div>
+                  <p className="text-zinc-300 mb-3">{t('about.experience.freelance.location')}</p>
+                  <SkillTags tags={freelance.tags} />
+                  <TaskList tasks={t<string[]>('about.experience.freelance.tasks')} />
+                </div>
+              )}
             </div>
           </motion.div>
 
+          {visibleExperienceKeys.includes("utjn") && (
           <motion.div variants={item}>
             <h3 className="text-2xl font-bold mb-6">{t('about.activities.title')}</h3>
             <div className="border-l-2 border-accent pl-6">
@@ -203,6 +219,7 @@ export default function Experience() {
               </div>
             </div>
           </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

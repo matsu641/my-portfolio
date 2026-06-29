@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { projectSlugSet } from "@/lib/projectRoutes";
-import Home from "../../page";
+import LanguageToggle from "@/components/LanguageToggle";
+import { ProjectDetail } from "@/components/Projects";
+import TopNavigation from "@/components/TopNavigation";
 
 export default async function ProjectItemPage({
   params,
@@ -22,5 +24,11 @@ export default async function ProjectItemPage({
     notFound();
   }
 
-  return <Home />;
+  return (
+    <main className="min-h-screen">
+      <TopNavigation />
+      <LanguageToggle />
+      <ProjectDetail slug={normalizedItem} />
+    </main>
+  );
 }

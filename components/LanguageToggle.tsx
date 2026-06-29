@@ -11,7 +11,7 @@ export default function LanguageToggle() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="fixed top-6 right-6 z-50"
+      className="fixed right-4 top-4 z-50 md:right-6"
     >
       <div className="flex items-center gap-2 bg-background/80 backdrop-blur-md border border-foreground/10 rounded-full p-1">
         <button

@@ -50,7 +50,7 @@ export default function Contact() {
   const { t } = useLanguage();
   
   return (
-    <section id="contact" className="py-24 md:py-32 px-6 md:px-8">
+    <section id="contact" className="scroll-mt-24 py-24 md:py-32 px-6 md:px-8">
       <div className="max-w-4xl mx-auto">
         <motion.div
           variants={container}

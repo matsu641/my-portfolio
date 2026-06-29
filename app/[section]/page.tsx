@@ -19,8 +19,9 @@ export default async function SectionPage({
   params: Promise<{ section: string }>;
 }) {
   const { section } = await params;
+  const normalizedSection = section.toLowerCase();
 
-  if (!supportedSections.has(section.toLowerCase())) {
+  if (!supportedSections.has(normalizedSection)) {
     notFound();
   }
 

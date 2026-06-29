@@ -1,9 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { projectSlugs } from "@/lib/projectRoutes";
+import {
+  getVariantBasePath,
+  projectIndicesByVariant,
+  type PortfolioVariant,
+} from "@/lib/portfolioVariants";
 
 const container = {
   hidden: { opacity: 0 },
@@ -37,6 +43,7 @@ type Project = {
   demoImageUrl?: string;
   videoUrl?: string;
   searchConsoleImageUrl?: string;
+  thumbnailImageUrl?: string;
 };
 
 type ProjectMedia = {
@@ -136,7 +143,93 @@ function MediaModal({
   );
 }
 
-function ProjectCard({ project, projectId }: { project: Project; projectId: string }) {
+function getProjectPreview(project: Project): ProjectMedia | null {
+  const src =
+    project.thumbnailImageUrl ||
+    project.demoImageUrl ||
+    project.analysisImages?.[0] ||
+    project.confusionMatrixImages?.[0] ||
+    project.leaderboardImageUrl ||
+    project.searchConsoleImageUrl ||
+    project.videoUrl;
+
+  if (!src) return null;
+
+  return {
+    src,
+    alt: project.title,
+    type: src.endsWith(".mp4") ? "video" : "image",
+  };
+}
+
+function ProjectSummaryCard({
+  project,
+  href,
+}: {
+  project: Project;
+  href: string;
+}) {
+  const { language } = useLanguage();
+  const preview = getProjectPreview(project);
+
+  return (
+    <motion.article variants={item}>
+      <Link
+        href={href}
+        className="group grid gap-5 rounded-lg border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-cyan-300/40 hover:bg-white/[0.06] md:grid-cols-[240px_1fr]"
+      >
+        <div className="relative h-44 overflow-hidden rounded-md bg-zinc-900 md:h-full">
+          {preview?.type === "video" ? (
+            <video muted preload="metadata" className="h-full w-full object-cover">
+              <source src={preview.src} type="video/mp4" />
+            </video>
+          ) : preview ? (
+            <img src={preview.src} alt={preview.alt} className="h-full w-full object-cover" />
+          ) : (
+            <div className="flex h-full items-center justify-center bg-gradient-to-br from-cyan-950 to-zinc-900 px-4 text-center text-sm text-zinc-300">
+              Project Preview
+            </div>
+          )}
+        </div>
+
+        <div className="flex min-w-0 flex-col">
+          <div>
+            <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
+              <h3 className="text-xl font-bold text-white transition-colors group-hover:text-cyan-200">
+                {project.title}
+              </h3>
+              <span className="shrink-0 text-sm font-mono text-zinc-300">{project.period}</span>
+            </div>
+
+            {project.tags && project.tags.length > 0 && (
+              <div className="mb-4 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-mono text-cyan-100"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {project.background && (
+              <p className="line-clamp-2 text-sm leading-6 text-zinc-300">{project.background}</p>
+            )}
+          </div>
+
+          <span className="mt-auto self-end pt-5 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition-all group-hover:translate-x-1 group-hover:text-white">
+            {language === "ja" ? "詳細を見る" : "View details"}
+            <span aria-hidden="true">-&gt;</span>
+          </span>
+        </div>
+      </Link>
+    </motion.article>
+  );
+}
+
+function ProjectDetailCard({ project, projectId }: { project: Project; projectId: string }) {
   const { t, language } = useLanguage();
   const [selectedMedia, setSelectedMedia] = useState<ProjectMedia | null>(null);
 
@@ -400,16 +493,33 @@ function ProjectCard({ project, projectId }: { project: Project; projectId: stri
   );
 }
 
-export default function Projects() {
+export default function Projects({
+  variant = "default",
+}: {
+  variant?: PortfolioVariant;
+}) {
   const { t, language } = useLanguage();
   const projects = t<Project[]>('projects.items');
+  const projectIndices = projectIndicesByVariant[variant];
+  const visibleProjects = projectIndices
+    ? projectIndices
+        .map((projectIndex) => ({
+          project: projects?.[projectIndex],
+          slug: projectSlugs[projectIndex],
+        }))
+        .filter((entry): entry is { project: Project; slug: string } => Boolean(entry.project && entry.slug))
+    : (projects || []).map((project, idx) => ({
+        project,
+        slug: projectSlugs[idx] ?? String(idx),
+      }));
+  const basePath = getVariantBasePath(variant);
   
   if (!projects || !Array.isArray(projects)) {
     return <div className="text-center text-zinc-300">No projects found</div>;
   }
   
   return (
-    <section id="projects" className="py-24 md:py-32 px-6 md:px-8">
+    <section id="projects" className="scroll-mt-24 py-24 md:py-32 px-6 md:px-8">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-16">{t('projects.title')}</h2>
 
@@ -421,14 +531,45 @@ export default function Projects() {
           viewport={{ once: true, margin: "-100px" }}
           className="space-y-8"
         >
-          {(projects as Project[]).map((project, idx) => (
-            <ProjectCard
-              key={`${language}-${project.title}-${idx}`}
+          {visibleProjects.map(({ project, slug }) => (
+            <ProjectSummaryCard
+              key={`${language}-${project.title}-${slug}`}
               project={project}
-              projectId={`project-${projectSlugs[idx] ?? idx}`}
+              href={`${basePath}/projects/${slug}`}
             />
           ))}
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+export function ProjectDetail({
+  slug,
+  backHref = "/#projects",
+}: {
+  slug: string;
+  backHref?: string;
+}) {
+  const { t, language } = useLanguage();
+  const projects = t<Project[]>('projects.items');
+  const index = projectSlugs.findIndex((projectSlug) => projectSlug === slug);
+  const project = projects?.[index];
+
+  if (!project) {
+    return <div className="px-6 py-32 text-center text-zinc-300">Project not found</div>;
+  }
+
+  return (
+    <section className="px-6 py-28 md:px-8 md:py-32">
+      <div className="mx-auto max-w-5xl">
+        <Link
+          href={backHref}
+          className="mb-8 inline-flex text-sm font-medium text-cyan-200 transition-colors hover:text-white"
+        >
+          {language === "ja" ? "Projectsへ戻る" : "Back to Projects"}
+        </Link>
+        <ProjectDetailCard project={project} projectId={`project-${slug}`} />
       </div>
     </section>
   );

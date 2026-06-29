@@ -47,7 +47,7 @@ export default function Certifications() {
   const certifications = t<Certification[]>('about.certifications.items');
 
   return (
-    <section id="certifications" className="py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
+    <section id="certifications" className="scroll-mt-24 py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
       <div className="max-w-4xl mx-auto">
         <motion.div
           variants={container}

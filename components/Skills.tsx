@@ -186,7 +186,7 @@ export default function Skills() {
   const { t } = useLanguage();
   
   return (
-    <section id="skills" className="py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
+    <section id="skills" className="scroll-mt-24 py-24 md:py-32 px-6 md:px-8 bg-foreground/[0.02]">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('skills.title')}</h2>
 
