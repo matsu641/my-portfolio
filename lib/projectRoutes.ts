@@ -5,6 +5,7 @@ export const projectSlugs = [
   "gis-map",
   "rush-hour",
   "clinic-inventory",
+  "appointment-system",
   "clinic-website",
 ] as const;
 

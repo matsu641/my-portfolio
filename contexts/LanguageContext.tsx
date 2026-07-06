@@ -324,6 +324,20 @@ const translations = {
           githubUrl: "https://github.com/matsu641/Clinic-Inventory-Management-System"
         },
         {
+          title: "予約管理システム",
+          period: "2026/07",
+          tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "UI/UX"],
+          background: "小規模事業者やクリニックでの利用を想定し、予約表、空き枠確認、顧客情報を一画面で扱える予約管理システムのデモを制作しました。",
+          challenges: "紙・電話・表計算ソフトで分散しがちな予約情報を、担当者別の予定や顧客情報と結びつけて、確認漏れが起きにくい画面に整理する必要がありました。",
+          solutions: [
+            "予約状況、顧客情報、予約詳細を同じ流れで確認できる画面構成を設計",
+            "空き枠や担当者ごとの予定を見つけやすいように、一覧性を重視したUIを作成",
+            "実際の業務利用を想定し、操作の流れが伝わるデモ動画を作成"
+          ],
+          learnings: "業務システムでは、機能数よりも現場で迷わず使える情報設計と導線設計が重要であることを意識して制作しました。",
+          videoUrl: "/demos/appo_system_demo_hq.mp4"
+        },
+        {
           title: "クリニックウェブサイト（くわばら整形外科クリニック）",
           period: "2024年5月 - 2024年7月",
           tags: ["HTML", "CSS", "TypeScript", "Vercel", "SEO"],
@@ -623,6 +637,20 @@ const translations = {
           learnings: "Designed and implemented a workflow-centered desktop system, including offline-first data handling, PDF template output, Windows x64 distribution, and GitHub Actions build verification.",
           demoImageUrl: "/images/clinic-inventory-demo.png",
           githubUrl: "https://github.com/matsu641/Clinic-Inventory-Management-System"
+        },
+        {
+          title: "Appointment Management System",
+          period: "Jul 2026",
+          tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "UI/UX"],
+          background: "Built a demo appointment management system for small businesses and clinics, focusing on schedules, available slots, and customer information in one workflow.",
+          challenges: "Appointment information is often scattered across calls, notes, and spreadsheets, so the UI needed to make schedules and customer details easy to verify at a glance.",
+          solutions: [
+            "Designed a screen flow that keeps appointment status, customer details, and reservation notes in one place",
+            "Prioritized scan-friendly layouts for checking available slots and staff schedules",
+            "Created a demo video to communicate the core workflow clearly"
+          ],
+          learnings: "This project reinforced that practical business tools depend on clear information architecture and low-friction workflows as much as implementation details.",
+          videoUrl: "/demos/appo_system_demo_hq.mp4"
         },
         {
           title: "Clinic Website (Kuwabara Orthopedic Clinic)",
