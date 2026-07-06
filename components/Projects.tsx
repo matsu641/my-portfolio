@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { projectSlugs } from "@/lib/projectRoutes";
 import {
@@ -10,19 +10,6 @@ import {
   projectIndicesByVariant,
   type PortfolioVariant,
 } from "@/lib/portfolioVariants";
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 }
-};
 
 type Project = {
   title: string;
@@ -46,449 +33,159 @@ type Project = {
   thumbnailImageUrl?: string;
 };
 
-type ProjectMedia = {
-  src: string;
-  alt: string;
-  label?: string;
-  type: "image" | "video";
-};
+const selectedDefaultIndices = [5, 2, 3, 0, 6, 7];
 
-function MediaPreview({
-  media,
-  className = "h-40",
-  onOpen,
-}: {
-  media: ProjectMedia;
-  className?: string;
-  onOpen: (media: ProjectMedia) => void;
-}) {
+const cleanTitle = (title: string) =>
+  title
+    .replace(/\s*\([^)]*\)/g, "")
+    .replace("Interactive Map & Navigation System", "GIS Navigation System")
+    .replace("Commit Message Reviewer", "AI Document Review")
+    .replace("Chest X-ray Disease Classification", "Chest X-ray Classification")
+    .replace("Clinic Inventory Management System", "Clinic Inventory Management System")
+    .trim();
+
+function getProjectPreview(project: Project): string | null {
   return (
-    <button
-      type="button"
-      onClick={() => onOpen(media)}
-      className="group block w-full text-left"
-      aria-label={`Open ${media.label || media.alt}`}
-    >
-      <div className="relative w-full overflow-hidden rounded-lg border border-zinc-600/60 bg-white p-2 transition-all group-hover:border-blue-400/70 group-hover:shadow-lg group-hover:shadow-blue-400/20">
-        {media.type === "video" ? (
-          <>
-            <video muted preload="metadata" className={`w-full ${className} object-contain`}>
-              <source src={media.src} type="video/mp4" />
-            </video>
-          </>
-        ) : (
-          <img src={media.src} alt={media.alt} className={`w-full ${className} object-contain`} />
-        )}
-        <span className="absolute inset-0 flex items-center justify-center bg-black/0 text-white opacity-0 transition-all group-hover:bg-black/35 group-hover:opacity-100">
-          <span className="inline-flex items-center gap-2 rounded-full bg-black/75 px-4 py-2 text-sm font-medium shadow-lg">
-            {media.type === "video" ? (
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            ) : (
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-              </svg>
-            )}
-            <span>{media.type === "video" ? "Click to play" : "Click to view"}</span>
-          </span>
-        </span>
-      </div>
-      {media.label && (
-        <p className="mt-2 text-xs text-zinc-300 text-center leading-snug">{media.label}</p>
-      )}
-    </button>
-  );
-}
-
-function MediaModal({
-  media,
-  onClose,
-}: {
-  media: ProjectMedia | null;
-  onClose: () => void;
-}) {
-  if (!media) return null;
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-6"
-      role="dialog"
-      aria-modal="true"
-      aria-label={media.label || media.alt}
-      onClick={onClose}
-    >
-      <div className="relative w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute -top-12 right-0 rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white hover:bg-white/20"
-          aria-label="Close media preview"
-        >
-          Close
-        </button>
-        <div className="rounded-lg border border-white/20 bg-zinc-950 p-3 shadow-2xl">
-          {media.type === "video" ? (
-            <video controls autoPlay className="max-h-[82vh] w-full object-contain">
-              <source src={media.src} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <img src={media.src} alt={media.alt} className="max-h-[82vh] w-full object-contain" />
-          )}
-        </div>
-        {media.label && <p className="mt-3 text-center text-sm text-zinc-200">{media.label}</p>}
-      </div>
-    </div>
-  );
-}
-
-function getProjectPreview(project: Project): ProjectMedia | null {
-  const src =
     project.thumbnailImageUrl ||
     project.demoImageUrl ||
     project.analysisImages?.[0] ||
-    project.confusionMatrixImages?.[0] ||
+    project.videoUrl ||
     project.leaderboardImageUrl ||
     project.searchConsoleImageUrl ||
-    project.videoUrl;
-
-  if (!src) return null;
-
-  return {
-    src,
-    alt: project.title,
-    type: src.endsWith(".mp4") ? "video" : "image",
-  };
-}
-
-function ProjectSummaryCard({
-  project,
-  href,
-}: {
-  project: Project;
-  href: string;
-}) {
-  const { language } = useLanguage();
-  const preview = getProjectPreview(project);
-
-  return (
-    <motion.article variants={item}>
-      <Link
-        href={href}
-        className="group grid gap-5 rounded-lg border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-cyan-300/40 hover:bg-white/[0.06] md:grid-cols-[240px_1fr]"
-      >
-        <div className="relative h-44 overflow-hidden rounded-md bg-zinc-900 md:h-full">
-          {preview?.type === "video" ? (
-            <video muted preload="metadata" className="h-full w-full object-cover">
-              <source src={preview.src} type="video/mp4" />
-            </video>
-          ) : preview ? (
-            <img src={preview.src} alt={preview.alt} className="h-full w-full object-cover" />
-          ) : (
-            <div className="flex h-full items-center justify-center bg-gradient-to-br from-cyan-950 to-zinc-900 px-4 text-center text-sm text-zinc-300">
-              Project Preview
-            </div>
-          )}
-        </div>
-
-        <div className="flex min-w-0 flex-col">
-          <div>
-            <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
-              <h3 className="text-xl font-bold text-white transition-colors group-hover:text-cyan-200">
-                {project.title}
-              </h3>
-              <span className="shrink-0 text-sm font-mono text-zinc-300">{project.period}</span>
-            </div>
-
-            {project.tags && project.tags.length > 0 && (
-              <div className="mb-4 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-mono text-cyan-100"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {project.background && (
-              <p className="line-clamp-2 text-sm leading-6 text-zinc-300">{project.background}</p>
-            )}
-          </div>
-
-          <span className="mt-auto self-end pt-5 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition-all group-hover:translate-x-1 group-hover:text-white">
-            {language === "ja" ? "詳細を見る" : "View details"}
-            <span aria-hidden="true">-&gt;</span>
-          </span>
-        </div>
-      </Link>
-    </motion.article>
+    project.confusionMatrixImages?.[1] ||
+    project.confusionMatrixImages?.[0] ||
+    null
   );
 }
 
-function ProjectDetailCard({ project, projectId }: { project: Project; projectId: string }) {
-  const { t, language } = useLanguage();
-  const [selectedMedia, setSelectedMedia] = useState<ProjectMedia | null>(null);
+function MockPreview({ title }: { title: string }) {
+  if (title.includes("AI Document")) {
+    return (
+      <div className="h-full bg-[#f8faf8] p-3 text-[10px] text-[#5f6662]">
+        <div className="mb-3 rounded-t-md bg-[#262b2d] px-3 py-2 font-bold text-white">
+          AI Document Review
+        </div>
+        <div className="grid h-[calc(100%-40px)] grid-cols-[90px_1fr] gap-3">
+          <div className="space-y-2">
+            {["Contract.pdf", "NDA.pdf", "Invoice_2024.pdf", "Report.pdf"].map((doc, index) => (
+              <div key={doc} className={`rounded px-2 py-2 ${index === 0 ? "bg-[#e7efea] text-[#496b5f]" : "bg-white"}`}>
+                {doc}
+              </div>
+            ))}
+          </div>
+          <div className="rounded-md border border-black/8 bg-white p-3">
+            <p className="mb-2 text-xs font-bold text-[#242424]">Summary</p>
+            <div className="space-y-1">
+              <div className="h-2 w-full rounded bg-[#eef2ef]" />
+              <div className="h-2 w-10/12 rounded bg-[#eef2ef]" />
+              <div className="h-2 w-8/12 rounded bg-[#eef2ef]" />
+            </div>
+            <p className="mb-2 mt-4 text-xs font-bold text-[#242424]">Key Clauses</p>
+            <div className="space-y-2">
+              {["Confidentiality", "IP", "Liability", "Termination"].map((item, index) => (
+                <div key={item} className="flex items-center justify-between">
+                  <span>{item}</span>
+                  <span className={`rounded-full px-2 py-0.5 text-[9px] ${index === 2 ? "bg-[#f5d8cf] text-[#9d5f4f]" : "bg-[#dfeee2] text-[#5d8464]"}`}>
+                    {index === 2 ? "High" : "Low"}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (title.includes("Chest X-ray")) {
+    return (
+      <div className="grid h-full grid-cols-[1.4fr_0.8fr] gap-3 bg-[#f8faf8] p-3">
+        <div className="relative overflow-hidden rounded bg-[#1f2324]">
+          <div className="absolute left-1/2 top-1/2 h-40 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-white/12 blur-sm" />
+          <div className="absolute left-[27%] top-[16%] h-36 w-16 rounded-full border border-white/15 bg-white/18 blur-[1px]" />
+          <div className="absolute right-[27%] top-[16%] h-36 w-16 rounded-full border border-white/15 bg-white/18 blur-[1px]" />
+          <span className="absolute left-3 top-2 text-lg font-semibold text-white/85">R</span>
+        </div>
+        <div className="rounded-md border border-black/8 bg-white p-3 text-xs text-[#5f6662]">
+          <p className="text-[10px] font-semibold text-[#8a8f8c]">Prediction</p>
+          <p className="mt-3 text-2xl font-bold text-[#68887b]">Normal</p>
+          <p className="mt-3 font-semibold">Confidence</p>
+          <p className="font-bold text-[#242424]">93.4%</p>
+          <div className="mt-2 h-2 rounded-full bg-[#e9eee9]">
+            <div className="h-2 w-[93%] rounded-full bg-[#68887b]" />
+          </div>
+          <div className="mt-5 space-y-2 text-[10px]">
+            <p>Normal <span className="float-right">93.4%</span></p>
+            <p>Pneumonia <span className="float-right">4.8%</span></p>
+            <p>Tuberculosis <span className="float-right">1.8%</span></p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function ProjectCard({ project, href }: { project: Project; href: string }) {
+  const title = cleanTitle(project.title);
+  const mock = MockPreview({ title });
+  const preview = getProjectPreview(project);
+  const isVideo = preview?.endsWith(".mp4");
+  const visibleTags = project.tags?.slice(0, 4) ?? [];
 
   return (
     <motion.article
-      id={projectId}
-      variants={item}
-      className="scroll-mt-8 bg-gradient-to-br from-zinc-800/90 to-zinc-700/70 border-2 border-zinc-600/60 rounded-xl p-8 hover:border-blue-400/70 hover:shadow-lg hover:shadow-blue-400/25 transition-all duration-300"
+      variants={{
+        hidden: { opacity: 0, y: 28, scale: 0.96, filter: "blur(18px)" },
+        show: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          transition: { duration: 0.7, ease: "easeOut" },
+        },
+      }}
     >
-      {/* Header: Title + Period */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between gap-4 mb-3">
-          <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-          <span className="text-sm font-mono text-zinc-300 whitespace-nowrap">{project.period}</span>
+      <Link
+        href={href}
+        className="group block overflow-hidden rounded-lg border border-black/12 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-all hover:-translate-y-0.5 hover:border-[#9db2a8] hover:shadow-[0_10px_30px_rgba(31,41,37,0.08)] dark:border-white/10 dark:bg-[#171b19] dark:hover:border-[#9bb8aa]/60"
+      >
+        <div className="m-2 h-48 overflow-hidden rounded-md bg-[#f1f3f1] dark:bg-[#222824] md:h-52">
+          {mock || (isVideo && preview ? (
+            <video muted preload="metadata" className="h-full w-full object-cover">
+              <source src={preview} type="video/mp4" />
+            </video>
+          ) : preview ? (
+            <Image
+              src={preview}
+              alt=""
+              width={720}
+              height={420}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-sm font-semibold text-[#8a8f8c]">
+              Project Preview
+            </div>
+          ))}
         </div>
-        
-        {/* Links */}
-        <div className="flex flex-wrap gap-4 mb-3">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-accent hover:opacity-80 transition-opacity"
-              aria-label="GitHub Repository"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-              </svg>
-              <span className="text-sm font-medium">{t('projects.viewGithub')}</span>
-            </a>
-          )}
-          
-          {project.slideUrl && (
-            <a
-              href={project.slideUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:opacity-80 transition-opacity"
-              aria-label="View Slides"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-              <span className="text-sm font-medium">{t('projects.viewSlides')}</span>
-            </a>
-          )}
-          
-          {project.websiteUrl && (
-            <a
-              href={project.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-green-400 hover:opacity-80 transition-opacity"
-              aria-label="View Website"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-              </svg>
-              <span className="text-sm font-medium">{language === 'ja' ? 'ウェブサイトを見る' : 'View Website'}</span>
-            </a>
-          )}
-        </div>
-        
-        {/* Tags */}
-        {project.tags && project.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag: string) => (
+        <h3 className="px-4 pb-3 pt-1 text-center text-base font-semibold text-[#3f4341] dark:text-[#f4f7f5]">
+          {title}
+        </h3>
+        {visibleTags.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-2 px-4 pb-4">
+            {visibleTags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs font-mono px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-full hover:bg-blue-500/30 transition-colors"
+                className="rounded-full border border-[#d7e0db] bg-[#fbfbfa] px-2.5 py-1 text-xs font-semibold text-[#5f6662] dark:border-white/10 dark:bg-[#222824] dark:text-[#c6d2cc]"
               >
                 {tag}
               </span>
             ))}
           </div>
         )}
-      </div>
-
-
-      <div className="space-y-6 pt-4 border-t border-zinc-700/50">
-          {/* Background */}
-          {project.background && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
-                {t('projects.background')}
-              </h4>
-              <p className="text-zinc-100 leading-relaxed">{project.background}</p>
-            </div>
-          )}
-
-          {/* Challenges */}
-          {project.challenges && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
-                {t('projects.challenges')}
-              </h4>
-              <p className="text-zinc-100 leading-relaxed">{project.challenges}</p>
-            </div>
-          )}
-
-          {/* Solutions */}
-          {project.solutions && project.solutions.length > 0 && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
-                {t('projects.solutions')}
-              </h4>
-              <ul className="space-y-2">
-                {project.solutions.map((item: string, idx: number) => (
-                  <li key={idx} className="flex gap-3 text-zinc-100">
-                    <span className="text-blue-400 mt-1 flex-shrink-0">•</span>
-                    <span className="leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Analysis Images */}
-          {project.analysisImages && project.analysisImages.length > 0 && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
-                {language === 'ja' ? '分析・モデル出力' : 'Analysis & Model Outputs'}
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {project.analysisImages.map((imgPath: string, idx: number) => (
-                  <MediaPreview
-                    key={imgPath}
-                    media={{
-                      src: imgPath,
-                      alt: project.analysisImageLabels?.[idx] || `Analysis output ${idx + 1}`,
-                      label: project.analysisImageLabels?.[idx],
-                      type: "image",
-                    }}
-                    className="h-40"
-                    onOpen={setSelectedMedia}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Learnings */}
-          {project.learnings && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-2 uppercase tracking-wider font-semibold">
-                {t('projects.learnings')}
-              </h4>
-              <p className="text-zinc-100 leading-relaxed">{project.learnings}</p>
-            </div>
-          )}
-
-          {/* Confusion Matrix Images */}
-          {project.confusionMatrixImages && project.confusionMatrixImages.length > 0 && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
-                Confusion Matrix Comparison
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {project.confusionMatrixImages.map((imgPath: string, idx: number) => (
-                  <MediaPreview
-                    key={imgPath}
-                    media={{
-                      src: imgPath,
-                      alt: project.confusionMatrixLabels?.[idx] || `Confusion Matrix ${idx + 1}`,
-                      label: project.confusionMatrixLabels?.[idx],
-                      type: "image",
-                    }}
-                    className="h-48"
-                    onOpen={setSelectedMedia}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Leaderboard Image */}
-          {project.leaderboardImageUrl && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
-                {t('projects.viewLeaderboard')}
-              </h4>
-              <div className="max-w-md">
-                <MediaPreview
-                  media={{
-                    src: project.leaderboardImageUrl,
-                    alt: "Leaderboard Results",
-                    type: "image",
-                  }}
-                  className="h-48"
-                  onOpen={setSelectedMedia}
-                />
-              </div>
-            </div>
-          )}
-
-
-
-          {/* Demo Image */}
-          {project.demoImageUrl && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
-                {t('projects.demoImage')}
-              </h4>
-              <div className="max-w-xl">
-                <MediaPreview
-                  media={{
-                    src: project.demoImageUrl,
-                    alt: "Application Demo",
-                    type: "image",
-                  }}
-                  className="h-56"
-                  onOpen={setSelectedMedia}
-                />
-              </div>
-            </div>
-          )}
-
-          {/* Demo Video */}
-          {project.videoUrl && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
-                {t('projects.viewDemo')}
-              </h4>
-              <div className="max-w-xl">
-                <MediaPreview
-                  media={{
-                    src: project.videoUrl,
-                    alt: "Demo Video",
-                    type: "video",
-                  }}
-                  className="h-56"
-                  onOpen={setSelectedMedia}
-                />
-              </div>
-            </div>
-          )}
-
-          {/* Google Search Console */}
-          {project.searchConsoleImageUrl && (
-            <div>
-              <h4 className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-wider font-semibold">
-                {language === 'ja' ? 'Google Search Consoleパフォーマンス' : 'Google Search Console Performance'}
-              </h4>
-              <div className="max-w-xl">
-                <MediaPreview
-                  media={{
-                    src: project.searchConsoleImageUrl,
-                    alt: "Google Search Console Performance",
-                    type: "image",
-                  }}
-                  className="h-56"
-                  onOpen={setSelectedMedia}
-                />
-              </div>
-            </div>
-          )}
-      </div>
-      <MediaModal media={selectedMedia} onClose={() => setSelectedMedia(null)} />
+      </Link>
     </motion.article>
   );
 }
@@ -499,46 +196,53 @@ export default function Projects({
   variant?: PortfolioVariant;
 }) {
   const { t, language } = useLanguage();
-  const projects = t<Project[]>('projects.items');
-  const projectIndices = projectIndicesByVariant[variant];
-  const visibleProjects = projectIndices
-    ? projectIndices
-        .map((projectIndex) => ({
-          project: projects?.[projectIndex],
-          slug: projectSlugs[projectIndex] as string | undefined,
-        }))
-        .filter((entry): entry is { project: Project; slug: string } => Boolean(entry.project && entry.slug))
-    : (projects || []).map((project, idx) => ({
-        project,
-        slug: projectSlugs[idx] ?? String(idx),
-      }));
+  const projects = t<Project[]>("projects.items");
   const basePath = getVariantBasePath(variant);
-  
-  if (!projects || !Array.isArray(projects)) {
-    return <div className="text-center text-zinc-300">No projects found</div>;
-  }
-  
-  return (
-    <section id="projects" className="scroll-mt-24 py-24 md:py-32 px-6 md:px-8">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16">{t('projects.title')}</h2>
+  const projectIndices =
+    projectIndicesByVariant[variant] ?? selectedDefaultIndices;
 
-        <motion.div
-          key={language}
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="space-y-8"
-        >
-          {visibleProjects.map(({ project, slug }) => (
-            <ProjectSummaryCard
-              key={`${language}-${project.title}-${slug}`}
-              project={project}
-              href={`${basePath}/projects/${slug}`}
-            />
-          ))}
-        </motion.div>
+  const visibleProjects = projectIndices
+    .map((projectIndex) => ({
+      project: projects?.[projectIndex],
+      slug: projectSlugs[projectIndex] as string | undefined,
+    }))
+    .filter((entry): entry is { project: Project; slug: string } =>
+      Boolean(entry.project && entry.slug),
+    );
+
+  const sectionCopy = {
+    en: { eyebrow: "Work", title: "Selected projects" },
+    ja: { eyebrow: "Work", title: "Selected projects" },
+  }[language];
+
+  return (
+    <section id="projects" className="flex min-h-screen scroll-mt-20 items-center px-6 py-24 md:px-8">
+      <div className="w-full">
+      <div className="mx-auto mb-5 max-w-6xl">
+        <p className="text-sm font-bold uppercase text-[#68887b] dark:text-[#9bb8aa]">{sectionCopy.eyebrow}</p>
+        <h2 className="mt-1 text-2xl font-bold text-[#242424] dark:text-[#f4f7f5]">
+          {sectionCopy.title}
+        </h2>
+      </div>
+      <motion.div
+        key={language}
+        variants={{
+          hidden: { opacity: 0 },
+          show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+        }}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+        className="mx-auto grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {visibleProjects.map(({ project, slug }) => (
+          <ProjectCard
+            key={`${project.title}-${slug}`}
+            project={project}
+            href={`${basePath}/projects/${slug}`}
+          />
+        ))}
+      </motion.div>
       </div>
     </section>
   );
@@ -551,26 +255,97 @@ export function ProjectDetail({
   slug: string;
   backHref?: string;
 }) {
-  const { t, language } = useLanguage();
-  const projects = t<Project[]>('projects.items');
+  const { t } = useLanguage();
+  const projects = t<Project[]>("projects.items");
   const index = projectSlugs.findIndex((projectSlug) => projectSlug === slug);
   const project = projects?.[index];
+  const preview = project ? getProjectPreview(project) : null;
+  const isVideo = preview?.endsWith(".mp4");
 
   if (!project) {
-    return <div className="px-6 py-32 text-center text-zinc-300">Project not found</div>;
+    return <div className="px-6 py-32 text-center text-[#767b78]">Project not found</div>;
   }
 
   return (
-    <section className="px-6 py-28 md:px-8 md:py-32">
-      <div className="mx-auto max-w-5xl">
+    <section className="px-6 py-28 md:px-8">
+      <article className="mx-auto max-w-4xl">
         <Link
           href={backHref}
-          className="mb-8 inline-flex text-sm font-medium text-cyan-200 transition-colors hover:text-white"
+          className="mb-8 inline-flex text-sm font-semibold text-[#68887b] hover:text-[#496b5f]"
         >
-          {language === "ja" ? "Projectsへ戻る" : "Back to Projects"}
+          Back to Work
         </Link>
-        <ProjectDetailCard project={project} projectId={`project-${slug}`} />
-      </div>
+
+        <div className="overflow-hidden rounded-lg border border-black/12 bg-white dark:border-white/10 dark:bg-[#171b19]">
+          {preview && (
+            <div className="bg-[#f1f3f1] p-3 dark:bg-[#222824]">
+              {isVideo ? (
+                <video controls className="max-h-[560px] w-full rounded-md object-contain">
+                  <source src={preview} type="video/mp4" />
+                </video>
+              ) : (
+                <Image
+                  src={preview}
+                  alt=""
+                  width={1000}
+                  height={620}
+                  className="max-h-[560px] w-full rounded-md object-contain"
+                />
+              )}
+            </div>
+          )}
+          <div className="p-6 md:p-8">
+            <p className="text-sm font-semibold text-[#8a8f8c] dark:text-[#a9b5af]">{project.period}</p>
+            <h1 className="mt-2 text-3xl font-bold text-[#242424] dark:text-[#f4f7f5] md:text-4xl">
+              {project.title}
+            </h1>
+
+            {project.tags && (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-[#d7e0db] bg-[#f6f8f6] px-3 py-1 text-xs font-semibold text-[#60766d] dark:border-white/10 dark:bg-[#222824] dark:text-[#c6d2cc]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-8 space-y-6 text-base leading-7 text-[#4b504d] dark:text-[#c6d2cc]">
+              {project.background && <p>{project.background}</p>}
+              {project.challenges && <p>{project.challenges}</p>}
+              {project.solutions && (
+                <ul className="list-disc space-y-2 pl-5">
+                  {project.solutions.map((solution) => (
+                    <li key={solution}>{solution}</li>
+                  ))}
+                </ul>
+              )}
+              {project.learnings && <p>{project.learnings}</p>}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {project.githubUrl && (
+                <a className="rounded-md bg-[#242424] px-4 py-2 text-sm font-semibold text-white" href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a>
+              )}
+              {project.slideUrl && (
+                <a className="rounded-md border border-black/12 px-4 py-2 text-sm font-semibold text-[#3f4341]" href={project.slideUrl} target="_blank" rel="noopener noreferrer">
+                  Slides
+                </a>
+              )}
+              {project.websiteUrl && (
+                <a className="rounded-md border border-black/12 px-4 py-2 text-sm font-semibold text-[#3f4341]" href={project.websiteUrl} target="_blank" rel="noopener noreferrer">
+                  Website
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </article>
     </section>
   );
 }

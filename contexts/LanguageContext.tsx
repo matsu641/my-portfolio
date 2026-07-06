@@ -223,7 +223,7 @@ const translations = {
         //   githubUrl: "https://github.com/matsu641/karada-diary"
         // },
         {
-          title: "胸部X線画像の疾患分類（マルチモーダル深層学習）",
+          title: "胸部X線画像の疾患分類モデル",
           period: "2025/10 - 2025/12",
           tags: ["PyTorch", "ResNet-50", "Multimodal Learning", "Focal Loss"],
           background: "胸部X線画像と年齢・性別・撮影方向などの患者メタデータを組み合わせ、PyTorchで4クラス分類モデルを構築しました。",
@@ -265,7 +265,7 @@ const translations = {
           githubUrl: "https://github.com/matsu641/GCI_final_project"
         },
         {
-          title: "Commit Message Reviewer（LLM GitレビューCLI）",
+          title: "Commit Message Reviewer",
           period: "2026/06",
           tags: ["TypeScript", "Node.js", "CLI", "OpenRouter", "LLM", "HTML Report"],
           background: "Gitリポジトリの直近コミットメッセージをLLMで評価し、品質をレビューするCLIツールを開発しました。",
@@ -280,7 +280,7 @@ const translations = {
           githubUrl: "https://github.com/matsu641/commit-message-reviewer"
         },
         {
-          title: "Interactive Map & Navigation System（GISアプリケーション）",
+          title: "GISマップアプリケーション",
           period: "2025/01 - 2025/04",
           tags: ["C++", "Algorithms", "A*", "GIS", "UI/UX", "Linux"],
           background: "大学の3人チームプロジェクトとして、OpenStreetMapのデータを用いたC++でGISアプリケーションを開発しました。",
@@ -295,7 +295,7 @@ const translations = {
           videoUrl: "/demos/map_application.mp4"
         },
         {
-          title: "Rush Hour（駐車場パズルゲーム）組込みシステム開発",
+          title: "Rush Hour組込みシステム開発",
           period: "2025/03 - 2025/04",
           tags: ["C", "VGA", "PS/2 Interrupt", "Embedded Systems","RISC-V"],
           background: "大学のプロジェクトとして、DE1Socボード上でPCとキーボードを連携させて動作するパズルゲームをC言語で実装しました。",
@@ -309,9 +309,9 @@ const translations = {
           githubUrl: "https://github.com/matsu641/RushHour"
         },
         {
-          title: "クリニック在庫管理システム（くわばら整形外科クリニック）",
+          title: "クリニック在庫管理システム",
           period: "2026/06",
-          tags: ["Electron", "React", "TypeScript", "Vite", "pdf-lib", "Tailwind CSS", "GitHub Actions"],
+          tags: ["Electron", "React", "TypeScript", "Vite", "SQLite", "Software Deployment"],
           background: "クリニック向けに、物品・検査用品・日用品・松葉杖の在庫をオフラインで管理できるWindowsデスクトップアプリを開発しました。",
           challenges: "院内PCではWi-Fiやクラウドサービスを前提にしづらく、既存の紙・PDF注文票や外付けSSDバックアップの運用も残しながら、在庫不足と発注漏れを防ぐ必要がありました。",
           solutions: [
@@ -324,9 +324,9 @@ const translations = {
           githubUrl: "https://github.com/matsu641/Clinic-Inventory-Management-System"
         },
         {
-          title: "予約管理システム",
+          title: "クリニック予約管理システム",
           period: "2026/07",
-          tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "UI/UX"],
+          tags: ["Next.js", "React", "TypeScript", "PostgreSQL", "Software Deployment"],
           background: "小規模事業者やクリニックでの利用を想定し、予約表、空き枠確認、顧客情報を一画面で扱える予約管理システムのデモを制作しました。",
           challenges: "紙・電話・表計算ソフトで分散しがちな予約情報を、担当者別の予定や顧客情報と結びつけて、確認漏れが起きにくい画面に整理する必要がありました。",
           solutions: [
@@ -338,7 +338,7 @@ const translations = {
           videoUrl: "/demos/appo_system_demo_hq.mp4"
         },
         {
-          title: "クリニックウェブサイト（くわばら整形外科クリニック）",
+          title: "クリニックウェブサイト",
           period: "2024年5月 - 2024年7月",
           tags: ["HTML", "CSS", "TypeScript", "Vercel", "SEO"],
           background: "フリーランス案件として、整形外科クリニックの公式Webサイトを設計・開発・公開しました。",

@@ -11,25 +11,25 @@ export default function LanguageToggle() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="fixed right-4 top-4 z-50 md:right-6"
+      className="fixed right-4 top-3 z-50 md:right-6"
     >
-      <div className="flex items-center gap-2 bg-background/80 backdrop-blur-md border border-foreground/10 rounded-full p-1">
+      <div className="flex items-center gap-1 rounded-full border border-black/10 bg-white/90 p-1 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-[#1b1f1d]/90">
         <button
           onClick={() => setLanguage('ja')}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+          className={`rounded-full px-3 py-1.5 text-xs font-bold transition-all ${
             language === 'ja'
-              ? 'bg-accent text-white shadow-lg'
-              : 'text-foreground/60 hover:text-foreground'
+              ? 'bg-[#68887b] text-white shadow-sm'
+              : 'text-[#5f6662] hover:text-[#242424] dark:text-[#c6d2cc] dark:hover:text-white'
           }`}
         >
           日本語
         </button>
         <button
           onClick={() => setLanguage('en')}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+          className={`rounded-full px-3 py-1.5 text-xs font-bold transition-all ${
             language === 'en'
-              ? 'bg-accent text-white shadow-lg'
-              : 'text-foreground/60 hover:text-foreground'
+              ? 'bg-[#68887b] text-white shadow-sm'
+              : 'text-[#5f6662] hover:text-[#242424] dark:text-[#c6d2cc] dark:hover:text-white'
           }`}
         >
           English
