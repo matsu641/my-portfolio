@@ -33,7 +33,7 @@ type Project = {
   thumbnailImageUrl?: string;
 };
 
-const selectedDefaultIndices = [5, 2, 3, 0, 6, 7];
+const selectedDefaultIndices = [5, 2, 3, 0, 6, 7, 1, 4];
 
 const cleanTitle = (title: string) =>
   title
@@ -56,6 +56,48 @@ function getProjectPreview(project: Project): string | null {
     project.confusionMatrixImages?.[0] ||
     null
   );
+}
+
+function getExtraProjects(language: "ja" | "en"): Array<{ slug: string; project: Project }> {
+  return [
+    {
+      slug: "utjn-website",
+      project: {
+        title:
+          language === "ja"
+            ? "UTJN公式サイト"
+            : "UTJN Official Website",
+        period: "Sep 2023 - Present",
+        tags: ["TypeScript", "PostgreSQL", "AWS", "Docker"],
+        background:
+          language === "ja"
+            ? "University of Toronto Japan Networkの公式Webサイトを、学生チームで開発・運用しています。"
+            : "Developed and maintained the official website for the University of Toronto Japan Network with a student engineering team.",
+        challenges:
+          language === "ja"
+            ? "イベント告知、会員向け情報、組織運営に必要な更新を継続的に扱うため、保守しやすい構成と安定した運用が必要でした。"
+            : "The site needed to support ongoing updates for events, member information, and organization operations while staying maintainable for a student team.",
+        solutions:
+          language === "ja"
+            ? [
+                "TypeScriptを中心に、チームで機能追加と修正を継続",
+                "AWS / Docker構成で運用を意識したWebサイト管理を経験",
+                "他部門からの依頼を受け、実ユーザー向けの改善を実施",
+              ]
+            : [
+                "Used TypeScript to maintain and improve the production website with teammates",
+                "Worked with AWS and Docker-based deployment and operations",
+                "Handled requests from other departments and improved the site for real users",
+              ],
+        learnings:
+          language === "ja"
+            ? "チーム開発、継続運用、実ユーザーからの要望を受けた改善を通じて、プロダクトを長く保守する視点を学びました。"
+            : "This experience strengthened my understanding of team development, long-term maintenance, and improving software based on real user requests.",
+        thumbnailImageUrl: "/images/utjn-tumbnail.png",
+        websiteUrl: "https://uoftjn.com/",
+      },
+    },
+  ];
 }
 
 function MockPreview({ title }: { title: string }) {
@@ -201,7 +243,7 @@ export default function Projects({
   const projectIndices =
     projectIndicesByVariant[variant] ?? selectedDefaultIndices;
 
-  const visibleProjects = projectIndices
+  const indexedProjects = projectIndices
     .map((projectIndex) => ({
       project: projects?.[projectIndex],
       slug: projectSlugs[projectIndex] as string | undefined,
@@ -209,6 +251,11 @@ export default function Projects({
     .filter((entry): entry is { project: Project; slug: string } =>
       Boolean(entry.project && entry.slug),
     );
+
+  const visibleProjects = [
+    ...indexedProjects,
+    ...(variant === "default" ? getExtraProjects(language) : []),
+  ];
 
   const sectionCopy = {
     en: { eyebrow: "Work", title: "Selected projects" },
@@ -255,12 +302,37 @@ export function ProjectDetail({
   slug: string;
   backHref?: string;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const projects = t<Project[]>("projects.items");
   const index = projectSlugs.findIndex((projectSlug) => projectSlug === slug);
-  const project = projects?.[index];
+  const extraProject = getExtraProjects(language).find((entry) => entry.slug === slug)?.project;
+  const project = projects?.[index] ?? extraProject;
   const preview = project ? getProjectPreview(project) : null;
   const isVideo = preview?.endsWith(".mp4");
+  const mediaItems = project
+    ? [
+        ...(project.analysisImages?.map((src, imageIndex) => ({
+          src,
+          label: project.analysisImageLabels?.[imageIndex] ?? "Analysis",
+        })) ?? []),
+        ...(project.confusionMatrixImages?.map((src, imageIndex) => ({
+          src,
+          label: project.confusionMatrixLabels?.[imageIndex] ?? "Result",
+        })) ?? []),
+        project.leaderboardImageUrl
+          ? { src: project.leaderboardImageUrl, label: language === "ja" ? "リーダーボード" : "Leaderboard" }
+          : null,
+        project.searchConsoleImageUrl
+          ? { src: project.searchConsoleImageUrl, label: "Search Console" }
+          : null,
+        project.demoImageUrl && project.demoImageUrl !== preview
+          ? { src: project.demoImageUrl, label: language === "ja" ? "アプリ画面" : "App Screenshot" }
+          : null,
+      ].filter(
+        (item): item is { src: string; label: string } =>
+          Boolean(item && item.src && item.src !== preview),
+      )
+    : [];
 
   if (!project) {
     return <div className="px-6 py-32 text-center text-[#767b78]">Project not found</div>;
@@ -325,6 +397,28 @@ export function ProjectDetail({
               )}
               {project.learnings && <p>{project.learnings}</p>}
             </div>
+
+            {mediaItems.length > 0 && (
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {mediaItems.map((item) => (
+                  <figure
+                    key={`${item.src}-${item.label}`}
+                    className="overflow-hidden rounded-lg border border-black/10 bg-[#f6f8f6] p-2 dark:border-white/10 dark:bg-[#222824]"
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.label}
+                      width={900}
+                      height={560}
+                      className="h-auto w-full rounded-md object-contain"
+                    />
+                    <figcaption className="px-1 pt-2 text-xs font-semibold text-[#6b736f] dark:text-[#a9b5af]">
+                      {item.label}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            )}
 
             <div className="mt-8 flex flex-wrap gap-3">
               {project.githubUrl && (

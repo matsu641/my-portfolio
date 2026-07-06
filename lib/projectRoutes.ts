@@ -7,6 +7,7 @@ export const projectSlugs = [
   "clinic-inventory",
   "appointment-system",
   "clinic-website",
+  "utjn-website",
 ] as const;
 
 export type ProjectSlug = (typeof projectSlugs)[number];

@@ -6,17 +6,23 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const heroCopy = {
   en: {
     subtitle: "Computer Engineering Student @ UofT | SW/AI Engineering Intern",
-    description:
-      "I enjoy working close to real users, understanding their problems, and turning ideas into products that are useful in practice.",
+    description: [
+      "I enjoy working close to real users, understanding their problems,",
+      "and turning ideas into products that are useful in practice.",
+    ],
   },
   ja: {
-    subtitle: "トロント大学コンピュータ工学科 | ソフトウェア/AIインターン",
-    description:
-      "私は、実際のユーザーの抱えている課題を理解し、アイデアを実用的なプロダクトに変えることが好きです。",
+    subtitle: "工学部生@トロント大　|　ソフトウェア/AIインターン",
+    description: [
+      "私は、実際のユーザーの抱えている課題を理解し、",
+      "アイデアを実用的なプロダクトに変えることが好きです。",
+    ],
   },
 };
 
-function TypingSubtitle({ text }: { text: string }) {
+function TypingSubtitle({ text, animationKey }: { text: string; animationKey: string }) {
+  const maskId = `subtitle-typing-mask-${animationKey}`;
+
   return (
     <svg
       className="mx-auto mt-5 h-12 w-full max-w-4xl overflow-visible md:h-16"
@@ -25,7 +31,7 @@ function TypingSubtitle({ text }: { text: string }) {
       aria-label={text}
     >
       <defs>
-        <clipPath id="subtitle-typing-mask">
+        <clipPath id={maskId}>
           <motion.rect
             x="0"
             y="0"
@@ -40,7 +46,7 @@ function TypingSubtitle({ text }: { text: string }) {
         x="550"
         y="47"
         textAnchor="middle"
-        clipPath="url(#subtitle-typing-mask)"
+        clipPath={`url(#${maskId})`}
         className="fill-[#4b504d] text-[34px] font-semibold dark:fill-[#c6d2cc]"
       >
         {text}
@@ -56,6 +62,44 @@ function TypingSubtitle({ text }: { text: string }) {
         transition={{ duration: 2.45, ease: "easeInOut", delay: 0.35, times: [0, 0.9, 1] }}
       />
     </svg>
+  );
+}
+
+function AnimatedDescription({ lines }: { lines: string[] }) {
+  return (
+    <motion.p
+      className="mx-auto mt-6 max-w-4xl text-lg font-medium leading-8 text-[#5f6662] dark:text-[#c6d2cc] md:text-2xl md:leading-10"
+      initial="hidden"
+      animate="show"
+      variants={{
+        hidden: {},
+        show: {
+          transition: {
+            staggerChildren: 0.18,
+            delayChildren: 2.35,
+          },
+        },
+      }}
+    >
+      {lines.map((line) => (
+        <motion.span
+          key={line}
+          className="block"
+          variants={{
+            hidden: { opacity: 0, y: 18, scale: 0.98, filter: "blur(16px)" },
+            show: {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              filter: "blur(0px)",
+              transition: { duration: 0.72, ease: "easeOut" },
+            },
+          }}
+        >
+          {line}
+        </motion.span>
+      ))}
+    </motion.p>
   );
 }
 
@@ -77,10 +121,8 @@ export default function Hero() {
         <h1 className="text-5xl font-extrabold tracking-normal text-[#232425] dark:text-[#f4f7f5] md:text-7xl">
           Misumi Matsudo
         </h1>
-        <TypingSubtitle text={copy.subtitle} />
-        <p className="mx-auto mt-5 max-w-4xl text-lg font-medium leading-8 text-[#5f6662] dark:text-[#c6d2cc] md:text-2xl md:leading-10">
-          {copy.description}
-        </p>
+        <TypingSubtitle key={`subtitle-${language}`} text={copy.subtitle} animationKey={language} />
+        <AnimatedDescription key={`description-${language}`} lines={copy.description} />
       </motion.div>
     </section>
   );

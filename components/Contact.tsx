@@ -47,12 +47,12 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.45 }}
-        className="mx-auto grid max-w-10xl gap-5 rounded-lg border border-black/8 bg-[#f3f6f4] px-6 py-6 text-sm font-semibold text-[#6b736f] dark:border-white/10 dark:bg-[#171b19] dark:text-[#c6d2cc] md:grid-cols-[1fr_2fr]"
+        className="mx-auto grid max-w-6xl gap-5 rounded-lg border border-black/8 bg-[#f3f6f4] px-6 py-6 text-sm font-semibold text-[#6b736f] dark:border-white/10 dark:bg-[#171b19] dark:text-[#c6d2cc] md:grid-cols-[180px_1fr]"
       >
         <p className="flex items-center text-base font-bold text-[#3f4341] dark:text-[#f4f7f5]">
           {message}
         </p>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
           {links.map((link) => (
             <a
               key={link.href}

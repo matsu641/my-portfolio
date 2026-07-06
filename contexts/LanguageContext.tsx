@@ -238,6 +238,8 @@ const translations = {
             "Baseline Model (画像のみ)",
             "Primary Model (マルチモーダル)"
           ],
+          thumbnailImageUrl: "/images/chest_x_ray.png",
+          demoImageUrl: "/images/chest_x_ray_demo.png",
           githubUrl: "https://github.com/matsu641/Multimodal-Chest-X-ray-Classification-with-CNN"
         },
         {
@@ -277,6 +279,7 @@ const translations = {
             "LLMの判定が`good`や`excellent`に偏る問題に対して、評価ルーブリックとtemperature設定を調整"
           ],
           learnings: "LLMを使った評価機能では、単にAPIを呼び出すだけでなく、出力形式の安定化、評価基準の設計、プロンプトの過学習回避、結果の再現性への配慮が重要であることを学びました。",
+          thumbnailImageUrl: "/images/commit-message-reviewer.png",
           githubUrl: "https://github.com/matsu641/commit-message-reviewer"
         },
         {
@@ -335,6 +338,7 @@ const translations = {
             "実際の業務利用を想定し、操作の流れが伝わるデモ動画を作成"
           ],
           learnings: "業務システムでは、機能数よりも現場で迷わず使える情報設計と導線設計が重要であることを意識して制作しました。",
+          thumbnailImageUrl: "/images/clinic-reservation-demo.png",
           videoUrl: "/demos/appo_system_demo_hq.mp4"
         },
         {
@@ -553,6 +557,7 @@ const translations = {
             "Baseline Model (Image Only)",
             "Primary Model (Multimodal)"
           ],
+          thumbnailImageUrl: "/images/chest_x_ray.png",
           githubUrl: "https://github.com/matsu641/Multimodal-Chest-X-ray-Classification-with-CNN"
         },
         {
@@ -620,6 +625,7 @@ const translations = {
             "Handled PS/2 keyboard input through interrupts and practiced memory-mapped I/O"
           ],
           learnings: "Practiced low-level hardware control through VGA rendering, interrupts, and memory-mapped I/O.",
+          thumbnailImageUrl: "/images/Rush_Hour.png",
           videoUrl: "/demos/rush-hour-demo.mp4",
           githubUrl: "https://github.com/matsu641/RushHour"
         },
