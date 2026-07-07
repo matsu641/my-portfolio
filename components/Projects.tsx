@@ -286,8 +286,8 @@ export default function Projects({
   ];
 
   const sectionCopy = {
-    en: { eyebrow: "Work", title: "Selected projects" },
-    ja: { eyebrow: "Work", title: "Selected projects" },
+    en: { eyebrow: "Projects", title: "What I've built" },
+    ja: { eyebrow: "Projects", title: "What I've built" },
   }[language];
 
   return (

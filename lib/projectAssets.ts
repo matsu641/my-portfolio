@@ -57,7 +57,7 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
   "employee-attrition": {
     slug: "employee-attrition",
     tags: ["Python", "scikit-learn", "Feature Engineering", "Business Analysis", "Problem Solving"],
-    thumbnailImageUrl: "/employee-attrition/thumbnail.png",
+    thumbnailImageUrl: "/employee-attrition/thumbnail-v3.jpg",
     demoMedia: [
       {
         src: "/employee-attrition/demoImage1.png",
@@ -68,11 +68,27 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
         },
       },
       {
+        src: "/employee-attrition/demoImage3.png",
+        type: "image",
+        label: {
+          ja: "特徴量・傾向分析",
+          en: "Feature and Trend Analysis",
+        },
+      },
+      {
         src: "/employee-attrition/demoImage2.png",
         type: "image",
         label: {
           ja: "特徴量・傾向分析",
           en: "Feature and Trend Analysis",
+        },
+      },
+      {
+        src: "/employee-attrition/demoImage4.png",
+        type: "image",
+        label: {
+          ja: "修了書",
+          en: "Completion Certificate",
         },
       },
     ],

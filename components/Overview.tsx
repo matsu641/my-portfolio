@@ -168,7 +168,7 @@ export default function Overview() {
   const copy = {
     en: {
       eyebrow: "About",
-      title: "What I build, where I learn, and how I work.",
+      title: "What I experienced, where I learn, and how I work.",
       focus: "What I focus on",
       education: "Education",
       major: "・Computer Engineering Major",
@@ -180,7 +180,7 @@ export default function Overview() {
     },
     ja: {
       eyebrow: "About",
-      title: "What I build, where I learn, and how I work.",
+      title: "What I experienced, where I learn, and how I work.",
       focus: "注力領域",
       education: "学歴",
       major: "・コンピュータ工学 専攻",

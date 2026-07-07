@@ -31,6 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var theme=localStorage.getItem("theme");var prefersDark=window.matchMedia("(prefers-color-scheme: dark)").matches;if((theme?theme==="dark":prefersDark)){document.documentElement.classList.add("dark");}}catch(e){}`,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

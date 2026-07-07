@@ -110,7 +110,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="flex min-h-screen scroll-mt-20 items-center justify-center px-6 py-24 md:px-8"
+      className="relative flex min-h-screen scroll-mt-20 items-center justify-center px-6 py-24 md:px-8"
     >
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -124,6 +124,23 @@ export default function Hero() {
         <TypingSubtitle key={`subtitle-${language}`} text={copy.subtitle} animationKey={language} />
         <AnimatedDescription key={`description-${language}`} lines={copy.description} />
       </motion.div>
+      <motion.a
+        href="#about"
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs font-bold uppercase tracking-normal text-[#68887b] transition-colors hover:text-[#496b5f] dark:text-[#9bb8aa] dark:hover:text-white md:bottom-10"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{
+          opacity: { duration: 0.5, delay: 3 },
+          y: { duration: 1.4, repeat: Infinity, ease: "easeInOut", delay: 3 },
+        }}
+        aria-label={language === "ja" ? "次のセクションへスクロール" : "Scroll down"}
+      >
+        <span>{language === "ja" ? "Scroll down" : "Scroll down"}</span>
+        <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+          <path d="M12 5v14" strokeLinecap="round" />
+          <path d="m6 13 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </motion.a>
     </section>
   );
 }

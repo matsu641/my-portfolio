@@ -8,23 +8,32 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const navItems = {
   en: [
     { hash: "about", label: "About" },
-    { hash: "projects", label: "Work" },
+    { hash: "projects", label: "Projects" },
   ],
   ja: [
     { hash: "about", label: "About" },
-    { hash: "projects", label: "Work" },
+    { hash: "projects", label: "Projects" },
   ],
 };
 
 export default function TopNavigation() {
   const pathname = usePathname();
   const { language } = useLanguage();
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    const storedTheme = window.localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return storedTheme ? storedTheme === "dark" : prefersDark;
+  });
   const pathParts = pathname.replace(/^\/+/, "").split("/");
   const activeVariant = pathParts[0] === "ai" || pathParts[0] === "swe" ? pathParts[0] : "";
   const basePath = activeVariant ? `/${activeVariant}` : "/";
 
   useEffect(() => {
+    window.localStorage.setItem("theme", isDark ? "dark" : "light");
     document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
 
@@ -35,7 +44,7 @@ export default function TopNavigation() {
           <button
             type="button"
             onClick={() => setIsDark((current) => !current)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#cfdad3] bg-white text-sm font-bold text-[#5f756c] shadow-sm transition-colors hover:bg-[#f0f4f1] dark:border-white/15 dark:bg-[#1b1f1d] dark:text-[#d9e4de] dark:hover:bg-[#242b27]"
+            className="flex h-10 items-center gap-2 rounded-full border border-[#cfdad3] bg-white px-3 text-sm font-bold text-[#5f756c] shadow-sm transition-colors hover:bg-[#f0f4f1] dark:border-white/15 dark:bg-[#1b1f1d] dark:text-[#d9e4de] dark:hover:bg-[#242b27]"
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             title={isDark ? "Dark mode" : "Light mode"}
           >
@@ -49,6 +58,7 @@ export default function TopNavigation() {
                 <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
               </svg>
             )}
+            <span>{isDark ? "Dark" : "Light"}</span>
           </button>
         </div>
 
