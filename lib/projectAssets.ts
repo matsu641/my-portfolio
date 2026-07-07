@@ -129,7 +129,7 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
   },
   "clinic-inventory": {
     slug: "clinic-inventory",
-    tags: ["Electron", "React", "SQLite", "Vite", "Client Work","Problem Solving"],
+    tags: ["Electron", "React", "SQLite", "Vite", "Client Work","Problem Solving", "Onpremises"],
     thumbnailImageUrl: "/clinic-inventory/thumbnail.png",
     demoMedia: [
       {
@@ -146,7 +146,7 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
   },
   "appointment-system": {
     slug: "appointment-system",
-    tags: ["Next.js", "React", "TypeScript", "PostgreSQL", "Problem Solving"],
+    tags: ["Next.js", "React", "TypeScript", "PostgreSQL", "Problem Solving", "Client Work", "Onpremises"],
     thumbnailImageUrl: "/appointment-system/thumbnail.png",
     demoMedia: [
       {
