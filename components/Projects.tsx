@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { projectAssets } from "@/lib/projectAssets";
 import { projectSlugs } from "@/lib/projectRoutes";
 import {
   getVariantBasePath,
@@ -14,6 +15,7 @@ import {
 type Project = {
   title: string;
   period: string;
+  slug?: string;
   tags?: string[];
   background?: string;
   challenges?: string;
@@ -28,6 +30,15 @@ type Project = {
   analysisImageLabels?: string[];
   leaderboardImageUrl?: string;
   demoImageUrl?: string;
+  demoMedia?: Array<{
+    src: string;
+    type: "image" | "video";
+    label: string | {
+      ja: string;
+      en: string;
+    };
+  }>;
+  demoImageUrls?: string[];
   videoUrl?: string;
   searchConsoleImageUrl?: string;
   thumbnailImageUrl?: string;
@@ -44,18 +55,22 @@ const cleanTitle = (title: string) =>
     .replace("Clinic Inventory Management System", "Clinic Inventory Management System")
     .trim();
 
-function getProjectPreview(project: Project): string | null {
-  return (
-    project.thumbnailImageUrl ||
-    project.demoImageUrl ||
-    project.analysisImages?.[0] ||
-    project.videoUrl ||
-    project.leaderboardImageUrl ||
-    project.searchConsoleImageUrl ||
-    project.confusionMatrixImages?.[1] ||
-    project.confusionMatrixImages?.[0] ||
-    null
-  );
+function resolveMediaLabel(
+  label: string | { ja: string; en: string },
+  language: "ja" | "en",
+) {
+  return typeof label === "string" ? label : label[language];
+}
+
+function getProjectPreview(project: Project, slug?: string): string | null {
+  const candidates = [
+    slug && slug in projectAssets
+      ? projectAssets[slug as keyof typeof projectAssets].thumbnailImageUrl
+      : undefined,
+    project.thumbnailImageUrl,
+  ];
+
+  return candidates.find((c) => Boolean(c)) ?? null;
 }
 
 function getExtraProjects(language: "ja" | "en"): Array<{ slug: string; project: Project }> {
@@ -68,7 +83,7 @@ function getExtraProjects(language: "ja" | "en"): Array<{ slug: string; project:
             ? "UTJN公式サイト"
             : "UTJN Official Website",
         period: "Sep 2023 - Present",
-        tags: ["TypeScript", "PostgreSQL", "AWS", "Docker"],
+        tags: projectAssets["utjn-website"].tags,
         background:
           language === "ja"
             ? "University of Toronto Japan Networkの公式Webサイトを、学生チームで開発・運用しています。"
@@ -93,7 +108,7 @@ function getExtraProjects(language: "ja" | "en"): Array<{ slug: string; project:
           language === "ja"
             ? "チーム開発、継続運用、実ユーザーからの要望を受けた改善を通じて、プロダクトを長く保守する視点を学びました。"
             : "This experience strengthened my understanding of team development, long-term maintenance, and improving software based on real user requests.",
-        thumbnailImageUrl: "/images/utjn-tumbnail.png",
+        thumbnailImageUrl: projectAssets["utjn-website"].thumbnailImageUrl,
         websiteUrl: "https://uoftjn.com/",
       },
     },
@@ -169,12 +184,12 @@ function MockPreview({ title }: { title: string }) {
   return null;
 }
 
-function ProjectCard({ project, href }: { project: Project; href: string }) {
+function ProjectCard({ project, href, slug }: { project: Project; href: string; slug?: string }) {
   const title = cleanTitle(project.title);
   const mock = MockPreview({ title });
-  const preview = getProjectPreview(project);
+  const preview = getProjectPreview(project, slug);
   const isVideo = preview?.endsWith(".mp4");
-  const visibleTags = project.tags?.slice(0, 4) ?? [];
+  const visibleTags = project.tags ?? [];
 
   return (
     <motion.article
@@ -194,7 +209,7 @@ function ProjectCard({ project, href }: { project: Project; href: string }) {
         className="group block overflow-hidden rounded-lg border border-black/12 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-all hover:-translate-y-0.5 hover:border-[#9db2a8] hover:shadow-[0_10px_30px_rgba(31,41,37,0.08)] dark:border-white/10 dark:bg-[#171b19] dark:hover:border-[#9bb8aa]/60"
       >
         <div className="m-2 h-48 overflow-hidden rounded-md bg-[#f1f3f1] dark:bg-[#222824] md:h-52">
-          {mock || (isVideo && preview ? (
+          {isVideo && preview ? (
             <video muted preload="metadata" className="h-full w-full object-cover">
               <source src={preview} type="video/mp4" />
             </video>
@@ -206,11 +221,13 @@ function ProjectCard({ project, href }: { project: Project; href: string }) {
               height={420}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
+          ) : mock ? (
+            mock
           ) : (
             <div className="flex h-full items-center justify-center text-sm font-semibold text-[#8a8f8c]">
               Project Preview
             </div>
-          ))}
+          )}
         </div>
         <h3 className="px-4 pb-3 pt-1 text-center text-base font-semibold text-[#3f4341] dark:text-[#f4f7f5]">
           {title}
@@ -238,16 +255,27 @@ export default function Projects({
   variant?: PortfolioVariant;
 }) {
   const { t, language } = useLanguage();
-  const projects = t<Project[]>("projects.items");
+  const projects = t<Project[]>("projects.items") ?? [];
   const basePath = getVariantBasePath(variant);
   const projectIndices =
     projectIndicesByVariant[variant] ?? selectedDefaultIndices;
 
+  const projectMap = new Map(
+    projects
+      .map((project) => [project.slug, project] as const)
+      .filter((entry): entry is readonly [string, Project] =>
+        Boolean(entry[0]),
+      ),
+  );
+
   const indexedProjects = projectIndices
-    .map((projectIndex) => ({
-      project: projects?.[projectIndex],
-      slug: projectSlugs[projectIndex] as string | undefined,
-    }))
+    .map((projectIndex) => {
+      const slug = projectSlugs[projectIndex] as string | undefined;
+      return {
+        project: slug ? projectMap.get(slug) : undefined,
+        slug,
+      };
+    })
     .filter((entry): entry is { project: Project; slug: string } =>
       Boolean(entry.project && entry.slug),
     );
@@ -286,6 +314,7 @@ export default function Projects({
           <ProjectCard
             key={`${project.title}-${slug}`}
             project={project}
+            slug={slug}
             href={`${basePath}/projects/${slug}`}
           />
         ))}
@@ -303,36 +332,83 @@ export function ProjectDetail({
   backHref?: string;
 }) {
   const { t, language } = useLanguage();
-  const projects = t<Project[]>("projects.items");
-  const index = projectSlugs.findIndex((projectSlug) => projectSlug === slug);
+  const projects = t<Project[]>("projects.items") ?? [];
+  const projectMap = new Map(
+    projects
+      .map((project) => [project.slug, project] as const)
+      .filter((entry): entry is readonly [string, Project] =>
+        Boolean(entry[0]),
+      ),
+  );
   const extraProject = getExtraProjects(language).find((entry) => entry.slug === slug)?.project;
-  const project = projects?.[index] ?? extraProject;
-  const preview = project ? getProjectPreview(project) : null;
+  const project = projectMap.get(slug) ?? extraProject;
+  const preview = project ? getProjectPreview(project, slug) : null;
   const isVideo = preview?.endsWith(".mp4");
-  const mediaItems = project
+
+  type MediaItem = { src: string; label: string; type: "image" | "video" };
+
+  const mediaItems: MediaItem[] = project
     ? [
+        ...(project.demoMedia?.map((media) => ({
+          src: media.src,
+          label: resolveMediaLabel(media.label, language),
+          type: media.type,
+        })) ?? []),
         ...(project.analysisImages?.map((src, imageIndex) => ({
           src,
           label: project.analysisImageLabels?.[imageIndex] ?? "Analysis",
+          type: "image" as const,
         })) ?? []),
         ...(project.confusionMatrixImages?.map((src, imageIndex) => ({
           src,
           label: project.confusionMatrixLabels?.[imageIndex] ?? "Result",
+          type: "image" as const,
         })) ?? []),
         project.leaderboardImageUrl
-          ? { src: project.leaderboardImageUrl, label: language === "ja" ? "リーダーボード" : "Leaderboard" }
+          ? {
+              src: project.leaderboardImageUrl,
+              label: language === "ja" ? "リーダーボード" : "Leaderboard",
+              type: "image",
+            }
           : null,
         project.searchConsoleImageUrl
-          ? { src: project.searchConsoleImageUrl, label: "Search Console" }
+          ? { src: project.searchConsoleImageUrl, label: "Search Console", type: "image" }
           : null,
-        project.demoImageUrl && project.demoImageUrl !== preview
-          ? { src: project.demoImageUrl, label: language === "ja" ? "アプリ画面" : "App Screenshot" }
+        ...(!project.demoMedia?.length ? project.demoImageUrls?.map((src) => ({
+          src,
+          label: language === "ja" ? "アプリ画面" : "App Screenshot",
+          type: "image" as const,
+        })) ?? [] : []),
+        !project.demoImageUrls?.length &&
+        !project.demoMedia?.length &&
+        project.demoImageUrl &&
+        project.demoImageUrl !== preview
+          ? {
+              src: project.demoImageUrl,
+              label: language === "ja" ? "アプリ画面" : "App Screenshot",
+              type: "image",
+            }
           : null,
-      ].filter(
-        (item): item is { src: string; label: string } =>
-          Boolean(item && item.src && item.src !== preview),
-      )
+        !project.demoMedia?.length &&
+        project.videoUrl &&
+        project.videoUrl !== preview
+          ? {
+              src: project.videoUrl,
+              label: language === "ja" ? "デモ動画" : "Demo Video",
+              type: "video",
+            }
+          : null,
+      ]
+          .filter(
+            (item): item is MediaItem =>
+              Boolean(item && item.src && item.src !== preview),
+          )
+          .filter(
+            (item, index, items) =>
+              items.findIndex((candidate) => candidate.src === item.src) === index,
+          )
     : [];
+
 
   if (!project) {
     return <div className="px-6 py-32 text-center text-[#767b78]">Project not found</div>;
@@ -345,7 +421,7 @@ export function ProjectDetail({
           href={backHref}
           className="mb-8 inline-flex text-sm font-semibold text-[#68887b] hover:text-[#496b5f]"
         >
-          Back to Work
+          Back to Home
         </Link>
 
         <div className="overflow-hidden rounded-lg border border-black/12 bg-white dark:border-white/10 dark:bg-[#171b19]">
@@ -405,13 +481,19 @@ export function ProjectDetail({
                     key={`${item.src}-${item.label}`}
                     className="overflow-hidden rounded-lg border border-black/10 bg-[#f6f8f6] p-2 dark:border-white/10 dark:bg-[#222824]"
                   >
-                    <Image
-                      src={item.src}
-                      alt={item.label}
-                      width={900}
-                      height={560}
-                      className="h-auto w-full rounded-md object-contain"
-                    />
+                    {item.type === "video" ? (
+                      <video controls className="h-auto w-full rounded-md object-contain">
+                        <source src={item.src} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <Image
+                        src={item.src}
+                        alt={item.label}
+                        width={900}
+                        height={560}
+                        className="h-auto w-full rounded-md object-contain"
+                      />
+                    )}
                     <figcaption className="px-1 pt-2 text-xs font-semibold text-[#6b736f] dark:text-[#a9b5af]">
                       {item.label}
                     </figcaption>
@@ -423,17 +505,17 @@ export function ProjectDetail({
             <div className="mt-8 flex flex-wrap gap-3">
               {project.githubUrl && (
                 <a className="rounded-md bg-[#242424] px-4 py-2 text-sm font-semibold text-white" href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                  GitHub
+                  View GitHub
                 </a>
               )}
               {project.slideUrl && (
                 <a className="rounded-md border border-black/12 px-4 py-2 text-sm font-semibold text-[#3f4341]" href={project.slideUrl} target="_blank" rel="noopener noreferrer">
-                  Slides
+                  View Slides
                 </a>
               )}
               {project.websiteUrl && (
                 <a className="rounded-md border border-black/12 px-4 py-2 text-sm font-semibold text-[#3f4341]" href={project.websiteUrl} target="_blank" rel="noopener noreferrer">
-                  Website
+                  View Website
                 </a>
               )}
             </div>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { projectAssets } from "@/lib/projectAssets";
 import {
   experienceKeysByVariant,
   type PortfolioVariant,
@@ -85,7 +86,7 @@ export default function Experience({
     {
       title: "UofT Japan Network",
       url: "https://uoftjn.com/",
-      image: "/images/utjn-tumbnail.png"
+      image: projectAssets["utjn-website"].thumbnailImageUrl
     }
   ];
 

@@ -7,10 +7,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const focusItems = [
   {
-    title: { en: "AI-enabled products", ja: "AI活用プロダクト" },
+    title: { en: "Problem-Driven Product Development", ja: "現場課題起点のプロダクト開発" },
     description: {
-      en: "Building intelligent features that improve decisions and user outcomes.",
-      ja: "意思決定とユーザー体験を改善する、実用的なAI機能を作ります。",
+      en: "Turning real-world problems into usable software systems.",
+      ja: "現場の課題を整理し、使われるシステムとして形にします。",
     },
     icon: (
       <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -22,8 +22,8 @@ const focusItems = [
   {
     title: { en: "Full-stack development", ja: "フルスタック開発" },
     description: {
-      en: "Designing and shipping clean, scalable web applications.",
-      ja: "保守しやすく拡張しやすいWebアプリを設計・実装します。",
+      en: "Building complete web applications from frontend to backend.",
+      ja: "フロントエンドからAPI実装まで、実用性を重視して開発します。",
     },
     icon: (
       <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -32,10 +32,10 @@ const focusItems = [
     ),
   },
   {
-    title: { en: "Systems & algorithms", ja: "システムとアルゴリズム" },
+    title: { en: "AI / LLM Integration", ja: "AI / LLM活用" },
     description: {
-      en: "Building efficient systems and models that perform and scale.",
-      ja: "性能とスケールを意識したシステムやモデルを構築します。",
+      en: "Creating AI-powered features that improve workflows and user experiences.",
+      ja: "AIを業務改善やユーザー体験につながる機能として実装します。",
     },
     icon: (
       <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -67,7 +67,7 @@ const skillGroups = [
   {
     title: "AI / ML",
     skills: [
-      { name: "PyTorch", level: 2 },
+      { name: "PyTorch", level: 4 },
       { name: "scikit-learn", level: 2 },
       { name: "LLM / RAG", level: 2 },
     ],
