@@ -272,4 +272,353 @@ const rawTranslations = {
   }
 };
 
-const translations = addProjectAssets(rawTranslations);
+const projectItemsFromMarkdown = {
+  ja: [
+    {
+      slug: "clinic-inventory",
+      featured: true,
+      title: "クリニック在庫管理システム",
+      period: "2026/06",
+      background: [
+        "整形外科クリニックの紙ベースの在庫管理・発注業務をデジタル化",
+        "オフラインでも使えるデスクトップアプリとして設計・開発",
+      ],
+      challenges: [
+        "在庫数・発注履歴を紙で管理しており、確認や更新に手間がかかっていた",
+        "注文票に商品情報を手作業で転記していたため発注ミスが多かった",
+        "在庫切れに気づかず、必要な物品が使いたいときに無かったことがあった",
+        "院内にはインターネットが無いため、インターネットに依存しない設計が必要だった",
+      ],
+      solutions: [
+        "在庫情報・品目データ・発注履歴をアプリ内で一元管理",
+        "簡単なクリック操作で直感的に個数を更新できるように設計",
+        "在庫不足アラートにより、発注漏れを防止",
+        "選択した品目と数量をもとに、PDF発注書を自動生成",
+        "ローカル保存とバックアップ機能により、オフライン運用に対応",
+      ],
+      learnings: [
+        "手作業では20分かかっていた業務を、このシステムで5分程度に短縮",
+        "クリニックのスタッフ（20人）が実際の現場で利用",
+      ],
+    },
+    {
+      slug: "commit-message-reviewer",
+      title: "Gitコミットメッセージレビューツール",
+      period: "2026/06",
+      background:
+        "GitコミットメッセージをLLMでレビューするNode.js / TypeScript製CLIを開発しました。ローカル・リモートリポジトリに対応し、結果をターミナルとHTMLレポートで確認できます。",
+      challenges:
+        "Git履歴取得、リモートclone、LLM評価、HTML生成を一つのCLIワークフローに統合する必要がありました。さらに、LLMの評価結果が揺れやすいため、安定したJSON出力と評価基準の設計も課題でした。",
+      solutions: [
+        "`--url`、`--limit`、`--output` に対応したCLIを実装",
+        "OpenRouter APIで各コミットを `excellent` / `good` / `bad` に分類",
+        "JSONレスポンスを検証し、失敗時は1件ずつ再評価するfallback処理を追加",
+        "HTMLレポートを生成し、`localhost:3546` で確認できるように実装",
+      ],
+      learnings:
+        "コミットメッセージの品質を自動レビューし、結果を可視化できるツールを完成させました。LLMを使うだけでなく、評価基準・プロンプト・出力検証を改善しながら実装する経験を得ました。",
+    },
+    {
+      slug: "gis-map",
+      title: "GISマップアプリケーション",
+      period: "2025/01 - 2025/04",
+      background:
+        "大学の授業で、OpenStreetMapデータを用いたC++ベースのGISアプリケーションをチームで開発しました。地図表示、経路探索、配送ルート最適化機能を実装しました。",
+      challenges:
+        "都市全体の大規模な道路・交差点データを高速に処理しながら、配送ルート最適化では解の質と計算時間のバランスを取る必要がありました。また、アルゴリズム、UI、データ処理をチームで統合することも課題でした。",
+      solutions: [
+        "データ構造を工夫し、不要な探索や計算を削減",
+        "経路探索とルート改善のアルゴリズムを組み合わせ、実行時間を抑えながら最適化",
+        "地図上で経路や地点を視覚的に確認できるUIを実装",
+        "チーム内で機能を分担し、最終アプリケーションとして統合",
+      ],
+      learnings:
+        "大規模データ処理、アルゴリズム設計、UI実装を含む実践的な開発を経験し、98チーム中14位の成績を達成しました。",
+    },
+    {
+      slug: "chest-xray",
+      title: "胸部X線画像の疾患分類モデル",
+      period: "2025/10 - 2025/12",
+      background:
+        "大学の授業で、胸部X線画像と患者メタデータを組み合わせた疾患分類モデルを構築しました。画像情報と表形式データを統合するマルチモーダル学習に取り組みました。",
+      challenges:
+        "疾患ごとのデータ数に大きな偏りがあり、多数派クラスに予測が偏りやすい状況でした。Accuracyだけでは少数クラスの検出性能を正しく評価できず、画像特徴量とメタデータの統合方法も課題でした。",
+      solutions: [
+        "CNNで画像特徴量を抽出し、患者メタデータと統合",
+        "Focal Loss、クラス重み、サンプリング手法を試行",
+        "Macro F1やクラス別Recallを用いて少数クラスの性能を評価",
+        "学習結果を比較しながらモデル構成と評価方法を改善",
+      ],
+      learnings:
+        "Macro F1を0.24から0.46へ改善し、EffusionクラスのRecallを0.00から0.55へ改善しました。医療AIにおけるクラス不均衡と評価指標の重要性を学びました。",
+    },
+    {
+      slug: "appointment-system",
+      featured: true,
+      title: "クリニック予約管理システム",
+      period: "2026/07",
+      background:
+        "クリニックの予約情報・患者情報を管理する予約管理システムを開発しました。受付業務や予約確認を効率化する業務向けシステムとして設計しました。",
+      challenges:
+        "予約日時、患者情報、診療内容、ステータスを正確に紐づける必要がありました。同時操作によるダブルブッキングを避け、複数端末での反映の時差を最小限にしつつ、医療現場で迷わず使える操作性も求められました。",
+      solutions: [
+        "予約情報・患者情報・ステータスを一元管理できる構成に設計",
+        "必要な情報にすぐアクセスできるよう画面構成と入力項目を整理",
+        "予約データを構造化し、検索・確認・更新しやすい仕組みを実装",
+        "日常業務の流れに沿ったUIを意識",
+      ],
+      learnings:
+        "予約・患者情報をまとめて管理できるシステムとして構築し、業務フローに合わせたUI設計とデータ管理の経験を得ました。",
+    },
+    {
+      slug: "clinic-website",
+      featured: true,
+      title: "クリニックWebサイト",
+      period: "2024/05 - 2024/07",
+      background:
+        "整形外科クリニックの公式Webサイトを設計・開発・公開しました。要件整理、実装、デプロイ、公開後の追加対応まで一貫して担当しました。",
+      challenges:
+        "高齢の患者さんにも読みやすく、迷わず使えるサイト設計が必要でした。情報量を増やしすぎると読みにくく、減らしすぎると不親切になるため、公開後に検索から見つけてもらうためのSEOも含めてバランスを取る必要がありました。",
+      solutions: [
+        "診療内容、診療時間、アクセス情報にすぐ到達できる導線を設計",
+        "文字サイズ、余白、配色、アイコンを調整し、読みやすさを重視",
+        "メタ情報やページ構造を整え、基本的なSEO対策を実施",
+        "QRコード経由で必要書類にアクセスできるページを公開後に追加",
+        "Google Sheetsを使ってサイトをCMS化し、クリニック職員が「お知らせ欄」を編集できるように実装",
+      ],
+      learnings:
+        "公開後3か月で2,856 impressions、343 clicks、CTR約12%を達成しました。クライアントから新規患者数増加の報告もいただき、クライアント要望と利用者目線を両立したWeb開発を経験しました。",
+    },
+    {
+      slug: "employee-attrition",
+      title: "若手社員離職リスク予測モデル",
+      period: "2025/08",
+      background:
+        "社員データを分析し、離職リスクを予測する機械学習モデルを構築しました。分析結果を人事施策につながるビジネス提案として整理しました。",
+      challenges:
+        "離職には勤務状況、評価、満足度、職種など複数要因が関係していました。モデルの予測結果をビジネス側にも理解できる形で説明し、精度だけでなく実際の人事施策にどう活かすかまで考える必要がありました。",
+      solutions: [
+        "社員データを前処理し、可視化によって離職傾向を分析",
+        "分類モデルを構築し、離職リスクに関係する特徴量を確認",
+        "モデル結果をもとに、リスクが高い層へのフォロー施策を提案",
+        "技術的な分析を意思決定に使える形に整理",
+      ],
+      learnings:
+        "データ分析、モデル構築、ビジネス提案までを一貫して経験しました。予測精度だけでなく、分析結果を実務にどう活かすかを学び、修了率14%の講座を無事修了しました。",
+    },
+    {
+      slug: "rush-hour",
+      title: "Rush Hour組込みシステム",
+      period: "2025/03 - 2025/04",
+      background:
+        "DE1-SoCボード上で動作するRush Hourパズルゲームを開発しました。入力処理、VGA表示、ゲーム状態管理を統合した組込みシステムとして実装しました。",
+      challenges:
+        "高レベルなUIライブラリに頼らず、入力・描画・状態更新を低レイヤで管理する必要がありました。PS/2キーボード入力やVGA表示など、ハードウェアに近い処理を扱い、処理タイミングや状態管理を正確に設計することが課題でした。",
+      solutions: [
+        "キーボード入力をもとにゲーム内の車の移動を制御",
+        "VGA出力を通じて盤面や車の状態を画面に表示",
+        "車の位置、移動可能範囲、ゲーム進行状態を管理",
+        "入力、描画、状態更新を分けて確認しながらデバッグ",
+      ],
+      learnings:
+        "ハードウェア入力、画面出力、ゲームロジックを統合したアプリケーションを完成させ、低レイヤでの実装、状態管理、デバッグ経験を得ました。",
+    },
+    {
+      slug: "utjn-website",
+      title: "UTJN公式Webサイト",
+      period: "2023/09 - Present",
+      background:
+        "University of Toronto Japan Networkの公式Webサイトを開発・保守しています。外部向け情報発信と団体内部の運用を支えるWebサイトとして改善しています。",
+      challenges:
+        "イベント情報や団体情報を継続的に更新できる構成が必要でした。学生団体のため運用メンバーが変わっても保守しやすく、本番環境での表示崩れや機能不具合、AWS上での運用・デプロイ・インフラ設定にも対応する必要がありました。",
+      solutions: [
+        "フロントエンド・バックエンドの修正を行い、表示や機能の不具合を改善",
+        "AWS EC2、Route 53、Caddyを用いて本番環境でのデプロイを経験",
+        "認証機能やデータ更新など、内部運用に関わる機能を実装",
+        "チームで継続的に保守しやすい構成を意識して改善",
+      ],
+      learnings:
+        "外部向け情報発信と内部運用の両方を支えるWebサイトとして保守・改善し、チーム開発、本番環境運用、インフラ管理を含むWeb開発を経験しました。",
+    },
+  ],
+  en: [
+    {
+      slug: "clinic-inventory",
+      featured: true,
+      title: "Clinic Inventory Management System",
+      period: "Jun 2026",
+      background:
+        "Designed and built an offline desktop application to digitize paper-based inventory and ordering workflows for an orthopedic clinic.",
+      challenges:
+        "The clinic managed stock counts and order history on paper, which made updates slow and error-prone. Staff also had to copy product details into order forms manually, and the clinic needed a solution that did not depend on internet access.",
+      solutions: [
+        "Centralized item data, inventory records, and order history inside the app",
+        "Designed a click-based workflow so staff could update quantities quickly",
+        "Added low-stock alerts to prevent missed orders",
+        "Generated PDF order forms automatically from selected items and quantities",
+        "Supported offline operation with local storage and backup features",
+      ],
+      learnings:
+        "Reduced a workflow that previously took about 20 minutes by hand to roughly 5 minutes in the system. The app is used by 20 clinic staff members in the actual workplace.",
+    },
+    {
+      slug: "commit-message-reviewer",
+      title: "Commit Message Reviewer",
+      period: "Jun 2026",
+      background:
+        "Built a Node.js / TypeScript CLI that reviews Git commit messages with an LLM and presents the results in both the terminal and an HTML report.",
+      challenges:
+        "The tool needed to combine Git history extraction, remote repository cloning, LLM evaluation, and HTML report generation into one CLI workflow. Another challenge was making LLM output stable enough to parse and compare consistently.",
+      solutions: [
+        "Implemented CLI options such as `--url`, `--limit`, and `--output`",
+        "Used the OpenRouter API to classify each commit as `excellent`, `good`, or `bad`",
+        "Validated JSON responses and added a fallback that re-evaluates commits one by one when batch output fails",
+        "Generated an HTML report that can be viewed locally at `localhost:3546`",
+      ],
+      learnings:
+        "Completed a tool that automatically reviews commit message quality and visualizes the results. The project gave me hands-on experience improving prompts, rubrics, and output validation for an LLM-powered developer tool.",
+    },
+    {
+      slug: "gis-map",
+      title: "GIS Map Application",
+      period: "Jan 2025 - Apr 2025",
+      background:
+        "Developed a C++ GIS application with a team using OpenStreetMap data for a university course. The app includes map rendering, route search, and delivery route optimization.",
+      challenges:
+        "The application had to process large-scale road and intersection data efficiently. For delivery route optimization, the main challenge was balancing solution quality with runtime while integrating algorithms, UI, and data processing as a team.",
+      solutions: [
+        "Designed data structures to reduce unnecessary search and computation",
+        "Combined route search and route improvement algorithms to optimize within practical runtime limits",
+        "Implemented UI features for visually checking routes and locations on the map",
+        "Split responsibilities across the team and integrated the final application",
+      ],
+      learnings:
+        "Gained practical experience with large-scale data processing, algorithm design, and UI implementation, contributing to a 14th-place result out of 98 teams.",
+    },
+    {
+      slug: "chest-xray",
+      title: "Chest X-ray Disease Classification",
+      period: "Oct 2025 - Dec 2025",
+      background:
+        "Built a disease classification model for a university project by combining chest X-ray images with patient metadata, focusing on multimodal learning across image and tabular data.",
+      challenges:
+        "The dataset was highly imbalanced across disease classes, so predictions tended to favor the majority class. Accuracy alone was not enough to evaluate minority-class performance, and I also needed to decide how to fuse image features with metadata.",
+      solutions: [
+        "Extracted image features with a CNN and fused them with patient metadata",
+        "Experimented with focal loss, class weighting, and sampling strategies",
+        "Evaluated minority-class performance using Macro F1 and class-specific Recall",
+        "Compared training results to improve both model structure and evaluation approach",
+      ],
+      learnings:
+        "Improved Macro F1 from 0.24 to 0.46 and Effusion Recall from 0.00 to 0.55. The project taught me the importance of class imbalance handling and evaluation metrics in medical AI.",
+    },
+    {
+      slug: "appointment-system",
+      featured: true,
+      title: "Clinic Reservation Management System",
+      period: "Jul 2026",
+      background:
+        "Built a reservation management system for a clinic to manage appointments and patient information, with a focus on making reception workflows easier to handle.",
+      challenges:
+        "The system needed to link appointment time, patient details, treatment information, and status accurately. It also had to avoid double booking during concurrent use, keep multiple devices in sync with minimal delay, and remain simple enough for a medical workplace.",
+      solutions: [
+        "Designed a structure that centralizes appointment data, patient information, and status",
+        "Organized screens and input fields so staff can reach key information quickly",
+        "Structured reservation data for easier searching, checking, and updating",
+        "Designed the UI around the flow of daily reception work",
+      ],
+      learnings:
+        "Built a system that manages appointment and patient information in one place, gaining experience with workflow-oriented UI design and practical data management.",
+    },
+    {
+      slug: "clinic-website",
+      featured: true,
+      title: "Clinic Website",
+      period: "May 2024 - Jul 2024",
+      background:
+        "Designed, developed, and launched the official website for an orthopedic clinic, covering requirements, implementation, deployment, and post-launch updates.",
+      challenges:
+        "The website needed to be readable and easy to navigate for older patients. I had to balance enough information to be helpful without making the pages feel crowded, while also considering SEO so the clinic could be found through search.",
+      solutions: [
+        "Designed clear paths to treatment information, clinic hours, and access details",
+        "Adjusted typography, spacing, colors, and icons to improve readability",
+        "Implemented basic SEO through metadata and page structure",
+        "Added post-launch pages that patients can access through QR codes for required documents",
+        "Connected Google Sheets as a lightweight CMS so non-engineer clinic staff can edit the announcements section",
+      ],
+      learnings:
+        "Reached 2,856 impressions, 343 clicks, and about a 12% CTR within three months after launch. The client also reported an increase in new patients, giving me experience balancing client needs with real user behavior.",
+    },
+    {
+      slug: "employee-attrition",
+      title: "Employee Attrition Risk Prediction",
+      period: "Aug 2025",
+      background:
+        "Analyzed employee data and built a machine learning model to predict attrition risk, then organized the findings as a business proposal for HR decision-making.",
+      challenges:
+        "Attrition was influenced by multiple factors such as work conditions, evaluations, satisfaction, and job type. The model results had to be understandable to business stakeholders, and the focus was not only accuracy but how the insights could support HR action.",
+      solutions: [
+        "Preprocessed employee data and visualized patterns related to attrition",
+        "Built a classification model and examined features associated with attrition risk",
+        "Proposed follow-up measures for higher-risk employee groups based on model results",
+        "Translated technical analysis into a form usable for decision-making",
+      ],
+      learnings:
+        "Completed the full process from data analysis and model building to business proposal design. I learned how to connect predictive results to practical use cases and completed a program with a 14% completion rate.",
+    },
+    {
+      slug: "rush-hour",
+      title: "Rush Hour Embedded System",
+      period: "Mar 2025 - Apr 2025",
+      background:
+        "Developed a Rush Hour puzzle game running on a DE1-SoC board, integrating input handling, VGA display, and game state management as an embedded system.",
+      challenges:
+        "The project required managing input, rendering, and state updates at a low level without relying on high-level UI libraries. I also had to work close to the hardware through PS/2 keyboard input and VGA output while designing timing and state transitions carefully.",
+      solutions: [
+        "Controlled vehicle movement based on keyboard input",
+        "Rendered the board and vehicle states through VGA output",
+        "Managed vehicle positions, valid movement ranges, and game progress state",
+        "Debugged by separating input, rendering, and state update logic",
+      ],
+      learnings:
+        "Completed an application that integrates hardware input, screen output, and game logic, gaining experience with low-level implementation, state management, and debugging.",
+    },
+    {
+      slug: "utjn-website",
+      title: "UTJN Official Website",
+      period: "Sep 2023 - Present",
+      background:
+        "Develop and maintain the official website for the University of Toronto Japan Network, improving it as a platform for public information and internal operations.",
+      challenges:
+        "The site needs to support ongoing updates for events and organization information. Because it is run by a student group, the system also needs to remain maintainable as members change, while handling production issues, deployment, and AWS infrastructure management.",
+      solutions: [
+        "Fixed frontend and backend issues affecting display and functionality",
+        "Worked with AWS EC2, Route 53, and Caddy for production deployment",
+        "Implemented internal operation features such as authentication and data updates",
+        "Improved the system with team maintainability in mind",
+      ],
+      learnings:
+        "Maintained and improved a production website that supports both public communication and internal operations, gaining experience with team development, production operations, and infrastructure management.",
+    },
+  ],
+};
+
+const projectTranslations = {
+  ...rawTranslations,
+  ja: {
+    ...rawTranslations.ja,
+    projects: {
+      ...rawTranslations.ja.projects,
+      items: projectItemsFromMarkdown.ja,
+    },
+  },
+  en: {
+    ...rawTranslations.en,
+    projects: {
+      ...rawTranslations.en.projects,
+      items: projectItemsFromMarkdown.en,
+    },
+  },
+};
+
+const translations = addProjectAssets(projectTranslations);

@@ -12,15 +12,17 @@ import {
   type PortfolioVariant,
 } from "@/lib/portfolioVariants";
 
+type ProjectSectionContent = string | string[];
+
 type Project = {
   title: string;
   period: string;
   slug?: string;
   tags?: string[];
-  background?: string;
-  challenges?: string;
+  background?: ProjectSectionContent;
+  challenges?: ProjectSectionContent;
   solutions?: string[];
-  learnings?: string;
+  learnings?: ProjectSectionContent;
   githubUrl?: string;
   slideUrl?: string;
   websiteUrl?: string;
@@ -42,9 +44,10 @@ type Project = {
   videoUrl?: string;
   searchConsoleImageUrl?: string;
   thumbnailImageUrl?: string;
+  featured?: boolean;
 };
 
-const selectedDefaultIndices = [5, 2, 3, 0, 6, 7, 1, 4];
+const selectedDefaultIndices = [5, 2, 3, 0, 6, 7, 1, 4, 8];
 
 const cleanTitle = (title: string) =>
   title
@@ -71,6 +74,33 @@ function getProjectPreview(project: Project, slug?: string): string | null {
   ];
 
   return candidates.find((c) => Boolean(c)) ?? null;
+}
+
+function ProjectSection({
+  title,
+  content,
+}: {
+  title: string;
+  content?: ProjectSectionContent;
+}) {
+  if (!content) {
+    return null;
+  }
+
+  const items = Array.isArray(content) ? content : [content];
+
+  return (
+    <section>
+      <h2 className="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-[#68887b] dark:text-[#9bb8aa]">
+        {title}
+      </h2>
+      <ul className="list-disc space-y-2 pl-5">
+        {items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 function getExtraProjects(language: "ja" | "en"): Array<{ slug: string; project: Project }> {
@@ -208,7 +238,12 @@ function ProjectCard({ project, href, slug }: { project: Project; href: string; 
         href={href}
         className="group block overflow-hidden rounded-lg border border-black/12 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-all hover:-translate-y-0.5 hover:border-[#9db2a8] hover:shadow-[0_10px_30px_rgba(31,41,37,0.08)] dark:border-white/10 dark:bg-[#171b19] dark:hover:border-[#9bb8aa]/60"
       >
-        <div className="m-2 h-48 overflow-hidden rounded-md bg-[#f1f3f1] dark:bg-[#222824] md:h-52">
+        <div className="relative m-2 h-48 overflow-hidden rounded-md bg-[#f1f3f1] dark:bg-[#222824] md:h-52">
+          {project.featured && (
+            <span className="absolute left-3 top-3 z-10 rounded-full border border-[#d8c48a] bg-[#fff8db]/95 px-3 py-1 text-xs font-bold text-[#7a5a13] shadow-[0_4px_14px_rgba(67,52,18,0.14)] backdrop-blur dark:border-[#8b7440] dark:bg-[#332b17]/95 dark:text-[#f4d36a]">
+              ⭐ Featured Project
+            </span>
+          )}
           {isVideo && preview ? (
             <video muted preload="metadata" className="h-full w-full object-cover">
               <source src={preview} type="video/mp4" />
@@ -280,10 +315,12 @@ export default function Projects({
       Boolean(entry.project && entry.slug),
     );
 
-  const visibleProjects = [
-    ...indexedProjects,
-    ...(variant === "default" ? getExtraProjects(language) : []),
-  ];
+  const extraProjects =
+    variant === "default"
+      ? getExtraProjects(language).filter(({ slug }) => !projectMap.has(slug))
+      : [];
+
+  const visibleProjects = [...indexedProjects, ...extraProjects];
 
   const sectionCopy = {
     en: { eyebrow: "Projects", title: "What I've built" },
@@ -344,6 +381,12 @@ export function ProjectDetail({
   const project = projectMap.get(slug) ?? extraProject;
   const preview = project ? getProjectPreview(project, slug) : null;
   const isVideo = preview?.endsWith(".mp4");
+  const sectionTitles = {
+    overview: language === "ja" ? "概要" : "Overview",
+    challenge: language === "ja" ? "課題" : "Challenge",
+    solution: language === "ja" ? "解決策" : "Solution",
+    outcome: language === "ja" ? "成果" : "Outcome",
+  };
 
   type MediaItem = { src: string; label: string; type: "image" | "video" };
 
@@ -461,17 +504,11 @@ export function ProjectDetail({
               </div>
             )}
 
-            <div className="mt-8 space-y-6 text-base leading-7 text-[#4b504d] dark:text-[#c6d2cc]">
-              {project.background && <p>{project.background}</p>}
-              {project.challenges && <p>{project.challenges}</p>}
-              {project.solutions && (
-                <ul className="list-disc space-y-2 pl-5">
-                  {project.solutions.map((solution) => (
-                    <li key={solution}>{solution}</li>
-                  ))}
-                </ul>
-              )}
-              {project.learnings && <p>{project.learnings}</p>}
+            <div className="mt-8 space-y-7 text-base leading-7 text-[#4b504d] dark:text-[#c6d2cc]">
+              <ProjectSection title={sectionTitles.overview} content={project.background} />
+              <ProjectSection title={sectionTitles.challenge} content={project.challenges} />
+              <ProjectSection title={sectionTitles.solution} content={project.solutions} />
+              <ProjectSection title={sectionTitles.outcome} content={project.learnings} />
             </div>
 
             {mediaItems.length > 0 && (
@@ -509,12 +546,12 @@ export function ProjectDetail({
                 </a>
               )}
               {project.slideUrl && (
-                <a className="rounded-md border border-black/12 px-4 py-2 text-sm font-semibold text-[#3f4341]" href={project.slideUrl} target="_blank" rel="noopener noreferrer">
+                <a className="rounded-md bg-[#242424] px-4 py-2 text-sm font-semibold text-white" href={project.slideUrl} target="_blank" rel="noopener noreferrer">
                   View Slides
                 </a>
               )}
               {project.websiteUrl && (
-                <a className="rounded-md border border-black/12 px-4 py-2 text-sm font-semibold text-[#3f4341]" href={project.websiteUrl} target="_blank" rel="noopener noreferrer">
+                <a className="rounded-md bg-[#242424] px-4 py-2 text-sm font-semibold text-white" href={project.websiteUrl} target="_blank" rel="noopener noreferrer">
                   View Website
                 </a>
               )}

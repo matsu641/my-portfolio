@@ -19,6 +19,7 @@ export type ProjectAssetBundle = {
   slideUrl?: string;
   githubUrl?: string;
   websiteUrl?: string;
+  featured?: boolean;
 };
 
 export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
@@ -213,10 +214,10 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
 type ProjectWithAssets = {
   title?: string;
   period?: string;
-  background?: string;
-  challenges?: string;
+  background?: string | string[];
+  challenges?: string | string[];
   solutions?: string[];
-  learnings?: string;
+  learnings?: string | string[];
   slug?: string;
   tags?: string[];
   thumbnailImageUrl?: string;
@@ -228,6 +229,7 @@ type ProjectWithAssets = {
   slideUrl?: string;
   githubUrl?: string;
   websiteUrl?: string;
+  featured?: boolean;
 };
 
 type TranslationTree = Record<string, unknown> & {
