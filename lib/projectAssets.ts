@@ -183,11 +183,11 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
     thumbnailImageUrl: "/clinic-website/thumbnail.png",
     demoMedia: [
       {
-        src: "/clinic-website/demoImage.png",
+        src: "/clinic-website/demoImage2.png",
         type: "image",
         label: {
-          ja: "トップページ画面",
-          en: "Homepage Screenshot",
+          ja: "サーチコンソール画面",
+          en: "Search Console",
         },
       },
       {
