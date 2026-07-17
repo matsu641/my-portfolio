@@ -9,10 +9,12 @@ const navItems = {
   en: [
     { hash: "about", label: "About" },
     { hash: "projects", label: "Projects" },
+    { href: "/timeline", label: "Timeline" },
   ],
   ja: [
     { hash: "about", label: "About" },
     { hash: "projects", label: "Projects" },
+    { href: "/timeline", label: "Timeline" },
   ],
 };
 
@@ -62,11 +64,11 @@ export default function TopNavigation() {
           </button>
         </div>
 
-        <div className="mr-28 flex items-center gap-5 text-sm font-semibold text-[#5f6662] md:mr-36 md:gap-10 dark:text-[#c6d2cc]">
+        <div className="mr-24 flex items-center gap-4 text-xs font-semibold text-[#5f6662] sm:text-sm md:mr-36 md:gap-10 dark:text-[#c6d2cc]">
           {navItems[language].map((item) => (
             <Link
-              key={item.hash}
-              href={`${basePath}#${item.hash}`}
+              key={item.label}
+              href={("href" in item && item.href) || `${basePath}#${item.hash}`}
               className="transition-colors hover:text-[#496b5f] dark:hover:text-white"
             >
               {item.label}
