@@ -47,7 +47,17 @@ type Project = {
   featured?: boolean;
 };
 
-const selectedDefaultIndices = [5, 2, 3, 0, 6, 7, 1, 4, 8];
+const selectedDefaultIndices = [
+  5,
+  // 2, // AI Document Review (temporarily hidden)
+  3,
+  0,
+  // 6, // Clinic Reservation Management System (temporarily hidden)
+  7,
+  1,
+  4,
+  8,
+];
 
 const cleanTitle = (title: string) =>
   title
