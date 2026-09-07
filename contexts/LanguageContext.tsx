@@ -156,7 +156,7 @@ const rawTranslations = {
             "HTML、CSS、TypeScriptでレスポンシブサイトを実装",
             "基本的なSEO対策と、QRコードからアクセスできる専用情報ページを追加"
           ],
-          learnings: "公開後3ヶ月で2,856インプレッション、343クリック、CTR 12%を達成しました。",
+          learnings: "Google Search Consoleの過去16か月の集計で、46,700回の表示、5,430クリック、CTR 11.6%、平均掲載順位4.9を記録しました。",
         }
       ]
     }
@@ -265,7 +265,7 @@ const rawTranslations = {
             "Built the website with HTML, CSS, and TypeScript for mobile, tablet, and desktop",
             "Implemented basic SEO improvements to improve online visibility and accessibility"
           ],
-          learnings: "Achieved 2,856 impressions and 343 clicks with a 12% CTR within 3 months after launch, and the website continues to receive daily visitors while contributing to an increase in new patients.",
+          learnings: "Recorded 46,700 impressions, 5,430 clicks, an 11.6% CTR, and an average position of 4.9 over the latest 16 months in Google Search Console.",
         }
       ]
     }
@@ -276,7 +276,6 @@ const projectItemsFromMarkdown = {
   ja: [
     {
       slug: "clinic-inventory",
-      featured: true,
       title: "クリニック在庫管理システム",
       period: "2026/06",
       background: [
@@ -355,24 +354,24 @@ const projectItemsFromMarkdown = {
     {
       slug: "appointment-system",
       featured: true,
-      title: "クリニック予約管理システム",
-      period: "2026/07",
+      title: "リハビリ予約管理システム",
+      period: "2026/07 - 現在",
       background:
-        "クリニックの予約情報・患者情報を管理する予約管理システムを開発しました。受付業務や予約確認を効率化する業務向けシステムとして設計しました。",
+        "整形外科クリニック向けに、予約・患者・理学療法士・リハビリ記録を一元管理するオンプレミス業務システムを個人で設計・開発しました。現在は実際の院内業務で運用されています。",
       challenges:
-        "予約日時、患者情報、診療内容、ステータスを正確に紐づける必要がありました。同時操作によるダブルブッキングを避け、複数端末での反映の時差を最小限にしつつ、医療現場で迷わず使える操作性も求められました。",
+        "複数のiPadとPCから同時利用されるため、ダブルブッキングの防止、個人情報を外部へ出さない院内LAN運用、無線LANの瞬断から安全に復旧できる仕組みが必要でした。",
       solutions: [
-        "予約情報・患者情報・ステータスを一元管理できる構成に設計",
-        "必要な情報にすぐアクセスできるよう画面構成と入力項目を整理",
-        "予約データを構造化し、検索・確認・更新しやすい仕組みを実装",
-        "日常業務の流れに沿ったUIを意識",
+        "React / TypeScript / Fastify / PostgreSQL / Electronによるオンプレミス構成を設計し、Windows向けインストーラーまで作成",
+        "10分単位の一意制約、Serializableトランザクション、楽観ロックにより、同時操作時の予約競合を防止",
+        "端末承認、HTTPS、CSRF対策、操作ログ、自動バックアップ・復元機能を実装",
+        "WebSocketと定期再取得を組み合わせ、通信断中は最終表示を保持して書き込みを停止し、復旧後に自動再同期",
+        "本番で発生した通信・起動・印刷の問題をログと再現テストで切り分け、ネットワーク構成とアプリの両面から改善",
       ],
       learnings:
-        "予約・患者情報をまとめて管理できるシステムとして構築し、業務フローに合わせたUI設計とデータ管理の経験を得ました。",
+        "要件整理から設計、実装、テスト、配布、本番障害対応まで一人で担当しました。職員のフィードバックをもとに改善を続け、業務システムを運用する責任と、アプリ・OS・ネットワークを横断して原因を切り分ける力を身につけました。",
     },
     {
       slug: "clinic-website",
-      featured: true,
       title: "クリニックWebサイト",
       period: "2024/05 - 2024/07",
       background:
@@ -387,7 +386,7 @@ const projectItemsFromMarkdown = {
         "Google Sheetsを使ってサイトをCMS化し、クリニック職員が「お知らせ欄」を編集できるように実装",
       ],
       learnings:
-        "公開後3か月で2,856 impressions、343 clicks、CTR約12%を達成しました。クライアントから新規患者数増加の報告もいただき、クライアント要望と利用者目線を両立したWeb開発を経験しました。",
+        "Google Search Consoleの過去16か月の集計で、46,700回の表示、5,430クリック、CTR 11.6%、平均掲載順位4.9を記録しました。クライアントから新規患者数増加の報告もいただき、クライアント要望と利用者目線を両立したWeb開発を経験しました。",
     },
     {
       slug: "employee-attrition",
@@ -444,7 +443,6 @@ const projectItemsFromMarkdown = {
   en: [
     {
       slug: "clinic-inventory",
-      featured: true,
       title: "Clinic Inventory Management System",
       period: "Jun 2026",
       background:
@@ -515,24 +513,24 @@ const projectItemsFromMarkdown = {
     {
       slug: "appointment-system",
       featured: true,
-      title: "Clinic Reservation Management System",
-      period: "Jul 2026",
+      title: "Rehabilitation Appointment Management System",
+      period: "Jul 2026 - Present",
       background:
-        "Built a reservation management system for a clinic to manage appointments and patient information, with a focus on making reception workflows easier to handle.",
+        "Independently designed and built an on-premises operations system for an orthopedic clinic that centralizes appointments, patients, physical therapists, and rehabilitation records. It is now used in the clinic's day-to-day operations.",
       challenges:
-        "The system needed to link appointment time, patient details, treatment information, and status accurately. It also had to avoid double booking during concurrent use, keep multiple devices in sync with minimal delay, and remain simple enough for a medical workplace.",
+        "Because staff use the system concurrently from multiple iPads and PCs, it needed to prevent double bookings, keep sensitive data within the clinic LAN, and recover safely from intermittent wireless connectivity.",
       solutions: [
-        "Designed a structure that centralizes appointment data, patient information, and status",
-        "Organized screens and input fields so staff can reach key information quickly",
-        "Structured reservation data for easier searching, checking, and updating",
-        "Designed the UI around the flow of daily reception work",
+        "Designed an on-premises architecture with React, TypeScript, Fastify, PostgreSQL, and Electron, including a Windows installer",
+        "Prevented concurrent booking conflicts with 10-minute unique constraints, serializable transactions, and optimistic locking",
+        "Implemented device approval, HTTPS, CSRF protection, audit logs, automated backups, and restore workflows",
+        "Combined WebSocket updates with periodic refetching; the UI preserves its last state and blocks writes during outages, then resynchronizes automatically",
+        "Diagnosed production connectivity, startup, and printing issues through logs and reproduction tests, improving both the network setup and application",
       ],
       learnings:
-        "Built a system that manages appointment and patient information in one place, gaining experience with workflow-oriented UI design and practical data management.",
+        "Owned the full lifecycle from requirements and architecture through implementation, testing, distribution, and production incident response. Iterating on staff feedback taught me the responsibility of operating business-critical software and how to diagnose issues across the application, OS, and network layers.",
     },
     {
       slug: "clinic-website",
-      featured: true,
       title: "Clinic Website",
       period: "May 2024 - Jul 2024",
       background:
@@ -547,7 +545,7 @@ const projectItemsFromMarkdown = {
         "Connected Google Sheets as a lightweight CMS so non-engineer clinic staff can edit the announcements section",
       ],
       learnings:
-        "Reached 2,856 impressions, 343 clicks, and about a 12% CTR within three months after launch. The client also reported an increase in new patients, giving me experience balancing client needs with real user behavior.",
+        "Recorded 46,700 impressions, 5,430 clicks, an 11.6% CTR, and an average position of 4.9 over the latest 16 months in Google Search Console. The client also reported an increase in new patients, giving me experience balancing client needs with real user behavior.",
     },
     {
       slug: "employee-attrition",

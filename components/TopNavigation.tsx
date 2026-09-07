@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const navItems = {
@@ -18,18 +18,26 @@ const navItems = {
   ],
 };
 
+const subscribeToHydration = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export default function TopNavigation() {
   const pathname = usePathname();
   const { language } = useLanguage();
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
   const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
+    if (typeof window === "undefined") return false;
 
     const storedTheme = window.localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     return storedTheme ? storedTheme === "dark" : prefersDark;
   });
+  const displayedIsDark = isHydrated && isDark;
   const pathParts = pathname.replace(/^\/+/, "").split("/");
   const activeVariant = pathParts[0] === "ai" || pathParts[0] === "swe" ? pathParts[0] : "";
   const basePath = activeVariant ? `/${activeVariant}` : "/";
@@ -47,10 +55,10 @@ export default function TopNavigation() {
             type="button"
             onClick={() => setIsDark((current) => !current)}
             className="flex h-10 items-center gap-2 rounded-full border border-[#cfdad3] bg-white px-3 text-sm font-bold text-[#5f756c] shadow-sm transition-colors hover:bg-[#f0f4f1] dark:border-white/15 dark:bg-[#1b1f1d] dark:text-[#d9e4de] dark:hover:bg-[#242b27]"
-            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-            title={isDark ? "Dark mode" : "Light mode"}
+            aria-label={displayedIsDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={displayedIsDark ? "Dark mode" : "Light mode"}
           >
-            {isDark ? (
+            {displayedIsDark ? (
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M21 14.3A8.3 8.3 0 0 1 9.7 3a.75.75 0 0 0-.9-.9 10 10 0 1 0 13.1 13.1.75.75 0 0 0-.9-.9Z" />
               </svg>
@@ -60,7 +68,7 @@ export default function TopNavigation() {
                 <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
               </svg>
             )}
-            <span>{isDark ? "Dark" : "Light"}</span>
+            <span>{displayedIsDark ? "Dark" : "Light"}</span>
           </button>
         </div>
 

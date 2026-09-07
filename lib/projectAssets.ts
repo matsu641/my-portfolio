@@ -17,6 +17,7 @@ export type ProjectAssetBundle = {
   demoImageUrls?: string[];
   videoUrl?: string;
   slideUrl?: string;
+  manualUrl?: string;
   githubUrl?: string;
   websiteUrl?: string;
   featured?: boolean;
@@ -163,19 +164,9 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
   },
   "appointment-system": {
     slug: "appointment-system",
-    tags: ["Next.js", "React", "TypeScript", "PostgreSQL", "Problem Solving", "Client Work", "Onpremises"],
+    tags: ["React", "TypeScript", "Fastify", "PostgreSQL", "Electron", "WebSocket", "On-premises"],
     thumbnailImageUrl: "/appointment-system/thumbnail.png",
-    demoMedia: [
-      {
-        src: "/appointment-system/demoVideo.mp4",
-        type: "video",
-        label: {
-          ja: "予約管理ワークフローデモ",
-          en: "Appointment Workflow Demo",
-        },
-      },
-    ],
-    videoUrl: "/appointment-system/demoVideo.mp4",
+    manualUrl: "/appointment-system/リハビリ予約管理システム 職員向け操作マニュアル.pdf",
   },
   "clinic-website": {
     slug: "clinic-website",
@@ -183,7 +174,7 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
     thumbnailImageUrl: "/clinic-website/thumbnail.png",
     demoMedia: [
       {
-        src: "/clinic-website/demoImage2.png",
+        src: "/clinic-website/Screenshot 2026-09-07 075403.png",
         type: "image",
         label: {
           ja: "サーチコンソール画面",
@@ -227,6 +218,7 @@ type ProjectWithAssets = {
   analysisImages?: string[];
   videoUrl?: string;
   slideUrl?: string;
+  manualUrl?: string;
   githubUrl?: string;
   websiteUrl?: string;
   featured?: boolean;
@@ -280,6 +272,7 @@ export function addProjectAssets<T extends Record<string, TranslationTree>>(
                     .map((media) => media.src) ?? assets.demoImageUrls,
                 videoUrl: assets.videoUrl,
                 slideUrl: assets.slideUrl,
+                manualUrl: assets.manualUrl,
                 githubUrl: assets.githubUrl,
                 websiteUrl: assets.websiteUrl,
                 analysisImages: project.analysisImages

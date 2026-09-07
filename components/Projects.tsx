@@ -25,6 +25,7 @@ type Project = {
   learnings?: ProjectSectionContent;
   githubUrl?: string;
   slideUrl?: string;
+  manualUrl?: string;
   websiteUrl?: string;
   confusionMatrixImages?: string[];
   confusionMatrixLabels?: string[];
@@ -48,11 +49,11 @@ type Project = {
 };
 
 const selectedDefaultIndices = [
+  6,
   5,
   // 2, // AI Document Review (temporarily hidden)
   3,
   0,
-  // 6, // Clinic Reservation Management System (temporarily hidden)
   7,
   1,
   4,
@@ -558,6 +559,11 @@ export function ProjectDetail({
               {project.slideUrl && (
                 <a className="rounded-md bg-[#242424] px-4 py-2 text-sm font-semibold text-white" href={project.slideUrl} target="_blank" rel="noopener noreferrer">
                   View Slides
+                </a>
+              )}
+              {project.manualUrl && (
+                <a className="rounded-md bg-[#242424] px-4 py-2 text-sm font-semibold text-white" href={project.manualUrl} target="_blank" rel="noopener noreferrer">
+                  {language === "ja" ? "職員向け操作マニュアル" : "View Staff Manual"}
                 </a>
               )}
               {project.websiteUrl && (
