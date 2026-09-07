@@ -88,7 +88,7 @@ const experiences = [
     role: "AI Engineer",
     type: "Internship",
     period: "Jul 2026 - Aug 2026",
-    description: { en: "Incoming summer intern.", ja: "一か月サマーインターン" },
+    description: { en: "Analyzed user data to identify product issues and designed and implemented improvements for an AI-powered BI product.", ja: "データ分析から課題設定、UI/UX設計、Frontend/Backend実装まで一貫してプロダクト改善を担当。" },
     logo: "/logo/yappli_logo.jpeg",
   },
   {
