@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { addProjectAssets } from '@/lib/projectAssets';
 
 type Language = 'ja' | 'en';
@@ -19,7 +19,11 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('ja');
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   const t = (<T,>(key: string): T => {
     const keys = key.split('.');
@@ -356,19 +360,26 @@ const projectItemsFromMarkdown = {
       featured: true,
       title: "リハビリ予約管理システム",
       period: "2026/07 - 現在",
-      background:
-        "整形外科クリニック向けに、予約・患者・理学療法士・リハビリ記録を一元管理するオンプレミス業務システムを個人で設計・開発しました。現在は実際の院内業務で運用されています。",
-      challenges:
-        "複数のiPadとPCから同時利用されるため、ダブルブッキングの防止、個人情報を外部へ出さない院内LAN運用、無線LANの瞬断から安全に復旧できる仕組みが必要でした。",
-      solutions: [
-        "React / TypeScript / Fastify / PostgreSQL / Electronによるオンプレミス構成を設計し、Windows向けインストーラーまで作成",
-        "10分単位の一意制約、Serializableトランザクション、楽観ロックにより、同時操作時の予約競合を防止",
-        "端末承認、HTTPS、CSRF対策、操作ログ、自動バックアップ・復元機能を実装",
-        "WebSocketと定期再取得を組み合わせ、通信断中は最終表示を保持して書き込みを停止し、復旧後に自動再同期",
-        "本番で発生した通信・起動・印刷の問題をログと再現テストで切り分け、ネットワーク構成とアプリの両面から改善",
+      background: [
+        "1日約300名が来院する整形外科クリニック向けに、リハビリ予約・患者記録を一元管理するオンプレミス業務システムを設計・開発しました。受付・理学療法士・看護師・医師など約20名が、現在実際の院内業務で利用しています。",
       ],
-      learnings:
-        "要件整理から設計、実装、テスト、配布、本番障害対応まで一人で担当しました。職員のフィードバックをもとに改善を続け、業務システムを運用する責任と、アプリ・OS・ネットワークを横断して原因を切り分ける力を身につけました。",
+      challenges: [
+        "現場観察と職員へのヒアリングから、予約入力が一部の端末・職員に集中し、混雑時には患者の待ち時間が発生していること、また患者記録が予約情報とは別に管理されていることを特定しました。",
+        "複数のPC・iPadから同時に利用するため、予約競合の防止、患者情報を外部へ出さない院内LAN運用、通信障害時にも業務を継続できる仕組みが必要でした。",
+      ],
+      solutions: [
+        "React / TypeScript / Fastify / PostgreSQL / Electronを用いて、予約・患者情報・リハビリ記録を複数端末から共有できるオンプレミスシステムを構築",
+        "10分単位の一意制約、Serializableトランザクション、楽観ロックを組み合わせ、複数職員による同時操作時の予約競合を防止",
+        "端末承認、HTTPS、CSRF対策、操作ログ、自動バックアップ・復元機能を実装し、実運用を想定したセキュリティと保守性を確保",
+        "WebSocketと定期再取得を組み合わせ、通信断中は書き込みを停止して最終状態を保持し、復旧後に自動で同期",
+        "導入後も職員の利用状況とフィードバックをもとにUI・機能を継続改善し、本番で発生した通信・起動・印刷障害にも対応",
+      ],
+      learnings: [
+        "約20名の職員が日常業務で利用するシステムとして本番導入",
+        "受付だけでなく、理学療法士・看護師・医師がそれぞれの場所から予約・患者記録を確認・更新できる環境を実現",
+        "課題発見・ヒアリング・要件整理から、設計、実装、テスト、配布、職員への操作説明、本番障害対応、改善まで一貫して担当",
+        "開発を通じて、技術的に動くものを作るだけでなく、実際の業務フローとユーザーの声をもとに、継続して使われるプロダクトへ改善する重要性を学びました。",
+      ],
     },
     {
       slug: "clinic-website",
@@ -515,19 +526,26 @@ const projectItemsFromMarkdown = {
       featured: true,
       title: "Rehabilitation Appointment Management System",
       period: "Jul 2026 - Present",
-      background:
-        "Independently designed and built an on-premises operations system for an orthopedic clinic that centralizes appointments, patients, physical therapists, and rehabilitation records. It is now used in the clinic's day-to-day operations.",
-      challenges:
-        "Because staff use the system concurrently from multiple iPads and PCs, it needed to prevent double bookings, keep sensitive data within the clinic LAN, and recover safely from intermittent wireless connectivity.",
-      solutions: [
-        "Designed an on-premises architecture with React, TypeScript, Fastify, PostgreSQL, and Electron, including a Windows installer",
-        "Prevented concurrent booking conflicts with 10-minute unique constraints, serializable transactions, and optimistic locking",
-        "Implemented device approval, HTTPS, CSRF protection, audit logs, automated backups, and restore workflows",
-        "Combined WebSocket updates with periodic refetching; the UI preserves its last state and blocks writes during outages, then resynchronizes automatically",
-        "Diagnosed production connectivity, startup, and printing issues through logs and reproduction tests, improving both the network setup and application",
+      background: [
+        "Designed and developed an on-premises operations system that centralizes rehabilitation appointments and patient records for an orthopedic clinic serving about 300 patients per day. Around 20 receptionists, physical therapists, nurses, and physicians currently use it in daily operations.",
       ],
-      learnings:
-        "Owned the full lifecycle from requirements and architecture through implementation, testing, distribution, and production incident response. Iterating on staff feedback taught me the responsibility of operating business-critical software and how to diagnose issues across the application, OS, and network layers.",
+      challenges: [
+        "Through on-site observation and staff interviews, I identified that appointment entry was concentrated on a limited number of devices and staff members, causing patient wait times during busy periods, while patient records were managed separately from appointment data.",
+        "Concurrent use from multiple PCs and iPads required prevention of booking conflicts, an on-premises LAN architecture that keeps patient data inside the clinic, and a way to continue operations during connectivity problems.",
+      ],
+      solutions: [
+        "Built an on-premises system with React, TypeScript, Fastify, PostgreSQL, and Electron so appointment, patient, and rehabilitation records can be shared across devices",
+        "Combined 10-minute unique constraints, serializable transactions, and optimistic locking to prevent booking conflicts during concurrent staff operations",
+        "Implemented device approval, HTTPS, CSRF protection, audit logs, automated backups, and restore workflows for production security and maintainability",
+        "Combined WebSocket updates with periodic refetching, blocking writes while retaining the last known state during outages and automatically resynchronizing after recovery",
+        "Continued improving the UI and features after deployment based on staff usage and feedback, while responding to production connectivity, startup, and printing incidents",
+      ],
+      learnings: [
+        "Deployed as a production system used in daily operations by around 20 staff members",
+        "Enabled receptionists, physical therapists, nurses, and physicians to review and update appointments and patient records from their respective work areas",
+        "Owned the full lifecycle from problem discovery, interviews, and requirements through design, implementation, testing, distribution, staff training, production incident response, and continuous improvement",
+        "Learned that building technically functional software is only the beginning; continuously improving a product around real workflows and user feedback is what makes it valuable and sustainable",
+      ],
     },
     {
       slug: "clinic-website",
