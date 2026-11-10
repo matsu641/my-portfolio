@@ -75,15 +75,27 @@ export default function TopNavigation() {
         </div>
 
         <div className="mr-20 flex items-center gap-3 text-[11px] font-semibold text-[#5f6662] sm:mr-24 sm:gap-4 sm:text-sm md:mr-36 md:gap-8 dark:text-[#c6d2cc]">
-          {navItems[language].map((item) => (
-            <Link
-              key={item.label}
-              href={("href" in item && item.href) || `${basePath}#${item.hash}`}
-              className="transition-colors hover:text-[#496b5f] dark:hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems[language].map((item) => {
+            const href = ("href" in item && item.href) || `${basePath}#${item.hash}`;
+            const className =
+              "transition-colors hover:text-[#496b5f] dark:hover:text-white";
+
+            // The portfolio URL is rewritten to a PDF. A native navigation avoids
+            // Next.js treating it as an App Router page during client navigation.
+            if (href === "/portfolio") {
+              return (
+                <a key={item.label} href={href} className={className}>
+                  {item.label}
+                </a>
+              );
+            }
+
+            return (
+              <Link key={item.label} href={href} className={className}>
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       </nav>
     </header>
