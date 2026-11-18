@@ -50,7 +50,7 @@ type Project = {
 
 const selectedDefaultIndices = [
   6,
-  5,
+  // 5, // Clinic Inventory Management System (temporarily hidden)
   // 2, // AI Document Review (temporarily hidden)
   3,
   0,
@@ -106,9 +106,26 @@ function ProjectSection({
         {title}
       </h2>
       <ul className="list-disc space-y-2 pl-5">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
+        {items.map((item) => {
+          const labelSeparatorIndex = item.indexOf("　");
+          const hasLabel = labelSeparatorIndex > 0;
+
+          return (
+            <li key={item}>
+              {hasLabel ? (
+                <>
+                  <span className="font-bold text-[#3f4341] dark:text-[#f4f7f5]">
+                    {item.slice(0, labelSeparatorIndex)}
+                  </span>
+                  {"　"}
+                  {item.slice(labelSeparatorIndex + 1)}
+                </>
+              ) : (
+                item
+              )}
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

@@ -191,7 +191,6 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
       },
     ],
     videoUrl: "/clinic-website/demoVideo.mp4",
-    githubUrl: "https://github.com/matsu641/clinic-website",
     websiteUrl: "https://kuwabara-ortho.jp",
   },
   "utjn-website": {
