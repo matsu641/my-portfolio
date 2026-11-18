@@ -50,6 +50,7 @@ type Project = {
 
 const selectedDefaultIndices = [
   6,
+  9,
   // 5, // Clinic Inventory Management System (temporarily hidden)
   // 2, // AI Document Review (temporarily hidden)
   3,
@@ -585,7 +586,11 @@ export function ProjectDetail({
               )}
               {project.websiteUrl && (
                 <a className="rounded-md bg-[#242424] px-4 py-2 text-sm font-semibold text-white" href={project.websiteUrl} target="_blank" rel="noopener noreferrer">
-                  View Website
+                  {slug === "education-platform"
+                    ? language === "ja"
+                      ? "デモサイトを見る"
+                      : "View Demo"
+                    : "View Website"}
                 </a>
               )}
             </div>

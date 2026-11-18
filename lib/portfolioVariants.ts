@@ -3,6 +3,7 @@ export type PortfolioVariant = "default" | "ai" | "swe";
 export const projectIndicesByVariant: Record<PortfolioVariant, number[] | null> = {
   default: [
     6,
+    9,
     // 5, // Clinic Inventory Management System (temporarily hidden)
     // 2, // AI Document Review (temporarily hidden)
     3,
@@ -19,6 +20,7 @@ export const projectIndicesByVariant: Record<PortfolioVariant, number[] | null> 
   ],
   swe: [
     6,
+    9,
     // 2, // AI Document Review (temporarily hidden)
     3,
     4,

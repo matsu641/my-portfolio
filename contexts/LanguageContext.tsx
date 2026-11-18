@@ -433,6 +433,29 @@ const projectItemsFromMarkdown = {
         "最終プロジェクトとしてゲームを完成させ、合格評価を得た。",
     },
     {
+      slug: "education-platform",
+      title: "教育支援プラットフォーム（YOSS）",
+      period: "2026/07 - 2026/08",
+      background: [
+        "株式会社アットマーク・ソリューションのインターンで、2人チームのプロジェクトとして取り組んだ。",
+        "YOSSは、支援が必要な児童生徒を早期に見つけ、支援方針や対応内容を記録する学校向けシステム。",
+        "既存システムの課題整理と改善案の検討を2人で行った。私は改善案のデモ実装を担当し、チームメンバーは社内発表用のスライドを作成した。デモとスライドの内容は2人で確認した。",
+      ],
+      challenges: [
+        "家庭状況などの機密情報を含むため、児童生徒の実データは閲覧できなかった。そこで、自分たちで既存システムを操作し、導入説明会での教職員の反応や、開発元の社員からの意見も踏まえて改善点を整理した。",
+        "入力項目が多く、必要な欄を探しづらかった。また、生徒の現在の状況は確認できても、支援後にどう変化したかを以前の状態と比べることが難しかった。",
+      ],
+      solutions: [
+        "入力の負担を減らす　項目を内容ごとにまとめた。入力欄が見えるとすべて埋めようとするという社員の指摘を受け、任意のメモ欄は必要なときだけ開く設計にした。",
+        "支援の進捗と生徒の変化を追えるようにする　「要確認」「対応中」などの対応状況と期限を一覧にまとめ、支援後に生徒の状態がどう変化したかを記録・確認できる仕組みを提案した。",
+        "AIで判断材料を整理する　児童生徒の情報をそのまま外部AIに送らない方針とし、AIが状況を整理して提示し、教職員が最終判断を行う流れをデモで示した。",
+      ],
+      learnings: [
+        "改善案を操作できるデモとして実装し、社内発表で紹介した。支援の対応状況に加え、支援後の生徒の変化も追えるようにする提案に、肯定的な反応があった。",
+        "デモの発表までの取り組みであり、実運用での効果は未検証。",
+      ],
+    },
+    {
       slug: "utjn-website",
       title: "UTJN公式Webサイト",
       period: "2023/09 - Present",
@@ -593,6 +616,29 @@ const projectItemsFromMarkdown = {
       ],
       learnings:
         "Completed the integrated game and gained hands-on experience with interrupts, memory-mapped I/O, state management, and low-level debugging.",
+    },
+    {
+      slug: "education-platform",
+      title: "Education Support Platform (YOSS)",
+      period: "Jul 2026 - Aug 2026",
+      background: [
+        "Worked on this project in a two-person team during an internship at Atmark Solution.",
+        "YOSS is a school platform for identifying students who may need support early and recording support plans and actions.",
+        "We analyzed issues in the existing system and developed an improvement proposal together. I implemented the interactive demo, while my teammate prepared the internal presentation slides; we reviewed both deliverables as a team.",
+      ],
+      challenges: [
+        "Because the system contains sensitive information such as family circumstances, we could not access real student data. We instead explored the existing system ourselves and incorporated feedback from educators at an onboarding session and employees at the development company.",
+        "The large number of input fields made relevant information difficult to find. The system showed a student's current status but made it difficult to compare changes after support with the previous state.",
+      ],
+      solutions: [
+        "Reduced input burden by grouping related fields and keeping optional notes collapsed until needed",
+        "Proposed a view that combines statuses and deadlines while recording how each student's condition changes after support",
+        "Demonstrated an AI-assisted workflow that organizes information without sending raw student data to an external AI, leaving final decisions to educators",
+      ],
+      learnings: [
+        "Implemented the proposal as an interactive demo and presented it internally. The idea of tracking student changes alongside support status received positive feedback.",
+        "The work concluded at the demo presentation stage, so its impact in real-world operation has not been validated.",
+      ],
     },
     {
       slug: "utjn-website",

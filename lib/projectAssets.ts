@@ -168,6 +168,12 @@ export const projectAssets: Record<ProjectSlug, ProjectAssetBundle> = {
     thumbnailImageUrl: "/appointment-system/thumbnail.png",
     manualUrl: "/appointment-system/リハビリ予約管理システム 職員向け操作マニュアル.pdf",
   },
+  "education-platform": {
+    slug: "education-platform",
+    tags: ["Next.js", "TypeScript", "UI/UX", "Product Improvement", "Teamwork"],
+    thumbnailImageUrl: "/education-platform/thumbnail.png",
+    websiteUrl: "https://yoss-demo.vercel.app/dashboard",
+  },
   "clinic-website": {
     slug: "clinic-website",
     tags: ["Next.js", "CSS", "TypeScript", "Vercel", "SEO", "UI/UX", "Client Work"],

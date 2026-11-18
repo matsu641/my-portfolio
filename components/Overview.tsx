@@ -5,46 +5,6 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const focusItems = [
-  {
-    title: { en: "Problem-Driven Product Development", ja: "現場課題起点のプロダクト開発" },
-    description: {
-      en: "Turning real-world problems into usable software systems.",
-      ja: "現場の課題を整理し、使われるシステムとして形にします。",
-    },
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M12 4a3 3 0 0 0-3 3v10a3 3 0 0 0 6 0V7a3 3 0 0 0-3-3Z" />
-        <path d="M8.5 8H7a3 3 0 0 0 0 6h1.5M15.5 8H17a3 3 0 0 1 0 6h-1.5M9 12h6M12 4V2M12 22v-2" />
-      </svg>
-    ),
-  },
-  {
-    title: { en: "Full-stack development", ja: "フルスタック開発" },
-    description: {
-      en: "Building complete web applications from frontend to backend.",
-      ja: "フロントエンドからAPI実装まで、実用性を重視して開発します。",
-    },
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
-      </svg>
-    ),
-  },
-  {
-    title: { en: "AI / LLM Integration", ja: "AI / LLM活用" },
-    description: {
-      en: "Creating AI-powered features that improve workflows and user experiences.",
-      ja: "AIを業務改善やユーザー体験につながる機能として実装します。",
-    },
-    icon: (
-      <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M12 3v5M6 13v5M18 13v5M12 8h-2v5h4V8h-2ZM4 18h4v3H4zM16 18h4v3h-4zM12 13H6v5M12 13h6v5" />
-      </svg>
-    ),
-  },
-];
-
 const skillGroups = [
   {
     title: "Frontend",
@@ -84,18 +44,48 @@ const skillGroups = [
 
 const experiences = [
   {
-    company: "Yappli",
-    role: "AI Engineer",
+    category: "work",
+    company: "Powerline Connect Inc.",
+    role: "Software Engineer",
+    type: "Full-time Co-op",
+    period: "Sep 2026 - Sep 2027",
+    location: { en: "Canada", ja: "カナダ" },
+    description: {
+      en: "Developing new features, improving existing functionality, and proposing product enhancements.",
+      ja: "新機能の開発、既存機能の改修、プロダクトの改善提案を担当。",
+    },
+    logo: "/logo/powerline_connect_logo.svg",
+  },
+  {
+    category: "shortInternship",
+    company: "株式会社ヤプリ",
+    role: "Data Science Program Participant",
     type: "Internship",
     period: "Jul 2026 - Aug 2026",
+    location: { en: "Japan", ja: "日本" },
     description: { en: "Analyzed user data to identify product issues and designed and implemented improvements for an AI-powered BI product.", ja: "データ分析から課題設定、UI/UX設計、Frontend/Backend実装まで一貫してプロダクト改善を担当。" },
     logo: "/logo/yappli_logo.jpeg",
   },
   {
-    company: "EQUES",
-    role: "AI Engineer",
+    category: "shortInternship",
+    company: "株式会社アットマーク・ソリューション",
+    role: "Project Participant",
     type: "Internship",
-    period: "Feb 2026 - Present",
+    period: "Jul 2026 - Aug 2026",
+    location: { en: "Japan", ja: "日本" },
+    description: {
+      en: "Analyzed issues in an education support platform, proposed improvements, and implemented an interactive demo.",
+      ja: "教育支援プラットフォームの課題整理、改善提案、操作できるデモの実装を担当。",
+    },
+    logo: "/logo/atmark_solution_logo.png",
+  },
+  {
+    category: "work",
+    company: "株式会社EQUES",
+    role: "AI Engineer",
+    type: "Part-time",
+    period: "Feb 2026 - Aug 2026",
+    location: { en: "Japan", ja: "日本" },
     description: {
       en: "Investigated and implemented methods to improve document review features for pharmaceutical companies using RAG and other techniques.",
       ja: "製薬会社向けの文書レビュー機能改善のための手法を、RAGなどの技術を使い調査・実装。",
@@ -103,10 +93,12 @@ const experiences = [
     logo: "/logo/eques_logo.jpeg",
   },
   {
-    company: "STAR UP",
+    category: "work",
+    company: "株式会社STAR UP",
     role: "Software Engineer",
-    type: "Internship",
+    type: "Part-time",
     period: "May 2025 - Feb 2026",
+    location: { en: "Japan", ja: "日本" },
     description: {
       en: "Led feature development for a manufacturing SaaS platform.",
       ja: "製造業向けSaaSの新機能開発をリード。",
@@ -114,10 +106,12 @@ const experiences = [
     logo: "/logo/star_up_logo.jpeg",
   },
   {
-    company: "Kuwabara Orthopedic Clinic",
+    category: "work",
+    company: "くわばら整形外科",
     role: "Software Engineer",
-    type: "Freelance",
+    type: "Contract",
     period: "May 2024 - Jul 2024",
+    location: { en: "Japan", ja: "日本" },
     description: {
       en: "Developed and maintained the official website and internal management system from scratch.",
       ja: "公式サイトや業務効率化システムを0→1開発・運用。",
@@ -125,10 +119,12 @@ const experiences = [
     logo: "/logo/kuwabara_ortho_logo.jpeg",
   },
   {
+    category: "extracurricular",
     company: "University of Toronto Japanese Network",
-    role: "Software Engineer",
-    type: "Team Member",
+    role: "Web Development Member",
+    type: "日本人学生団体",
     period: "Sep 2023 - Present",
+    location: { en: "Canada", ja: "カナダ" },
     description: {
       en: "Developed and maintained the official website with team members.",
       ja: "サークルの公式Webサイトをチームで開発・運用。",
@@ -136,6 +132,21 @@ const experiences = [
     logo: "/logo/utjn_logo.jpeg",
   },
 ];
+
+const experienceGroups = [
+  {
+    key: "work",
+    title: { en: "Work Experience", ja: "職務経験" },
+  },
+  {
+    key: "shortInternship",
+    title: { en: "Short-term Internships", ja: "短期インターン" },
+  },
+  {
+    key: "extracurricular",
+    title: { en: "Extracurricular Activities", ja: "課外活動" },
+  },
+] as const;
 
 function Panel({
   title,
@@ -168,8 +179,7 @@ export default function Overview() {
   const copy = {
     en: {
       eyebrow: "About",
-      title: "What I experienced, where I learn, and how I work.",
-      focus: "What I focus on",
+      title: "Education, skills, and experience.",
       education: "Education",
       major: "・Computer Engineering Major",
       minor: "・AI Minor",
@@ -180,8 +190,7 @@ export default function Overview() {
     },
     ja: {
       eyebrow: "About",
-      title: "What I experienced, where I learn, and how I work.",
-      focus: "注力領域",
+      title: "学歴・スキル・経験",
       education: "学歴",
       major: "・コンピュータ工学 専攻",
       minor: "・AI 副専攻",
@@ -206,9 +215,13 @@ export default function Overview() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.02fr_1fr_1.08fr]"
+        className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.82fr_1.38fr] lg:items-start"
       >
-        <Panel title={copy.skills} className="self-start">
+        <div className="grid content-start gap-6">
+        <Panel
+          title={copy.skills}
+          className="order-2 self-start"
+        >
           <div className="mt-3 flex justify-end gap-2 text-[10px] font-semibold text-[#8a8f8c] dark:text-[#a9b5af]">
             {copy.skillLevels.map((label) => (
               <span key={label} className="w-12 text-center">{label}</span>
@@ -249,7 +262,7 @@ export default function Overview() {
           </div>
         </Panel>
 
-        <div className="grid gap-6">
+        <div className="order-1 grid gap-6">
           <Panel title={copy.education}>
             <div className="mt-6 flex items-center gap-5">
               <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-md border border-black/8 bg-white p-2 shadow-sm dark:border-white/10">
@@ -271,68 +284,64 @@ export default function Overview() {
               </div>
             </div>
           </Panel>
-
-          <Panel title={copy.focus}>
-            <div className="mt-5 space-y-3">
-              {focusItems.map((item) => (
-                <motion.div
-                  key={item.title.en}
-                  initial={{ opacity: 0, x: -16, scale: 0.98, filter: "blur(12px)" }}
-                  whileInView={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.55, ease: "easeOut" }}
-                  className="flex gap-4 rounded-md border border-black/10 p-3 dark:border-white/10"
-                >
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-[#f0f4f1] text-[#68887b] dark:bg-[#222824] dark:text-[#9bb8aa]">
-                    {item.icon}
-                  </div>
-                  <div className="self-center">
-                    <h3 className="text-sm font-bold text-[#242424] dark:text-[#f4f7f5]">{item.title[language]}</h3>
-                    <p className="mt-1 text-xs leading-5 text-[#5f6662] dark:text-[#c6d2cc]">{item.description[language]}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </Panel>
+        </div>
         </div>
 
-        <Panel title={copy.experience}>
-          <div className="relative mt-5 space-y-5 pl-5">
-            <div className="absolute bottom-4 left-[5px] top-2 w-px bg-[#d6dfda] dark:bg-white/15" />
-            {experiences.map((experience) => (
-              <motion.div
-                key={experience.company}
-                initial={{ opacity: 0, y: 18, scale: 0.98, filter: "blur(12px)" }}
-                whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.55, ease: "easeOut" }}
-                className="relative border-b border-black/10 pb-5 last:border-b-0 last:pb-0 dark:border-white/10"
-              >
-                <span className="absolute -left-[19px] top-2.5 h-2.5 w-2.5 rounded-full bg-[#68887b] ring-4 ring-white dark:ring-[#171b19]" />
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-md border border-black/8 bg-white p-1.5 shadow-sm dark:border-white/10">
-                    <Image
-                      src={experience.logo}
-                      alt={`${experience.company} logo`}
-                      width={48}
-                      height={48}
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="min-w-0 whitespace-nowrap text-[15px] font-bold leading-tight text-[#242424] dark:text-[#f4f7f5]">{experience.role}</h3>
-                      <span className="shrink-0 self-start rounded-md bg-[#f0f4f1] px-2.5 py-1 text-[11px] font-semibold leading-none text-[#6b736f] dark:bg-[#222824] dark:text-[#c6d2cc]">
-                        {experience.period}
-                      </span>
-                    </div>
-                    <p className="mt-1 text-xs text-[#242424] dark:text-[#dfe7e2]">
-                      {experience.company} · {experience.type}
-                    </p>
-                    <p className="mt-2 text-xs leading-5 text-[#4b504d] dark:text-[#c6d2cc]">{experience.description[language]}</p>
-                  </div>
+        <Panel
+          title={copy.experience}
+          className="self-start"
+        >
+          <div className="mt-5 space-y-8">
+            {experienceGroups.map((group) => (
+              <section key={group.key}>
+                <h3 className="text-xs font-bold uppercase tracking-[0.08em] text-[#68887b] dark:text-[#9bb8aa]">
+                  {group.title[language]}
+                </h3>
+                <div className="relative mt-4 space-y-5 pl-5 lg:space-y-6">
+                  <div className="absolute bottom-4 left-[5px] top-2 w-px bg-[#d6dfda] dark:bg-white/15" />
+                  {experiences
+                    .filter((experience) => experience.category === group.key)
+                    .map((experience) => (
+                      <motion.div
+                        key={experience.company}
+                        initial={{ opacity: 0, y: 18, scale: 0.98, filter: "blur(12px)" }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                        viewport={{ once: true, margin: "-60px" }}
+                        transition={{ duration: 0.55, ease: "easeOut" }}
+                        className="relative border-b border-black/10 pb-5 last:border-b-0 last:pb-0 dark:border-white/10 lg:pb-6 lg:last:pb-0"
+                      >
+                        <span className="absolute -left-[19px] top-2.5 h-2.5 w-2.5 rounded-full bg-[#68887b] ring-4 ring-white dark:ring-[#171b19]" />
+                        <div className="flex items-start gap-3">
+                          <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-md border border-black/8 bg-white p-1.5 shadow-sm dark:border-white/10">
+                            <Image
+                              src={experience.logo}
+                              alt={`${experience.company} logo`}
+                              width={48}
+                              height={48}
+                              className="h-full w-full object-contain"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-start justify-between gap-2">
+                              <h4 className="min-w-0 text-[15px] font-bold leading-tight text-[#242424] dark:text-[#f4f7f5]">
+                                {experience.role}
+                              </h4>
+                              <span className="shrink-0 self-start rounded-md bg-[#f0f4f1] px-2.5 py-1 text-[11px] font-semibold leading-none text-[#6b736f] dark:bg-[#222824] dark:text-[#c6d2cc]">
+                                {experience.period}
+                              </span>
+                            </div>
+                            <p className="mt-1 text-xs text-[#242424] dark:text-[#dfe7e2]">
+                              {experience.company} · {experience.type} · {experience.location[language]}
+                            </p>
+                            <p className="mt-2 text-xs leading-5 text-[#4b504d] dark:text-[#c6d2cc]">
+                              {experience.description[language]}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
                 </div>
-              </motion.div>
+              </section>
             ))}
           </div>
         </Panel>
